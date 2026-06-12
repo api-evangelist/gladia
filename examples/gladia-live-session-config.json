@@ -1,0 +1,16 @@
+{
+  "encoding": "wav/pcm",
+  "sample_rate": 16000,
+  "language_config": {
+    "languages": [
+      "en"
+    ],
+    "code_switching": false
+  },
+  "diarization": true,
+  "diarization_config": {
+    "number_of_speakers": 2
+  },
+  "endpointing": 200,
+  "maximum_duration_without_endpointing": 10
+}

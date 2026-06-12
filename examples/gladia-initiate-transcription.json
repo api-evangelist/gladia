@@ -1,0 +1,22 @@
+{
+  "audio_url": "https://storage.example.com/audio/interview.mp3",
+  "context_prompt": "Speakers discuss quarterly earnings and financial projections.",
+  "language_config": {
+    "languages": [
+      "en"
+    ],
+    "code_switching": false
+  },
+  "diarization": true,
+  "diarization_config": {
+    "number_of_speakers": 2,
+    "min_speakers": 1,
+    "max_speakers": 5
+  },
+  "subtitles": false,
+  "detect_language": false,
+  "enable_code_switching": false,
+  "translation": false,
+  "summarization": false,
+  "audio_to_llm": false
+}

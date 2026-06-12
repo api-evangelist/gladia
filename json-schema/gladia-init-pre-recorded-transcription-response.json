@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.gladia.io/schemas/InitPreRecordedTranscriptionResponse",
+  "title": "InitPreRecordedTranscriptionResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Id of the job",
+      "format": "uuid",
+      "example": "45463597-20b7-4af7-b3b3-f5fb778203ab"
+    },
+    "result_url": {
+      "type": "string",
+      "description": "Prebuilt URL with your transcription `id` to fetch the result",
+      "example": "https://api.gladia.io/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "id",
+    "result_url"
+  ]
+}

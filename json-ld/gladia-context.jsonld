@@ -1,0 +1,130 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "gladia": "https://www.gladia.io/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "GladiaAPI": {
+      "@id": "gladia:GladiaAPI",
+      "@type": "@id"
+    },
+    "TranscriptionJob": {
+      "@id": "gladia:TranscriptionJob",
+      "@type": "@id"
+    },
+    "LiveSession": {
+      "@id": "gladia:LiveSession",
+      "@type": "@id"
+    },
+    "AudioUpload": {
+      "@id": "gladia:AudioUpload",
+      "@type": "@id"
+    },
+
+    "id": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "schema:status",
+      "@type": "xsd:string"
+    },
+    "audioUrl": {
+      "@id": "gladia:audioUrl",
+      "@type": "xsd:anyURI"
+    },
+    "language": {
+      "@id": "schema:inLanguage",
+      "@type": "xsd:string"
+    },
+    "diarization": {
+      "@id": "gladia:diarization",
+      "@type": "xsd:boolean"
+    },
+    "numberOfSpeakers": {
+      "@id": "gladia:numberOfSpeakers",
+      "@type": "xsd:integer"
+    },
+    "utterance": {
+      "@id": "gladia:utterance",
+      "@type": "@id"
+    },
+    "transcript": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "confidence": {
+      "@id": "gladia:confidence",
+      "@type": "xsd:float"
+    },
+    "startTime": {
+      "@id": "gladia:startTime",
+      "@type": "xsd:float"
+    },
+    "endTime": {
+      "@id": "gladia:endTime",
+      "@type": "xsd:float"
+    },
+    "speakerId": {
+      "@id": "gladia:speakerId",
+      "@type": "xsd:integer"
+    },
+    "wordTimestamps": {
+      "@id": "gladia:wordTimestamps",
+      "@type": "@id"
+    },
+    "summarization": {
+      "@id": "gladia:summarization",
+      "@type": "@id"
+    },
+    "translation": {
+      "@id": "gladia:translation",
+      "@type": "@id"
+    },
+    "piiRedaction": {
+      "@id": "gladia:piiRedaction",
+      "@type": "@id"
+    },
+    "contextPrompt": {
+      "@id": "gladia:contextPrompt",
+      "@type": "xsd:string"
+    },
+    "callback": {
+      "@id": "gladia:callback",
+      "@type": "xsd:anyURI"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "completedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "encoding": {
+      "@id": "gladia:encoding",
+      "@type": "xsd:string"
+    },
+    "sampleRate": {
+      "@id": "gladia:sampleRate",
+      "@type": "xsd:integer"
+    },
+    "endpointing": {
+      "@id": "gladia:endpointing",
+      "@type": "xsd:integer"
+    },
+    "codeSwitch": {
+      "@id": "gladia:codeSwitching",
+      "@type": "xsd:boolean"
+    },
+    "apiKey": {
+      "@id": "gladia:xGladiaKey",
+      "@type": "xsd:string"
+    },
+    "baseURL": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    }
+  }
+}

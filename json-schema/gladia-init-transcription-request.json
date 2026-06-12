@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.gladia.io/schemas/InitTranscriptionRequest",
+  "title": "InitTranscriptionRequest",
+  "type": "object",
+  "properties": {
+    "custom_vocabulary": {
+      "type": "boolean",
+      "description": "**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with",
+      "default": false
+    },
+    "custom_vocabulary_config": {
+      "description": "**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CustomVocabularyConfigDTO"
+        }
+      ]
+    },
+    "callback_url": {
+      "type": "string",
+      "description": "**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription",
+      "example": "http://callback.example",
+      "format": "uri",
+      "deprecated": true
+    },
+    "callback": {
+      "type": "boolean",
+      "description": "Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour",
+      "default": false
+    },
+    "callback_config": {
+      "description": "Customize the callback behaviour (url and http method)",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CallbackConfigDto"
+        }
+      ]
+    },
+    "subtitles": {
+      "type": "boolean",
+      "description": "Enable subtitles generation for this transcription",
+      "default": false
+    },
+    "subtitles_config": {
+      "description": "Configuration for subtitles generation if `subtitles` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SubtitlesConfigDTO"
+        }
+      ]
+    },
+    "diarization": {
+      "type": "boolean",
+      "description": "Enable speaker recognition (diarization) for this audio",
+      "default": false
+    },
+    "diarization_config": {
+      "description": "Speaker recognition configuration, if `diarization` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/DiarizationConfigDTO"
+        }
+      ]
+    },
+    "translation": {
+      "type": "boolean",
+      "description": "**[Beta]** Enable translation for this audio",
+      "default": false
+    },
+    "translation_config": {
+      "description": "**[Beta]** Translation configuration, if `translation` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TranslationConfigDTO"
+        }
+      ]
+    },
+    "summarization": {
+      "type": "boolean",
+      "description": "Enable summarization for this audio",
+      "default": false
+    },
+    "summarization_config": {
+      "description": "Summarization configuration, if `summarization` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SummarizationConfigDTO"
+        }
+      ]
+    },
+    "named_entity_recognition": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable named entity recognition for this audio",
+      "default": false
+    },
+    "custom_spelling": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable custom spelling for this audio",
+      "default": false
+    },
+    "custom_spelling_config": {
+      "description": "**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CustomSpellingConfigDTO"
+        }
+      ]
+    },
+    "sentiment_analysis": {
+      "type": "boolean",
+      "description": "Enable sentiment analysis for this audio",
+      "default": false
+    },
+    "audio_to_llm": {
+      "type": "boolean",
+      "description": "Enable audio to LLM processing for this audio",
+      "default": false
+    },
+    "audio_to_llm_config": {
+      "description": "Audio to LLM configuration, if `audio_to_llm` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AudioToLlmListConfigDTO"
+        }
+      ]
+    },
+    "pii_redaction": {
+      "type": "boolean",
+      "description": "Enable PII redaction for this audio",
+      "default": false
+    },
+    "pii_redaction_config": {
+      "description": "PII redaction configuration, if `pii_redaction` is enabled",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PiiRedactionConfigDTO"
+        }
+      ]
+    },
+    "custom_metadata": {
+      "type": "object",
+      "description": "Custom metadata you can attach to this transcription",
+      "example": {
+        "user": "John Doe"
+      },
+      "additionalProperties": true
+    },
+    "sentences": {
+      "type": "boolean",
+      "description": "Enable sentences for this audio",
+      "default": false
+    },
+    "punctuation_enhanced": {
+      "type": "boolean",
+      "description": "**[Alpha]** Use enhanced punctuation for this audio",
+      "default": false
+    },
+    "language_config": {
+      "description": "Specify the language configuration",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LanguageConfig"
+        }
+      ]
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "URL to a Gladia file or to an external audio or video file",
+      "example": "http://files.gladia.io/example/audio-transcription/split_infinity.wav",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "audio_url"
+  ]
+}

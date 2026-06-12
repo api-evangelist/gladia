@@ -5,6 +5,7 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/apis.yml
 created: 2026-06-12
 modified: 2026-06-12
+
 specificationVersion: "0.19"
 description: >
   Gladia is an AI audio infrastructure platform that offers speech-to-text
@@ -91,6 +92,22 @@ common:
     url: rate-limits/gladia-rate-limits.yml
   - type: FinOps
     url: finops/gladia-finops.yml
+  - type: OpenAPI
+    url: openapi/gladia-control-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/gladia-init-transcription-request.json
+  - type: JSONSchema
+    url: json-schema/gladia-audio-upload-response.json
+  - type: JSONSchema
+    url: json-schema/gladia-init-pre-recorded-transcription-response.json
+  - type: JSONSchema
+    url: json-schema/gladia-diarization-config.json
+  - type: JSONSchema
+    url: json-schema/gladia-live-event-payload.json
+  - type: Vocabulary
+    url: vocabulary/gladia-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/gladia-context.jsonld
 
 maintainers:
   - FN: Kin Lane

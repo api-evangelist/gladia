@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.gladia.io/schemas/DiarizationConfigDTO",
+  "title": "DiarizationConfigDTO",
+  "type": "object",
+  "properties": {
+    "number_of_speakers": {
+      "type": "integer",
+      "description": "Exact number of speakers in the audio",
+      "example": 3,
+      "minimum": 1
+    },
+    "min_speakers": {
+      "type": "integer",
+      "description": "Minimum number of speakers in the audio",
+      "example": 1,
+      "minimum": 0
+    },
+    "max_speakers": {
+      "type": "integer",
+      "description": "Maximum number of speakers in the audio",
+      "example": 2,
+      "minimum": 0
+    }
+  }
+}

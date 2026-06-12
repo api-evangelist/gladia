@@ -1,0 +1,100 @@
+vocabulary:
+  - term: pre-recorded
+    definition: >
+      Audio submitted for asynchronous transcription after the recording has completed.
+      Jobs are queued and results fetched by polling the job ID endpoint.
+
+  - term: live transcription
+    definition: >
+      Real-time speech-to-text conversion of a streaming audio session via WebSocket.
+      Individual sessions are capped at 3 hours; latency is sub-second.
+
+  - term: diarization
+    definition: >
+      Speaker separation: the process of partitioning an audio stream into segments
+      attributed to individual speakers. Gladia supports automatic or fixed speaker count.
+
+  - term: audio intelligence
+    definition: >
+      LLM-powered enrichments applied to a transcript, including summarization,
+      sentiment analysis, topic detection, named-entity recognition, and custom prompts.
+
+  - term: x-gladia-key
+    definition: >
+      The HTTP request header used to authenticate all Gladia API calls. The value is
+      the API key obtained from the Gladia dashboard.
+
+  - term: transcription job
+    definition: >
+      An asynchronous processing unit identified by a UUID. Callers submit audio,
+      receive a job ID, and poll GET /v2/pre-recorded/{id} for status and results.
+
+  - term: code switching
+    definition: >
+      A multilingual mode in which the model detects and transcribes speech that
+      alternates between two or more languages within a single utterance or session.
+
+  - term: utterance
+    definition: >
+      A single continuous segment of speech attributed to one speaker, with associated
+      start time, end time, confidence score, and text content.
+
+  - term: word-level timestamps
+    definition: >
+      Per-word start and end times within a transcript, enabling precise alignment of
+      text to the audio waveform.
+
+  - term: endpointing
+    definition: >
+      In live sessions, the silence duration (in milliseconds) after which the model
+      commits a completed utterance and emits a final transcript segment.
+
+  - term: audio upload
+    definition: >
+      The process of providing audio to Gladia either by uploading a file via
+      multipart/form-data to POST /v2/upload or by supplying an accessible audio_url.
+
+  - term: callback
+    definition: >
+      An optional webhook URL to which Gladia POSTs a result payload when an
+      asynchronous transcription job completes, eliminating the need for polling.
+
+  - term: speaker diarization config
+    definition: >
+      Configuration for diarization including number_of_speakers (exact count),
+      min_speakers, and max_speakers to bound automatic speaker detection.
+
+  - term: translation
+    definition: >
+      Post-transcription machine translation of the transcript into one or more
+      target languages, applied as an audio intelligence enrichment step.
+
+  - term: PII redaction
+    definition: >
+      Automatic detection and removal or replacement of personally identifiable
+      information (names, phone numbers, email addresses, etc.) in the transcript.
+
+  - term: subtitles
+    definition: >
+      Export of the transcript formatted as subtitle captions (SRT or VTT) with
+      configurable style and maximum words per caption segment.
+
+  - term: summarization
+    definition: >
+      LLM-generated summary of the transcript, available as a bullet-point or
+      paragraph format audio intelligence enrichment.
+
+  - term: models endpoint
+    definition: >
+      GET /v1/models returns Gladia's available transcription models in the
+      OpenRouter integration spec format.
+
+  - term: language config
+    definition: >
+      Object specifying which languages to expect in the audio and whether
+      code-switching between languages should be enabled.
+
+  - term: context prompt
+    definition: >
+      A short natural-language description of the audio content passed to the
+      model to improve recognition of domain-specific terminology.

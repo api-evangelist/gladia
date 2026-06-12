@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.gladia.io/schemas/AudioUploadResponse",
+  "title": "AudioUploadResponse",
+  "type": "object",
+  "properties": {
+    "audio_url": {
+      "type": "string",
+      "description": "Uploaded audio file Gladia URL",
+      "format": "uri",
+      "example": "https://api.gladia.io/file/6c09400e-23d2-4bd2-be55-96a5ececfa3b"
+    },
+    "audio_metadata": {
+      "description": "Uploaded audio file detected metadata",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AudioUploadMetadataDTO"
+        }
+      ]
+    }
+  },
+  "required": [
+    "audio_url",
+    "audio_metadata"
+  ]
+}
