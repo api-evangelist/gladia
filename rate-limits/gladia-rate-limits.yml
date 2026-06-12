@@ -1,0 +1,85 @@
+spec: API Commons Rate Limits 0.1
+provider: Gladia
+providerId: gladia
+created: 2026-06-12
+modified: 2026-06-12
+url: https://docs.gladia.io/chapters/limits-and-specifications/concurrency
+throttling:
+  httpStatusCode: 429
+  retryAfterHeader: Retry-After
+  description: >
+    Gladia enforces API-level rate limits applied uniformly across all users
+    to prevent performance degradation. Requests that exceed rate limits
+    receive an HTTP 429 response. Exact per-minute call thresholds are
+    not publicly documented; contact Gladia support for specifics.
+limits:
+  - name: Free tier monthly usage cap
+    scope: account
+    plan: Starter (free quota)
+    type: quota
+    unit: hours
+    limit: 10
+    period: monthly
+    description: >
+      Free-tier users are limited to 10 hours of transcription per month
+      across async and real-time combined.
+
+  - name: Free tier async concurrency
+    scope: account
+    plan: Starter (free quota)
+    type: concurrency
+    unit: simultaneous_requests
+    limit: 3
+    description: Maximum simultaneous pre-recorded (async) transcriptions for free-tier users.
+
+  - name: Free tier real-time concurrency
+    scope: account
+    plan: Starter (free quota)
+    type: concurrency
+    unit: simultaneous_sessions
+    limit: 1
+    description: Maximum simultaneous live transcription sessions for free-tier users.
+
+  - name: Paid async concurrency
+    scope: account
+    plan: Starter (paid) / Growth
+    type: concurrency
+    unit: simultaneous_requests
+    limit: 25
+    description: Maximum simultaneous pre-recorded (async) transcriptions for paid-tier users.
+
+  - name: Paid real-time concurrency
+    scope: account
+    plan: Starter (paid) / Growth
+    type: concurrency
+    unit: simultaneous_sessions
+    limit: 30
+    description: Maximum simultaneous live transcription sessions for paid-tier users.
+
+  - name: Paid async request queue depth
+    scope: account
+    plan: Starter (paid) / Growth
+    type: queue
+    unit: requests
+    limit: 300
+    description: >
+      Paid users can queue up to 300 async transcription requests; only 25
+      will be actively processed concurrently at any given time.
+
+  - name: Real-time session duration
+    scope: session
+    plan: All
+    type: duration
+    unit: hours
+    limit: 3
+    description: >
+      A single live (real-time) WebSocket transcription session cannot
+      exceed 3 hours in duration regardless of plan.
+
+  - name: Enterprise concurrency
+    scope: account
+    plan: Enterprise
+    type: concurrency
+    unit: simultaneous_requests
+    limit: unlimited
+    description: Enterprise accounts receive on-demand concurrency negotiated with Gladia sales.

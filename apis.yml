@@ -1,0 +1,97 @@
+aid: gladia
+name: Gladia
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/apis.yml
+created: 2026-06-12
+modified: 2026-06-12
+specificationVersion: "0.19"
+description: >
+  Gladia is an AI audio infrastructure platform that offers speech-to-text
+  transcription via both REST and WebSocket APIs, supporting asynchronous
+  pre-recorded audio processing and real-time live transcription. The platform
+  provides speaker diarization, automatic language detection across 100+
+  languages, word-level timestamps, and audio intelligence features powered
+  by large language models. Authentication uses an API key passed via the
+  x-gladia-key HTTP header against the base URL https://api.gladia.io/v2/.
+  Gladia offers a free tier with 10 hours per month, metered paid plans starting
+  at $0.61/hour for async and $0.75/hour for real-time, and custom enterprise
+  pricing with zero data retention and SLA guarantees.
+tags:
+  - Speech-to-Text
+  - Transcription
+  - Audio Intelligence
+  - Real-Time
+  - Speaker Diarization
+  - Translation
+  - WebSocket
+  - REST
+apis:
+  - name: Gladia Pre-recorded (Async) API
+    description: >
+      REST API for submitting pre-recorded audio files for asynchronous
+      transcription with speaker diarization, language detection, word-level
+      timestamps, and audio intelligence enrichments.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.gladia.io/chapters/introduction
+    baseURL: https://api.gladia.io/v2/
+    tags:
+      - Speech-to-Text
+      - Transcription
+      - REST
+      - Asynchronous
+    properties:
+      - type: Documentation
+        url: https://docs.gladia.io/chapters/introduction
+      - type: OpenAPI
+        url: https://docs.gladia.io/api-reference
+
+  - name: Gladia Live (Real-time) API
+    description: >
+      WebSocket API for real-time live audio transcription with sub-second
+      latency, supporting multi-language detection, live speaker diarization,
+      and streaming audio intelligence. Individual sessions are capped at
+      3 hours.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.gladia.io/chapters/introduction
+    baseURL: wss://api.gladia.io/
+    tags:
+      - Speech-to-Text
+      - Real-Time
+      - WebSocket
+      - Live Transcription
+    properties:
+      - type: Documentation
+        url: https://docs.gladia.io/chapters/introduction
+      - type: AsyncAPI
+        url: https://github.com/gladiaio/docs
+
+common:
+  - type: Website
+    url: https://www.gladia.io/
+  - type: Documentation
+    url: https://docs.gladia.io/
+  - type: GitHubOrganization
+    url: https://github.com/gladiaio
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/gladia-io
+  - type: X
+    url: https://x.com/gladia_io
+  - type: Blog
+    url: https://www.gladia.io/blog
+  - type: Changelog
+    url: https://www.gladia.io/changelog
+  - type: Pricing
+    url: https://www.gladia.io/pricing
+  - type: StatusPage
+    url: https://status.gladia.io/
+  - type: Plans
+    url: plans/gladia-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/gladia-rate-limits.yml
+  - type: FinOps
+    url: finops/gladia-finops.yml
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

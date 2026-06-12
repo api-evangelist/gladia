@@ -1,0 +1,78 @@
+spec: FinOps Framework 1.0
+provider: Gladia
+providerId: gladia
+created: 2026-06-12
+modified: 2026-06-12
+url: https://www.gladia.io/pricing
+billingModel: metered
+focusAlignment: FOCUS 1.0
+focusColumns:
+  - ChargeType: Usage
+  - BillingCurrency: USD
+  - PricingUnit: hour
+  - PricingQuantity: audio_hours_consumed
+  - ServiceName: Gladia Speech-to-Text API
+  - ServiceCategory: AI and Machine Learning
+  - ResourceType: Transcription
+  - CommitmentDiscountType: Spend Commitment (Growth plan)
+meters:
+  - name: Async Transcription
+    description: >
+      Metered billing per hour of pre-recorded audio submitted for
+      asynchronous transcription. Billed on actual audio duration processed.
+    unit: hours
+    plans:
+      - plan: Starter
+        freeAllowance: 10
+        freeAllowancePeriod: monthly
+        pricePerUnit: 0.61
+        currency: USD
+      - plan: Growth
+        pricePerUnit: 0.20
+        currency: USD
+        note: "Starting price with volume commitment; rate decreases with higher spend"
+      - plan: Enterprise
+        pricePerUnit: custom
+        currency: USD
+
+  - name: Real-time Transcription
+    description: >
+      Metered billing per hour of live audio streamed through the
+      WebSocket API for real-time transcription. Billed on session duration.
+    unit: hours
+    plans:
+      - plan: Starter
+        freeAllowance: 10
+        freeAllowancePeriod: monthly
+        note: "Free hours shared across async and real-time"
+        pricePerUnit: 0.75
+        currency: USD
+      - plan: Growth
+        pricePerUnit: 0.25
+        currency: USD
+        note: "Starting price with volume commitment"
+      - plan: Enterprise
+        pricePerUnit: custom
+        currency: USD
+
+principles:
+  - name: Visibility
+    description: >
+      Usage is metered per audio hour consumed across async and real-time
+      APIs. Gladia provides account dashboards and webhook callbacks to
+      monitor consumption in near real-time.
+  - name: Optimization
+    description: >
+      The Growth plan rewards volume commitment with up to 67% discounts
+      versus Starter pay-as-you-go rates. Choosing async transcription
+      over real-time also reduces per-hour cost.
+  - name: Governance
+    description: >
+      Free tier caps (10 hours/month) and concurrency limits prevent
+      runaway spend. Enterprise zero-data-retention and dedicated
+      infrastructure options satisfy compliance and cost-isolation needs.
+  - name: Commitment Discounts
+    description: >
+      Growth plan customers commit to an upfront spend level in exchange
+      for lower per-hour rates. Enterprise contracts are annual with
+      custom pricing negotiated based on volume and feature requirements.

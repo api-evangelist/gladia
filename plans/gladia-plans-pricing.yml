@@ -1,0 +1,108 @@
+spec: API Commons Plans 0.1
+provider: Gladia
+providerId: gladia
+created: 2026-06-12
+modified: 2026-06-12
+reconciled: true
+url: https://www.gladia.io/pricing
+plans:
+  - name: Starter
+    type: freemium
+    description: >
+      Entry-level plan with a free monthly quota for testing and development.
+      Metered pay-as-you-go pricing applies after the free hours are consumed.
+    features:
+      - Automatic language detection (100+ languages)
+      - Speaker diarization
+      - Word-level timestamps
+      - GDPR / HIPAA / SOC 2 Type 2 compliance
+      - Help center and Discord support
+    quotas:
+      - name: Free monthly async transcription
+        type: quota
+        unit: hours
+        limit: 10
+        period: monthly
+        metered: false
+      - name: Async transcription (pay-as-you-go)
+        type: metered
+        unit: hours
+        price: 0.61
+        currency: USD
+      - name: Real-time transcription (pay-as-you-go)
+        type: metered
+        unit: hours
+        price: 0.75
+        currency: USD
+      - name: Max concurrent async requests
+        type: quota
+        unit: requests
+        limit: 25
+        metered: false
+      - name: Max concurrent real-time sessions
+        type: quota
+        unit: sessions
+        limit: 30
+        metered: false
+      - name: Async request queue depth
+        type: quota
+        unit: requests
+        limit: 300
+        metered: false
+      - name: Max real-time session duration
+        type: quota
+        unit: hours
+        limit: 3
+        metered: false
+
+  - name: Growth
+    type: paid
+    description: >
+      Volume-commitment plan with significant per-hour discounts (up to 67%
+      off Starter rates) in exchange for upfront spend commitments. Flexible
+      concurrency and automatic model-training opt-out included.
+    features:
+      - All Starter features
+      - Custom volume discounts
+      - Automatic model training opt-out
+      - Flexible concurrent request limits
+      - 99.9% uptime SLA
+      - Help center and Discord support
+    quotas:
+      - name: Async transcription (volume discount)
+        type: metered
+        unit: hours
+        price: 0.20
+        currency: USD
+        note: "Starting price; actual rate depends on committed volume"
+      - name: Real-time transcription (volume discount)
+        type: metered
+        unit: hours
+        price: 0.25
+        currency: USD
+        note: "Starting price; actual rate depends on committed volume"
+
+  - name: Enterprise
+    type: enterprise
+    description: >
+      Custom annual plan with unlimited concurrency, zero data retention,
+      dedicated Slack channel and account manager, custom model fine-tuning,
+      and custom hosting options.
+    features:
+      - All Growth features
+      - Default model training opt-out
+      - Zero data retention
+      - Dedicated Slack channel and account manager
+      - Custom model fine-tuning
+      - Custom hosting (on-premise or private cloud)
+      - Unlimited concurrency
+      - Annual contract with SLAs
+    quotas:
+      - name: Concurrent requests
+        type: quota
+        unit: requests
+        limit: unlimited
+        metered: false
+      - name: Pricing
+        type: boolean
+        note: Custom pricing — contact sales
