@@ -1,7 +1,7 @@
 aid: gladia
 name: Gladia
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/apis.yml
 created: 2026-06-12
 modified: 2026-06-12
@@ -33,7 +33,7 @@ apis:
       REST API for submitting pre-recorded audio files for asynchronous
       transcription with speaker diarization, language detection, word-level
       timestamps, and audio intelligence enrichments.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.gladia.io/chapters/introduction
     baseURL: https://api.gladia.io/v2/
     tags:
@@ -53,7 +53,7 @@ apis:
       latency, supporting multi-language detection, live speaker diarization,
       and streaming audio intelligence. Individual sessions are capped at
       3 hours.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.gladia.io/chapters/introduction
     baseURL: wss://api.gladia.io/
     tags:
