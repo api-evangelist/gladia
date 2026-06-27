@@ -80,7 +80,7 @@ common:
     url: https://x.com/gladia_io
   - type: Blog
     url: https://www.gladia.io/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://www.gladia.io/changelog
   - type: Pricing
     url: https://www.gladia.io/pricing

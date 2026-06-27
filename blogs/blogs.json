@@ -1,20 +1,19 @@
 {
-  "url": "https://www.gladia.io/blog",
-  "rss": null,
-  "atom": null,
-  "last_checked": "2026-06-12",
-  "note": "No RSS or Atom feed detected. Blog posts are rendered as HTML only.",
-  "posts": [],
   "repo": "gladia",
   "feeds": [
     {
+      "source": "https://www.gladia.io/blog",
+      "feed_url": "",
+      "saved": 1,
+      "method": "agent-scrape"
+    },
+    {
       "source": "https://x.com/gladia_io",
-      "feed_url": "https://x.com/gladia_io",
-      "title": "",
       "saved": 0,
-      "method": "none"
+      "error": "not fetchable (x.com)"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:44:02Z",
+  "post_count": 10,
+  "agent_pulled": "2026-06-27"
 }
