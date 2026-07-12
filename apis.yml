@@ -68,6 +68,14 @@ apis:
         url: https://github.com/gladiaio/docs
 
 common:
+  - type: TrustCenter
+    url: security/gladia-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/gladia-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/gladia-domain-security.yml
+  - type: Authentication
+    url: authentication/gladia-authentication.yml
   - type: Website
     url: https://www.gladia.io/
   - type: Documentation
