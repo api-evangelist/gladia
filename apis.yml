@@ -68,6 +68,8 @@ apis:
         url: https://github.com/gladiaio/docs
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/gladia-agentic-access.yml
   - type: TrustCenter
     url: security/gladia-trust-center.yml
   - type: VulnerabilityDisclosure
