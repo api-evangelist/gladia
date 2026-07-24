@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Gladia Control AudioToText File Management API
+  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.gladia.io/
+  description: Gladia API production URL
+tags:
+- name: File Management
+paths:
+  /v2/upload:
+    post:
+      operationId: FileController_upload_v2
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: The file to be uploaded. This should be an audio or video file.
+          application/json:
+            schema:
+              type: object
+              properties:
+                audio_url:
+                  type: string
+                  description: The URL of the audio or video file to be uploaded.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioUploadResponse'
+      security:
+      - x_gladia_key: []
+      summary: Upload an audio file or provide an audio URL for processing
+      tags:
+      - File Management
+components:
+  schemas:
+    AudioUploadMetadataDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Uploaded audio file ID
+          format: uuid
+          example: 6c09400e-23d2-4bd2-be55-96a5ececfa3b
+        filename:
+          type: string
+          description: Uploaded audio filename
+          example: short-audio-en-16000.wav
+        source:
+          type: string
+          description: Uploaded audio source
+          format: uri
+          example: http://files.gladia.io/example/audio-transcription/split_infinity.wav
+        extension:
+          type: string
+          description: Uploaded audio detected extension
+          format: uuid
+          example: wav
+        size:
+          type: integer
+          description: Uploaded audio size
+          example: 365702
+        audio_duration:
+          type: number
+          description: Uploaded audio duration
+          example: 4.145782
+        number_of_channels:
+          type: integer
+          description: Uploaded audio channel numbers
+          example: 1
+      required:
+      - id
+      - filename
+      - extension
+      - size
+      - audio_duration
+      - number_of_channels
+    AudioUploadResponse:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          description: Uploaded audio file Gladia URL
+          format: uri
+          example: https://api.gladia.io/file/6c09400e-23d2-4bd2-be55-96a5ececfa3b
+        audio_metadata:
+          description: Uploaded audio file detected metadata
+          allOf:
+          - $ref: '#/components/schemas/AudioUploadMetadataDTO'
+      required:
+      - audio_url
+      - audio_metadata
+  securitySchemes:
+    x_gladia_key:
+      type: apiKey
+      in: header
+      name: x-gladia-key
+      description: Your personal Gladia API key

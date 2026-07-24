@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Gladia Control AudioToText OpenRouter API
+  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.gladia.io/
+  description: Gladia API production URL
+tags:
+- name: OpenRouter
+paths:
+  /v1/models:
+    get:
+      operationId: ModelsController_list_v1
+      parameters: []
+      responses:
+        '200':
+          description: List of available models
+      summary: List Gladia's available transcription models as per OpenRouter integration spec
+      tags:
+      - OpenRouter
+components:
+  securitySchemes:
+    x_gladia_key:
+      type: apiKey
+      in: header
+      name: x-gladia-key
+      description: Your personal Gladia API key

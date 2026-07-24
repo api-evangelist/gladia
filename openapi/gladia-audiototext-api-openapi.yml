@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Gladia Control AudioToText API
+  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.gladia.io/
+  description: Gladia API production URL
+tags:
+- name: AudioToText
+paths:
+  /audio/text/audio-transcription:
+    post:
+      operationId: AudioToTextController_audioTranscription
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                audio_url:
+                  type: string
+                  default: http://files.gladia.io/example/audio-transcription/split_infinity.wav
+                language_behaviour:
+                  type: string
+                  enum:
+                  - automatic single language
+                  - automatic multiple languages
+                  - manual
+                  default: automatic single language
+                language:
+                  type: string
+                  enum:
+                  - afrikaans
+                  - albanian
+                  - amharic
+                  - arabic
+                  - armenian
+                  - assamese
+                  - azerbaijani
+                  - bashkir
+                  - basque
+                  - belarusian
+                  - bengali
+                  - bosnian
+                  - breton
+                  - bulgarian
+                  - catalan
+                  - chinese
+                  - croatian
+                  - czech
+                  - danish
+                  - dutch
+                  - english
+                  - estonian
+                  - faroese
+                  - finnish
+                  - french
+                  - galician
+                  - georgian
+                  - german
+                  - greek
+                  - gujarati
+                  - haitian creole
+                  - hausa
+                  - hawaiian
+                  - hebrew
+                  - hindi
+                  - hungarian
+                  - icelandic
+                  - indonesian
+                  - italian
+                  - japanese
+                  - javanese
+                  - kannada
+                  - kazakh
+                  - khmer
+                  - korean
+                  - lao
+                  - latin
+                  - latvian
+                  - lingala
+                  - lithuanian
+                  - luxembourgish
+                  - macedonian
+                  - malagasy
+                  - malay
+                  - malayalam
+                  - maltese
+                  - maori
+                  - marathi
+                  - mongolian
+                  - myanmar
+                  - nepali
+                  - norwegian
+                  - nynorsk
+                  - occitan
+                  - pashto
+                  - persian
+                  - polish
+                  - portuguese
+                  - punjabi
+                  - romanian
+                  - russian
+                  - sanskrit
+                  - serbian
+                  - shona
+                  - sindhi
+                  - sinhala
+                  - slovak
+                  - slovenian
+                  - somali
+                  - spanish
+                  - sundanese
+                  - swahili
+                  - swedish
+                  - tagalog
+                  - tajik
+                  - tamil
+                  - tatar
+                  - telugu
+                  - thai
+                  - tibetan
+                  - turkish
+                  - turkmen
+                  - ukrainian
+                  - urdu
+                  - uzbek
+                  - vietnamese
+                  - welsh
+                  - yiddish
+                  - yoruba
+                transcription_hint:
+                  type: string
+                toggle_diarization:
+                  type: boolean
+                  default: false
+                diarization_num_speakers:
+                  type: integer
+                diarization_min_speakers:
+                  type: integer
+                diarization_max_speakers:
+                  type: integer
+                toggle_direct_translate:
+                  type: boolean
+                  default: false
+                target_translation_language:
+                  type: string
+                  enum:
+                  - afrikaans
+                  - albanian
+                  - amharic
+                  - arabic
+                  - armenian
+                  - assamese
+                  - azerbaijani
+                  - bashkir
+                  - basque
+                  - belarusian
+                  - bengali
+                  - bosnian
+                  - breton
+                  - bulgarian
+                  - catalan
+                  - chinese
+                  - croatian
+                  - czech
+                  - danish
+                  - dutch
+                  - english
+                  - estonian
+                  - faroese
+                  - finnish
+                  - french
+                  - galician
+                  - georgian
+                  - german
+                  - greek
+                  - gujarati
+                  - haitian creole
+                  - hausa
+                  - hawaiian
+                  - hebrew
+                  - hindi
+                  - hungarian
+                  - icelandic
+                  - indonesian
+                  - italian
+                  - japanese
+                  - javanese
+                  - kannada
+                  - kazakh
+                  - khmer
+                  - korean
+                  - lao
+                  - latin
+                  - latvian
+                  - lingala
+                  - lithuanian
+                  - luxembourgish
+                  - macedonian
+                  - malagasy
+                  - malay
+                  - malayalam
+                  - maltese
+                  - maori
+                  - marathi
+                  - mongolian
+                  - myanmar
+                  - nepali
+                  - norwegian
+                  - nynorsk
+                  - occitan
+                  - pashto
+                  - persian
+                  - polish
+                  - portuguese
+                  - punjabi
+                  - romanian
+                  - russian
+                  - sanskrit
+                  - serbian
+                  - shona
+                  - sindhi
+                  - sinhala
+                  - slovak
+                  - slovenian
+                  - somali
+                  - spanish
+                  - sundanese
+                  - swahili
+                  - swedish
+                  - tagalog
+                  - tajik
+                  - tamil
+                  - tatar
+                  - telugu
+                  - thai
+                  - tibetan
+                  - turkish
+                  - turkmen
+                  - ukrainian
+                  - urdu
+                  - uzbek
+                  - vietnamese
+                  - welsh
+                  - wolof
+                  - yiddish
+                  - yoruba
+                output_format:
+                  type: string
+                  enum:
+                  - json
+                  - srt
+                  - vtt
+                  - plain
+                  - txt
+                  default: json
+                toggle_noise_reduction:
+                  type: boolean
+                  default: false
+                toggle_accurate_words_timestamps:
+                  type: boolean
+                  default: false
+                webhook_url:
+                  type: string
+      responses:
+        '200':
+          description: ''
+      security:
+      - x_gladia_key: []
+      tags:
+      - AudioToText
+components:
+  securitySchemes:
+    x_gladia_key:
+      type: apiKey
+      in: header
+      name: x-gladia-key
+      description: Your personal Gladia API key
