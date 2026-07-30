@@ -1,7 +1,20 @@
 aid: gladia
 name: Gladia
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gladia.png
 url: https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/apis.yml
 created: 2026-06-12
 modified: 2026-06-12
@@ -28,46 +41,123 @@ tags:
   - WebSocket
   - REST
 apis:
-  - name: Gladia Pre-recorded (Async) API
-    description: >
-      REST API for submitting pre-recorded audio files for asynchronous
-      transcription with speaker diarization, language detection, word-level
-      timestamps, and audio intelligence enrichments.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.gladia.io/chapters/introduction
-    baseURL: https://api.gladia.io/v2/
-    tags:
-      - Speech-to-Text
-      - Transcription
-      - REST
-      - Asynchronous
-    properties:
-      - type: Documentation
-        url: https://docs.gladia.io/chapters/introduction
-      - type: OpenAPI
-        url: https://docs.gladia.io/api-reference
-
-  - name: Gladia Live (Real-time) API
-    description: >
-      WebSocket API for real-time live audio transcription with sub-second
-      latency, supporting multi-language detection, live speaker diarization,
-      and streaming audio intelligence. Individual sessions are capped at
-      3 hours.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.gladia.io/chapters/introduction
-    baseURL: wss://api.gladia.io/
-    tags:
-      - Speech-to-Text
-      - Real-Time
-      - WebSocket
-      - Live Transcription
-    properties:
-      - type: Documentation
-        url: https://docs.gladia.io/chapters/introduction
-      - type: AsyncAPI
-        url: https://github.com/gladiaio/docs
-
+- name: Gladia Live (Real-time) API
+  description: >
+    WebSocket API for real-time live audio transcription with sub-second latency, supporting multi-language
+    detection, live speaker diarization, and streaming audio intelligence. Individual sessions are capped
+    at 3 hours.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: wss://api.gladia.io/
+  tags:
+  - Speech-to-Text
+  - Real-Time
+  - WebSocket
+  - Live Transcription
+  properties:
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+  - type: AsyncAPI
+    url: https://github.com/gladiaio/docs
+- aid: gladia:gladia-audiototext-api
+  name: Gladia AudioToText API
+  description: The AudioToText API from Gladia — 1 operation(s) for audiototext.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - AudioToText
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-audiototext-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-file-management-api
+  name: Gladia File Management API
+  description: The File Management API from Gladia — 1 operation(s) for file management.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - File Management
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-file-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-job-history-api
+  name: Gladia Job History API
+  description: The Job History API from Gladia — 1 operation(s) for job history.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - Job History
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-job-history-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-live-v2-api
+  name: Gladia Live V2 API
+  description: The Live V2 API from Gladia — 3 operation(s) for live v2.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - Live V2
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-live-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-openrouter-api
+  name: Gladia OpenRouter API
+  description: The OpenRouter API from Gladia — 1 operation(s) for openrouter.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - OpenRouter
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-openrouter-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-pre-recorded-v2-api
+  name: Gladia Pre-recorded V2 API
+  description: The Pre-recorded V2 API from Gladia — 3 operation(s) for pre-recorded v2.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - Pre-recorded V2
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-pre-recorded-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-transcription-v1-api
+  name: Gladia Transcription V1 API
+  description: The Transcription V1 API from Gladia — 2 operation(s) for transcription v1.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - Transcription V1
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-transcription-v1-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-transcription-v2-api
+  name: Gladia Transcription V2 API
+  description: The Transcription V2 API from Gladia — 3 operation(s) for transcription v2.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: https://api.gladia.io/v2/
+  tags:
+  - Transcription V2
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-transcription-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/gladia/overview
   - type: AgenticAccess
     url: agentic-access/gladia-agentic-access.yml
   - type: TrustCenter
