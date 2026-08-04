@@ -1,0 +1,1264 @@
+{
+  "info": {
+    "_postman_id": "096aea53-fac8-4d72-a35c-a42078a7112e",
+    "name": "Gladia Control AudioToText Pre-recorded V2 API",
+    "description": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:44:46.000Z",
+    "updatedAt": "2026-07-28T01:44:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-096aea53-fac8-4d72-a35c-a42078a7112e"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "pre-recorded",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "file",
+                  "item": [
+                    {
+                      "name": "Download the audio file used for this pre recorded job",
+                      "id": "703e438f-aad8-4ce0-b03c-e932a28a1e0b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-gladia-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id/file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id",
+                            "file"
+                          ],
+                          "variable": [
+                            {
+                              "id": "880c882e-3451-4d70-9ddc-812c426df801",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Id of the pre recorded job"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "af51f1b6-ced3-4b73-8499-691dd0b8afe5",
+                          "name": "The audio file used for this pre recorded job",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/pre-recorded/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "pre-recorded",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T01:44:47.000Z",
+                          "updatedAt": "2026-07-28T01:44:47.000Z",
+                          "uid": "35240-af51f1b6-ced3-4b73-8499-691dd0b8afe5"
+                        },
+                        {
+                          "id": "57f079ea-395b-48cf-b1d4-3b6566ece5cb",
+                          "name": "You don't have the permissions to access this pre recorded job or its audio file",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/pre-recorded/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "pre-recorded",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:44:47.000Z",
+                          "updatedAt": "2026-07-28T01:44:47.000Z",
+                          "uid": "35240-57f079ea-395b-48cf-b1d4-3b6566ece5cb"
+                        },
+                        {
+                          "id": "e9bfff7f-b338-46d9-a167-e84ecaa10f1e",
+                          "name": "The pre recorded job or its audio file doesn't exist or has been deleted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/pre-recorded/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "pre-recorded",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:44:47.000Z",
+                          "updatedAt": "2026-07-28T01:44:47.000Z",
+                          "uid": "35240-e9bfff7f-b338-46d9-a167-e84ecaa10f1e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-703e438f-aad8-4ce0-b03c-e932a28a1e0b"
+                    }
+                  ],
+                  "id": "d78e1b50-d779-4219-9e91-158cdc1cec4f",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-d78e1b50-d779-4219-9e91-158cdc1cec4f"
+                },
+                {
+                  "name": "Get the pre recorded job's metadata",
+                  "id": "0ba05f8a-471e-4657-bce7-2fbf06ce3666",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-gladia-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e1aa0c97-12a6-4388-8dcc-4b6426d861dd",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Id of the pre recorded job"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "da25ae49-e635-4bc9-8d99-99ac0266d4cf",
+                      "name": "The pre recorded job's metadata",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"request_id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"processing\",\n  \"created_at\": \"<dateTime>\",\n  \"post_session_metadata\": {},\n  \"kind\": \"pre-recorded\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"aute_8\": true\n  },\n  \"error_code\": \"<integer>\",\n  \"file\": {\n    \"id\": \"<string>\",\n    \"filename\": \"<string>\",\n    \"source\": \"<string>\",\n    \"audio_duration\": \"<number>\",\n    \"number_of_channels\": \"<integer>\"\n  },\n  \"request_params\": {\n    \"audio_url\": \"<uri>\",\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sr\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"hi\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"callback_url\": \"<uri>\",\n    \"callback\": false,\n    \"callback_config\": {\n      \"url\": \"<uri>\",\n      \"method\": \"POST\"\n    },\n    \"subtitles\": false,\n    \"subtitles_config\": {\n      \"formats\": [\n        \"srt\"\n      ],\n      \"minimum_duration\": \"<number>\",\n      \"maximum_duration\": \"<number>\",\n      \"maximum_characters_per_row\": \"<integer>\",\n      \"maximum_rows_per_caption\": \"<integer>\",\n      \"style\": \"default\"\n    },\n    \"diarization\": false,\n    \"diarization_config\": {\n      \"number_of_speakers\": \"<integer>\",\n      \"min_speakers\": \"<integer>\",\n      \"max_speakers\": \"<integer>\"\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"et\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"named_entity_recognition\": false,\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"dolore61\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"sentiment_analysis\": false,\n    \"audio_to_llm\": false,\n    \"audio_to_llm_config\": {\n      \"prompts\": [\n        \"<array>\"\n      ],\n      \"model\": \"openai/gpt-5.4-nano\"\n    },\n    \"pii_redaction\": false,\n    \"pii_redaction_config\": {\n      \"entity_types\": \"PHYSICAL_ATTRIBUTE\",\n      \"processed_text_type\": \"MASK\"\n    },\n    \"sentences\": false,\n    \"punctuation_enhanced\": false,\n    \"language_config\": {\n      \"code_switching\": false\n    }\n  },\n  \"result\": {\n    \"metadata\": {\n      \"audio_duration\": \"<number>\",\n      \"number_of_distinct_channels\": \"<integer>\",\n      \"billing_time\": \"<number>\",\n      \"transcription_time\": \"<number>\"\n    },\n    \"transcription\": {\n      \"full_transcript\": \"<string>\",\n      \"languages\": [\n        \"yi\",\n        \"jw\"\n      ],\n      \"utterances\": [\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"it\",\n          \"speaker\": \"<integer>\"\n        },\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"ur\",\n          \"speaker\": \"<integer>\"\n        }\n      ],\n      \"sentences\": [\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"subtitles\": [\n        {\n          \"format\": \"srt\",\n          \"subtitles\": \"<string>\"\n        },\n        {\n          \"format\": \"vtt\",\n          \"subtitles\": \"<string>\"\n        }\n      ]\n    },\n    \"translation\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"ko\",\n            \"la\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ha\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"oc\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"br\",\n            \"mi\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ha\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"no\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    \"summarization\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"moderation\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"named_entity_recognition\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"entity_type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"start\": \"<number>\",\n          \"end\": \"<number>\"\n        },\n        {\n          \"entity_type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"start\": \"<number>\",\n          \"end\": \"<number>\"\n        }\n      ]\n    },\n    \"name_consistency\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"structured_data_extraction\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"sentiment_analysis\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"audio_to_llm\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"prompt\": \"<string>\",\n            \"response\": \"<string>\"\n          }\n        },\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"prompt\": \"<string>\",\n            \"response\": \"<string>\"\n          }\n        }\n      ]\n    },\n    \"sentences\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"display_mode\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"chapterization\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": {\n        \"id_4\": 53099138\n      }\n    },\n    \"diarization\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"sq\",\n          \"speaker\": \"<integer>\"\n        },\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"ps\",\n          \"speaker\": \"<integer>\"\n        }\n      ]\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-da25ae49-e635-4bc9-8d99-99ac0266d4cf"
+                    },
+                    {
+                      "id": "6a369126-50c8-46e1-85eb-217d59d72f5d",
+                      "name": "You don't have the permissions to access the pre recorded job",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-6a369126-50c8-46e1-85eb-217d59d72f5d"
+                    },
+                    {
+                      "id": "fbe9356e-c63c-4e60-afb4-31d778eac2d2",
+                      "name": "The pre recorded job doesn't exist or has been deleted",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-fbe9356e-c63c-4e60-afb4-31d778eac2d2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-0ba05f8a-471e-4657-bce7-2fbf06ce3666"
+                },
+                {
+                  "name": "Delete the pre recorded job",
+                  "id": "46d8d8c6-955f-441a-9426-7541e7076b30",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-gladia-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "14fcbbd7-d3a0-43ed-8f9d-d810af10caf1",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Id of the pre recorded job"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "055a09af-30a3-4847-b579-05b565f33c8c",
+                      "name": "The pre recorded job has been successfully deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-055a09af-30a3-4847-b579-05b565f33c8c"
+                    },
+                    {
+                      "id": "5025314a-f7d7-46ca-8b68-5ff03d06ede3",
+                      "name": "You don't have the permissions to delete this pre recorded job",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-5025314a-f7d7-46ca-8b68-5ff03d06ede3"
+                    },
+                    {
+                      "id": "3ea54f83-c08f-4206-b75a-a1a9701d7225",
+                      "name": "The pre recorded job is not in a deletable state",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-3ea54f83-c08f-4206-b75a-a1a9701d7225"
+                    },
+                    {
+                      "id": "0efb91c5-f29a-4bed-a871-2134464d524f",
+                      "name": "The pre recorded job doesn't exist or has been deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/pre-recorded/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "pre-recorded",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:47.000Z",
+                      "updatedAt": "2026-07-28T01:44:47.000Z",
+                      "uid": "35240-0efb91c5-f29a-4bed-a871-2134464d524f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-46d8d8c6-955f-441a-9426-7541e7076b30"
+                }
+              ],
+              "id": "c0e5df67-018a-46b6-b39b-5dc7ec34465e",
+              "createdAt": "2026-07-28T01:44:47.000Z",
+              "updatedAt": "2026-07-28T01:44:47.000Z",
+              "uid": "35240-c0e5df67-018a-46b6-b39b-5dc7ec34465e"
+            },
+            {
+              "name": "Initiate a new pre recorded job",
+              "id": "37b1993d-defb-48de-b7e4-cd3a0650eb78",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-gladia-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"cs\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"vi\"\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"ja\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"nostrudbfc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"HEALTH_INFORMATION\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"fugiat7f\": -26297972.318829015,\n    \"culpa_77\": 79103076\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/pre-recorded",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "pre-recorded"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "061646d5-399d-411b-898f-efcc44b43ea2",
+                  "name": "The pre recorded job has been initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"cs\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"vi\"\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"ja\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"nostrudbfc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"HEALTH_INFORMATION\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"fugiat7f\": -26297972.318829015,\n    \"culpa_77\": 79103076\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"result_url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-061646d5-399d-411b-898f-efcc44b43ea2"
+                },
+                {
+                  "id": "d4b99411-460f-4b4b-a732-a22d704f9337",
+                  "name": "Something is wrong with the request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"cs\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"vi\"\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"ja\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"nostrudbfc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"HEALTH_INFORMATION\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"fugiat7f\": -26297972.318829015,\n    \"culpa_77\": 79103076\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\",\n  \"validation_errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-d4b99411-460f-4b4b-a732-a22d704f9337"
+                },
+                {
+                  "id": "f8c807a8-f007-49e4-98a9-f1ea819a747f",
+                  "name": "You don't have the permissions to initiate a new pre recorded job",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"cs\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"vi\"\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"ja\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"nostrudbfc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"HEALTH_INFORMATION\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"fugiat7f\": -26297972.318829015,\n    \"culpa_77\": 79103076\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-f8c807a8-f007-49e4-98a9-f1ea819a747f"
+                },
+                {
+                  "id": "c175873f-6174-47c5-bdae-b4c4aaa05818",
+                  "name": "The parameters you gave are incorrect",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"cs\"\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"vi\"\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"ja\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"nostrudbfc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"HEALTH_INFORMATION\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"fugiat7f\": -26297972.318829015,\n    \"culpa_77\": 79103076\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-c175873f-6174-47c5-bdae-b4c4aaa05818"
+                }
+              ],
+              "createdAt": "2026-07-28T01:44:47.000Z",
+              "updatedAt": "2026-07-28T01:44:47.000Z",
+              "uid": "35240-37b1993d-defb-48de-b7e4-cd3a0650eb78"
+            },
+            {
+              "name": "Get pre recorded jobs based on query parameters",
+              "id": "9f4d448c-42ab-431c-9f7a-7076ba4fe0fe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-gladia-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/pre-recorded?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=done&status=processing&in_b69=amet voluptate sunt",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "pre-recorded"
+                  ],
+                  "query": [
+                    {
+                      "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                      "key": "date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Include items that occurred before the specified date in ISO format.",
+                      "key": "before_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                      "key": "after_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                      "key": "status",
+                      "value": "done"
+                    },
+                    {
+                      "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                      "key": "status",
+                      "value": "processing"
+                    },
+                    {
+                      "key": "in_b69",
+                      "value": "amet voluptate sunt"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "de1f3211-1889-47f4-9625-ab2f85287065",
+                  "name": "A list of pre recorded jobs matching the parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=processing&in_b69=amet voluptate sunt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ],
+                      "query": [
+                        {
+                          "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                          "key": "date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items that occurred before the specified date in ISO format.",
+                          "key": "before_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                          "key": "after_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                          "key": "status",
+                          "value": "processing"
+                        },
+                        {
+                          "key": "in_b69",
+                          "value": "amet voluptate sunt"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"first\": \"<uri>\",\n  \"current\": \"<uri>\",\n  \"next\": \"<uri>\",\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"request_id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"queued\",\n      \"created_at\": \"<dateTime>\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"<dateTime>\",\n      \"custom_metadata\": {\n        \"labore0b\": 61924585.68452519,\n        \"sed_6\": false\n      },\n      \"error_code\": \"<integer>\",\n      \"file\": {\n        \"id\": \"<string>\",\n        \"filename\": \"<string>\",\n        \"source\": \"<string>\",\n        \"audio_duration\": \"<number>\",\n        \"number_of_channels\": \"<integer>\"\n      },\n      \"request_params\": {\n        \"audio_url\": \"<uri>\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"vocabulary\": [\n            {\n              \"value\": \"<string>\",\n              \"intensity\": \"<number>\",\n              \"pronunciations\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"language\": \"ko\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"intensity\": \"<number>\",\n              \"pronunciations\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"language\": \"fr\"\n            }\n          ],\n          \"default_intensity\": \"<number>\"\n        },\n        \"callback_url\": \"<uri>\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"url\": \"<uri>\",\n          \"method\": \"POST\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"formats\": [\n            \"srt\"\n          ],\n          \"minimum_duration\": \"<number>\",\n          \"maximum_duration\": \"<number>\",\n          \"maximum_characters_per_row\": \"<integer>\",\n          \"maximum_rows_per_caption\": \"<integer>\",\n          \"style\": \"default\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"number_of_speakers\": \"<integer>\",\n          \"min_speakers\": \"<integer>\",\n          \"max_speakers\": \"<integer>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"target_languages\": [\n            \"yi\"\n          ],\n          \"model\": \"base\",\n          \"match_original_utterances\": true,\n          \"lipsync\": true,\n          \"context_adaptation\": true,\n          \"context\": \"<string>\",\n          \"informal\": false\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"type\": \"general\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"spelling_dictionary\": {\n            \"reprehenderit_d5\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"prompts\": [\n            \"<array>\"\n          ],\n          \"model\": \"openai/gpt-5.4-nano\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"entity_types\": \"MARITAL_STATUS\",\n          \"processed_text_type\": \"MARKER\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"code_switching\": false\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"audio_duration\": \"<number>\",\n          \"number_of_distinct_channels\": \"<integer>\",\n          \"billing_time\": \"<number>\",\n          \"transcription_time\": \"<number>\"\n        },\n        \"transcription\": {\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"mi\",\n            \"ml\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"fi\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"my\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        \"translation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"ht\",\n                \"be\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"et\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"tr\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"el\",\n                \"hr\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"ml\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"ba\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        \"summarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"moderation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"named_entity_recognition\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            },\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            }\n          ]\n        },\n        \"name_consistency\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"structured_data_extraction\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"sentiment_analysis\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"audio_to_llm\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": {\n                \"prompt\": \"<string>\",\n                \"response\": \"<string>\"\n              }\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": {\n                \"prompt\": \"<string>\",\n                \"response\": \"<string>\"\n              }\n            }\n          ]\n        },\n        \"sentences\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"display_mode\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"chapterization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"occaecat_eb\": true\n          }\n        },\n        \"diarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"th\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"sk\",\n              \"speaker\": \"<integer>\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"request_id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"processing\",\n      \"created_at\": \"<dateTime>\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"<dateTime>\",\n      \"custom_metadata\": {\n        \"ipsume\": 58393741.88007009\n      },\n      \"error_code\": \"<integer>\",\n      \"file\": {\n        \"id\": \"<string>\",\n        \"filename\": \"<string>\",\n        \"source\": \"<string>\",\n        \"audio_duration\": \"<number>\",\n        \"number_of_channels\": \"<integer>\"\n      },\n      \"request_params\": {\n        \"audio_url\": \"<uri>\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"vocabulary\": [\n            {\n              \"value\": \"<string>\",\n              \"intensity\": \"<number>\",\n              \"pronunciations\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"language\": \"jw\"\n            },\n            {\n              \"value\": \"<string>\",\n              \"intensity\": \"<number>\",\n              \"pronunciations\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"language\": \"it\"\n            }\n          ],\n          \"default_intensity\": \"<number>\"\n        },\n        \"callback_url\": \"<uri>\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"url\": \"<uri>\",\n          \"method\": \"POST\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"formats\": [\n            \"srt\"\n          ],\n          \"minimum_duration\": \"<number>\",\n          \"maximum_duration\": \"<number>\",\n          \"maximum_characters_per_row\": \"<integer>\",\n          \"maximum_rows_per_caption\": \"<integer>\",\n          \"style\": \"default\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"number_of_speakers\": \"<integer>\",\n          \"min_speakers\": \"<integer>\",\n          \"max_speakers\": \"<integer>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"target_languages\": [\n            \"gu\"\n          ],\n          \"model\": \"base\",\n          \"match_original_utterances\": true,\n          \"lipsync\": true,\n          \"context_adaptation\": true,\n          \"context\": \"<string>\",\n          \"informal\": false\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"type\": \"general\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"spelling_dictionary\": {\n            \"dolore_cc3\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"proident_b\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"incididunt_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"prompts\": [\n            \"<array>\"\n          ],\n          \"model\": \"openai/gpt-5.4-nano\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"entity_types\": \"PASSPORT_NUMBER\",\n          \"processed_text_type\": \"MASK\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"code_switching\": false\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"audio_duration\": \"<number>\",\n          \"number_of_distinct_channels\": \"<integer>\",\n          \"billing_time\": \"<number>\",\n          \"transcription_time\": \"<number>\"\n        },\n        \"transcription\": {\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"br\",\n            \"az\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"sa\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"km\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        \"translation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"kn\",\n                \"af\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"hi\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"vi\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"br\",\n                \"as\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"es\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"ps\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        \"summarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"moderation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"named_entity_recognition\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            },\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            }\n          ]\n        },\n        \"name_consistency\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"structured_data_extraction\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"sentiment_analysis\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"audio_to_llm\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": {\n                \"prompt\": \"<string>\",\n                \"response\": \"<string>\"\n              }\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": {\n                \"prompt\": \"<string>\",\n                \"response\": \"<string>\"\n              }\n            }\n          ]\n        },\n        \"sentences\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"display_mode\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"chapterization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"quis_\": \"dolore cillum elit nisi\",\n            \"essefd\": 28228669.50296095\n          }\n        },\n        \"diarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ru\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"so\",\n              \"speaker\": \"<integer>\"\n            }\n          ]\n        }\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-de1f3211-1889-47f4-9625-ab2f85287065"
+                },
+                {
+                  "id": "de242ad6-1282-41b5-9a97-270ece196e71",
+                  "name": "You don't have the permissions to access pre recorded jobs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/pre-recorded?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=processing&in_b69=amet voluptate sunt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "pre-recorded"
+                      ],
+                      "query": [
+                        {
+                          "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                          "key": "date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items that occurred before the specified date in ISO format.",
+                          "key": "before_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                          "key": "after_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                          "key": "status",
+                          "value": "processing"
+                        },
+                        {
+                          "key": "in_b69",
+                          "value": "amet voluptate sunt"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:47.000Z",
+                  "updatedAt": "2026-07-28T01:44:47.000Z",
+                  "uid": "35240-de242ad6-1282-41b5-9a97-270ece196e71"
+                }
+              ],
+              "createdAt": "2026-07-28T01:44:47.000Z",
+              "updatedAt": "2026-07-28T01:44:47.000Z",
+              "uid": "35240-9f4d448c-42ab-431c-9f7a-7076ba4fe0fe"
+            }
+          ],
+          "id": "de1d0b15-a68f-4972-a181-e987e02d3eb0",
+          "createdAt": "2026-07-28T01:44:47.000Z",
+          "updatedAt": "2026-07-28T01:44:47.000Z",
+          "uid": "35240-de1d0b15-a68f-4972-a181-e987e02d3eb0"
+        }
+      ],
+      "id": "171f037f-f59e-4073-bc73-58e8dbaafcc8",
+      "createdAt": "2026-07-28T01:44:47.000Z",
+      "updatedAt": "2026-07-28T01:44:47.000Z",
+      "uid": "35240-171f037f-f59e-4073-bc73-58e8dbaafcc8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.gladia.io/"
+    }
+  ]
+}

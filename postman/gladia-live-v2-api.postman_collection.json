@@ -1,0 +1,1691 @@
+{
+  "info": {
+    "_postman_id": "bb497b2e-1f3e-47ae-a388-d1a84ca60f4c",
+    "name": "Gladia Control AudioToText Live V2 API",
+    "description": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:44:32.000Z",
+    "updatedAt": "2026-07-28T01:44:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bb497b2e-1f3e-47ae-a388-d1a84ca60f4c"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "live",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "file",
+                  "item": [
+                    {
+                      "name": "Download the audio file used for this live job",
+                      "id": "7beebd04-b190-47ce-bc74-4e0a5789e28a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-gladia-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id/file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id",
+                            "file"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6f932470-9b10-48f8-a5ad-b63bb62e04cc",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Id of the live job"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ef07a668-fc4b-4d61-a9bd-4405f54eee54",
+                          "name": "The audio file used for this live job",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/live/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "live",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T01:44:33.000Z",
+                          "updatedAt": "2026-07-28T01:44:33.000Z",
+                          "uid": "35240-ef07a668-fc4b-4d61-a9bd-4405f54eee54"
+                        },
+                        {
+                          "id": "f8144864-9e9b-4e67-9dcd-e63b938130cd",
+                          "name": "You don't have the permissions to access this live job or its audio file",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/live/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "live",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:44:33.000Z",
+                          "updatedAt": "2026-07-28T01:44:33.000Z",
+                          "uid": "35240-f8144864-9e9b-4e67-9dcd-e63b938130cd"
+                        },
+                        {
+                          "id": "2e39a3c5-785b-4f25-8fae-fa9ec4d1e7ac",
+                          "name": "The live job or its audio file doesn't exist or has been deleted",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-gladia-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/live/:id/file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "live",
+                                ":id",
+                                "file"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:44:33.000Z",
+                          "updatedAt": "2026-07-28T01:44:33.000Z",
+                          "uid": "35240-2e39a3c5-785b-4f25-8fae-fa9ec4d1e7ac"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-7beebd04-b190-47ce-bc74-4e0a5789e28a"
+                    }
+                  ],
+                  "id": "9210909c-8f7d-4e82-8508-b44b1e2e538a",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-9210909c-8f7d-4e82-8508-b44b1e2e538a"
+                },
+                {
+                  "name": "Get the live job's metadata",
+                  "id": "f2a44dd9-e1f5-47e3-a4cd-7d12df64814e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-gladia-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b660344b-0724-4e77-b3e4-6a1b58ad40f3",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Id of the live job"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "97cd75dd-55dd-49b0-8640-0c8a0da83d7a",
+                      "name": "The live job's metadata",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"request_id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"processing\",\n  \"created_at\": \"<dateTime>\",\n  \"post_session_metadata\": {},\n  \"kind\": \"live\",\n  \"completed_at\": \"<dateTime>\",\n  \"custom_metadata\": {\n    \"commodo_66\": \"consectetu\",\n    \"dolor_941\": \"amet nostrud do\"\n  },\n  \"error_code\": \"<integer>\",\n  \"file\": {\n    \"id\": \"<string>\",\n    \"filename\": \"<string>\",\n    \"source\": \"<string>\",\n    \"audio_duration\": \"<number>\",\n    \"number_of_channels\": \"<integer>\"\n  },\n  \"request_params\": {\n    \"encoding\": \"wav/pcm\",\n    \"bit_depth\": 16,\n    \"sample_rate\": 16000,\n    \"channels\": 1,\n    \"model\": \"solaria-1\",\n    \"endpointing\": 0.05,\n    \"maximum_duration_without_endpointing\": 5,\n    \"language_config\": {\n      \"code_switching\": false\n    },\n    \"pre_processing\": {\n      \"audio_enhancer\": false,\n      \"speech_threshold\": 0.6\n    },\n    \"realtime_processing\": {\n      \"custom_vocabulary\": false,\n      \"custom_vocabulary_config\": {\n        \"vocabulary\": [\n          {\n            \"value\": \"<string>\",\n            \"intensity\": \"<number>\",\n            \"pronunciations\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"language\": \"su\"\n          },\n          {\n            \"value\": \"<string>\",\n            \"intensity\": \"<number>\",\n            \"pronunciations\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"language\": \"la\"\n          }\n        ],\n        \"default_intensity\": \"<number>\"\n      },\n      \"custom_spelling\": false,\n      \"custom_spelling_config\": {\n        \"spelling_dictionary\": {\n          \"euc\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"deseruntcf\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"occaecat55\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"translation\": false,\n      \"translation_config\": {\n        \"target_languages\": [\n          \"lb\"\n        ],\n        \"model\": \"base\",\n        \"match_original_utterances\": true,\n        \"lipsync\": true,\n        \"context_adaptation\": true,\n        \"context\": \"<string>\",\n        \"informal\": false\n      },\n      \"named_entity_recognition\": false,\n      \"sentiment_analysis\": false\n    },\n    \"post_processing\": {\n      \"summarization\": false,\n      \"summarization_config\": {\n        \"type\": \"general\"\n      },\n      \"chapterization\": false\n    },\n    \"messages_config\": {\n      \"receive_partial_transcripts\": false,\n      \"receive_final_transcripts\": true,\n      \"receive_speech_events\": true,\n      \"receive_pre_processing_events\": true,\n      \"receive_realtime_processing_events\": true,\n      \"receive_post_processing_events\": true,\n      \"receive_acknowledgments\": true,\n      \"receive_errors\": true,\n      \"receive_lifecycle_events\": false\n    },\n    \"callback\": false,\n    \"callback_config\": {\n      \"url\": \"<uri>\",\n      \"receive_partial_transcripts\": false,\n      \"receive_final_transcripts\": true,\n      \"receive_speech_events\": false,\n      \"receive_pre_processing_events\": true,\n      \"receive_realtime_processing_events\": true,\n      \"receive_post_processing_events\": true,\n      \"receive_acknowledgments\": false,\n      \"receive_errors\": false,\n      \"receive_lifecycle_events\": true\n    }\n  },\n  \"result\": {\n    \"metadata\": {\n      \"audio_duration\": \"<number>\",\n      \"number_of_distinct_channels\": \"<integer>\",\n      \"billing_time\": \"<number>\",\n      \"transcription_time\": \"<number>\"\n    },\n    \"transcription\": {\n      \"full_transcript\": \"<string>\",\n      \"languages\": [\n        \"vi\",\n        \"fo\"\n      ],\n      \"utterances\": [\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"br\",\n          \"speaker\": \"<integer>\"\n        },\n        {\n          \"start\": \"<number>\",\n          \"end\": \"<number>\",\n          \"confidence\": \"<number>\",\n          \"channel\": \"<integer>\",\n          \"words\": [\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            },\n            {\n              \"word\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\"\n            }\n          ],\n          \"text\": \"<string>\",\n          \"language\": \"tk\",\n          \"speaker\": \"<integer>\"\n        }\n      ],\n      \"sentences\": [\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"subtitles\": [\n        {\n          \"format\": \"srt\",\n          \"subtitles\": \"<string>\"\n        },\n        {\n          \"format\": \"vtt\",\n          \"subtitles\": \"<string>\"\n        }\n      ]\n    },\n    \"translation\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"so\",\n            \"zh\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"fr\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"gl\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"de\",\n            \"hr\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"yi\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ko\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    \"summarization\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"named_entity_recognition\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": [\n        {\n          \"entity_type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"start\": \"<number>\",\n          \"end\": \"<number>\"\n        },\n        {\n          \"entity_type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"start\": \"<number>\",\n          \"end\": \"<number>\"\n        }\n      ]\n    },\n    \"sentiment_analysis\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": \"<string>\"\n    },\n    \"chapterization\": {\n      \"success\": \"<boolean>\",\n      \"is_empty\": \"<boolean>\",\n      \"exec_time\": \"<number>\",\n      \"error\": {\n        \"status_code\": \"<integer>\",\n        \"exception\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      \"results\": {\n        \"utc6\": \"veniam reprehenderit\"\n      }\n    },\n    \"messages\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-97cd75dd-55dd-49b0-8640-0c8a0da83d7a"
+                    },
+                    {
+                      "id": "58f16266-41c4-4bc2-a841-3461a054f11b",
+                      "name": "You don't have the permissions to access the live job",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-58f16266-41c4-4bc2-a841-3461a054f11b"
+                    },
+                    {
+                      "id": "9be79388-c329-46c9-930d-0e67fde1f93b",
+                      "name": "The live job doesn't exist or has been deleted",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-9be79388-c329-46c9-930d-0e67fde1f93b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-f2a44dd9-e1f5-47e3-a4cd-7d12df64814e"
+                },
+                {
+                  "name": "Delete the live job",
+                  "id": "f8fbf8d2-3fc3-46e1-8334-27bc05046bc9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-gladia-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d45231c5-5a2f-4875-991f-914f6281632e",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Id of the live job"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ebeb1ac0-2355-4d23-944b-68695aa55d7d",
+                      "name": "The live job has been successfully deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-ebeb1ac0-2355-4d23-944b-68695aa55d7d"
+                    },
+                    {
+                      "id": "cbbd5adb-adf5-437b-ae7d-2757c862b065",
+                      "name": "You don't have the permissions to delete this live job",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-cbbd5adb-adf5-437b-ae7d-2757c862b065"
+                    },
+                    {
+                      "id": "e9fe5e65-f53b-416f-9b9f-e63c38d8e883",
+                      "name": "The live job is not in a deletable state",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-e9fe5e65-f53b-416f-9b9f-e63c38d8e883"
+                    },
+                    {
+                      "id": "e7a80dd9-2475-4907-a40d-d1ac63c052b9",
+                      "name": "The live job doesn't exist or has been deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-e7a80dd9-2475-4907-a40d-d1ac63c052b9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-f8fbf8d2-3fc3-46e1-8334-27bc05046bc9"
+                },
+                {
+                  "name": "For debugging purposes, send post session metadata in the request params of the job",
+                  "id": "2281b078-950f-4752-9ec5-d9a8f38a9e8c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-gladia-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4ed7dd2e-6ec7-4b5a-8ddd-0ddbf2fedc58",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Id of the live job"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c09ff610-651a-49ba-a48a-7faf331ddc2d",
+                      "name": "Successfully patched the job",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-c09ff610-651a-49ba-a48a-7faf331ddc2d"
+                    },
+                    {
+                      "id": "4557cc58-d5b2-4b38-a301-b3505646ec12",
+                      "name": "Something is wrong with the request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\",\n  \"validation_errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-4557cc58-d5b2-4b38-a301-b3505646ec12"
+                    },
+                    {
+                      "id": "e8fd5283-9084-45ca-b58a-60da7deca2f1",
+                      "name": "You don't have the permissions to update the job",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-e8fd5283-9084-45ca-b58a-60da7deca2f1"
+                    },
+                    {
+                      "id": "ba890e79-60c5-4201-964d-91c1e70a9433",
+                      "name": "The live job doesn't exist or has been deleted",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-ba890e79-60c5-4201-964d-91c1e70a9433"
+                    },
+                    {
+                      "id": "1abc4a8c-ed74-46e7-91b2-b4079195c450",
+                      "name": "The post_request_metadata parameter must be a json object no longer that 100kb",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-gladia-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/live/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "live",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Entity Too Large",
+                      "code": 413,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:44:33.000Z",
+                      "updatedAt": "2026-07-28T01:44:33.000Z",
+                      "uid": "35240-1abc4a8c-ed74-46e7-91b2-b4079195c450"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-2281b078-950f-4752-9ec5-d9a8f38a9e8c"
+                }
+              ],
+              "id": "7faa224d-e422-4ad6-8752-97f74f61db1c",
+              "createdAt": "2026-07-28T01:44:33.000Z",
+              "updatedAt": "2026-07-28T01:44:33.000Z",
+              "uid": "35240-7faa224d-e422-4ad6-8752-97f74f61db1c"
+            },
+            {
+              "name": "Initiate a new live job",
+              "id": "67a5a6cc-fd8d-4477-8fa1-3ffe2fd41fbb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-gladia-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"encoding\": \"wav/pcm\",\n  \"bit_depth\": 16,\n  \"sample_rate\": 16000,\n  \"channels\": 1,\n  \"custom_metadata\": {\n    \"culpa_9\": \"ea Excepteur laboris\"\n  },\n  \"model\": \"solaria-1\",\n  \"endpointing\": 0.05,\n  \"maximum_duration_without_endpointing\": 5,\n  \"language_config\": {\n    \"code_switching\": false\n  },\n  \"pre_processing\": {\n    \"audio_enhancer\": false,\n    \"speech_threshold\": 0.6\n  },\n  \"realtime_processing\": {\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sl\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"bs\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"commodob_\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"cs\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"named_entity_recognition\": false,\n    \"sentiment_analysis\": false\n  },\n  \"post_processing\": {\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"chapterization\": false\n  },\n  \"messages_config\": {\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": true,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": true,\n    \"receive_errors\": true,\n    \"receive_lifecycle_events\": false\n  },\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": false,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": false,\n    \"receive_errors\": false,\n    \"receive_lifecycle_events\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/live?region=us-west",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "live"
+                  ],
+                  "query": [
+                    {
+                      "description": "The region used to process the audio.",
+                      "key": "region",
+                      "value": "us-west"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e8add37b-e34d-4762-8874-7dbc14bed6c2",
+                  "name": "The live job has been initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"encoding\": \"wav/pcm\",\n  \"bit_depth\": 16,\n  \"sample_rate\": 16000,\n  \"channels\": 1,\n  \"custom_metadata\": {\n    \"culpa_9\": \"ea Excepteur laboris\"\n  },\n  \"model\": \"solaria-1\",\n  \"endpointing\": 0.05,\n  \"maximum_duration_without_endpointing\": 5,\n  \"language_config\": {\n    \"code_switching\": false\n  },\n  \"pre_processing\": {\n    \"audio_enhancer\": false,\n    \"speech_threshold\": 0.6\n  },\n  \"realtime_processing\": {\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sl\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"bs\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"commodob_\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"cs\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"named_entity_recognition\": false,\n    \"sentiment_analysis\": false\n  },\n  \"post_processing\": {\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"chapterization\": false\n  },\n  \"messages_config\": {\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": true,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": true,\n    \"receive_errors\": true,\n    \"receive_lifecycle_events\": false\n  },\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": false,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": false,\n    \"receive_errors\": false,\n    \"receive_lifecycle_events\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?region=us-west",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The region used to process the audio.",
+                          "key": "region",
+                          "value": "us-west"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"url\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-e8add37b-e34d-4762-8874-7dbc14bed6c2"
+                },
+                {
+                  "id": "d14a88d8-7313-44d4-a15e-c5b0fc9563d1",
+                  "name": "Something is wrong with the request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"encoding\": \"wav/pcm\",\n  \"bit_depth\": 16,\n  \"sample_rate\": 16000,\n  \"channels\": 1,\n  \"custom_metadata\": {\n    \"culpa_9\": \"ea Excepteur laboris\"\n  },\n  \"model\": \"solaria-1\",\n  \"endpointing\": 0.05,\n  \"maximum_duration_without_endpointing\": 5,\n  \"language_config\": {\n    \"code_switching\": false\n  },\n  \"pre_processing\": {\n    \"audio_enhancer\": false,\n    \"speech_threshold\": 0.6\n  },\n  \"realtime_processing\": {\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sl\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"bs\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"commodob_\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"cs\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"named_entity_recognition\": false,\n    \"sentiment_analysis\": false\n  },\n  \"post_processing\": {\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"chapterization\": false\n  },\n  \"messages_config\": {\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": true,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": true,\n    \"receive_errors\": true,\n    \"receive_lifecycle_events\": false\n  },\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": false,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": false,\n    \"receive_errors\": false,\n    \"receive_lifecycle_events\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?region=us-west",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The region used to process the audio.",
+                          "key": "region",
+                          "value": "us-west"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\",\n  \"validation_errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-d14a88d8-7313-44d4-a15e-c5b0fc9563d1"
+                },
+                {
+                  "id": "090bd69a-cbde-43b9-9848-c491c7a81b5e",
+                  "name": "You don't have the permissions to initiate a new live job",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"encoding\": \"wav/pcm\",\n  \"bit_depth\": 16,\n  \"sample_rate\": 16000,\n  \"channels\": 1,\n  \"custom_metadata\": {\n    \"culpa_9\": \"ea Excepteur laboris\"\n  },\n  \"model\": \"solaria-1\",\n  \"endpointing\": 0.05,\n  \"maximum_duration_without_endpointing\": 5,\n  \"language_config\": {\n    \"code_switching\": false\n  },\n  \"pre_processing\": {\n    \"audio_enhancer\": false,\n    \"speech_threshold\": 0.6\n  },\n  \"realtime_processing\": {\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sl\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"bs\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"commodob_\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"cs\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"named_entity_recognition\": false,\n    \"sentiment_analysis\": false\n  },\n  \"post_processing\": {\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"chapterization\": false\n  },\n  \"messages_config\": {\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": true,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": true,\n    \"receive_errors\": true,\n    \"receive_lifecycle_events\": false\n  },\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": false,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": false,\n    \"receive_errors\": false,\n    \"receive_lifecycle_events\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?region=us-west",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The region used to process the audio.",
+                          "key": "region",
+                          "value": "us-west"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-090bd69a-cbde-43b9-9848-c491c7a81b5e"
+                },
+                {
+                  "id": "980430ec-a5e9-40d5-ba38-e7023138d5fe",
+                  "name": "The parameters you gave are incorrect",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"encoding\": \"wav/pcm\",\n  \"bit_depth\": 16,\n  \"sample_rate\": 16000,\n  \"channels\": 1,\n  \"custom_metadata\": {\n    \"culpa_9\": \"ea Excepteur laboris\"\n  },\n  \"model\": \"solaria-1\",\n  \"endpointing\": 0.05,\n  \"maximum_duration_without_endpointing\": 5,\n  \"language_config\": {\n    \"code_switching\": false\n  },\n  \"pre_processing\": {\n    \"audio_enhancer\": false,\n    \"speech_threshold\": 0.6\n  },\n  \"realtime_processing\": {\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"sl\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"intensity\": \"<number>\",\n          \"pronunciations\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"language\": \"bs\"\n        }\n      ],\n      \"default_intensity\": \"<number>\"\n    },\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"commodob_\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"cs\"\n      ],\n      \"model\": \"base\",\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"named_entity_recognition\": false,\n    \"sentiment_analysis\": false\n  },\n  \"post_processing\": {\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": \"general\"\n    },\n    \"chapterization\": false\n  },\n  \"messages_config\": {\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": true,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": true,\n    \"receive_errors\": true,\n    \"receive_lifecycle_events\": false\n  },\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"receive_partial_transcripts\": false,\n    \"receive_final_transcripts\": true,\n    \"receive_speech_events\": false,\n    \"receive_pre_processing_events\": true,\n    \"receive_realtime_processing_events\": true,\n    \"receive_post_processing_events\": true,\n    \"receive_acknowledgments\": false,\n    \"receive_errors\": false,\n    \"receive_lifecycle_events\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?region=us-west",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The region used to process the audio.",
+                          "key": "region",
+                          "value": "us-west"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-980430ec-a5e9-40d5-ba38-e7023138d5fe"
+                }
+              ],
+              "createdAt": "2026-07-28T01:44:33.000Z",
+              "updatedAt": "2026-07-28T01:44:33.000Z",
+              "uid": "35240-67a5a6cc-fd8d-4477-8fa1-3ffe2fd41fbb"
+            },
+            {
+              "name": "Get live jobs based on query parameters",
+              "id": "79a258ac-742f-40f4-bbff-8cac1bccd046",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-gladia-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/live?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=processing&status=done&velitc16=true&sunt_db=90899330.08322558",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "live"
+                  ],
+                  "query": [
+                    {
+                      "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                      "key": "date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Include items that occurred before the specified date in ISO format.",
+                      "key": "before_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                      "key": "after_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                      "key": "status",
+                      "value": "processing"
+                    },
+                    {
+                      "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                      "key": "status",
+                      "value": "done"
+                    },
+                    {
+                      "key": "velitc16",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sunt_db",
+                      "value": "90899330.08322558"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c7f7ef4d-6da3-44d8-b9d8-4294f41a83ba",
+                  "name": "A list of live jobs matching the parameters.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=done&velitc16=true&sunt_db=90899330.08322558",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                          "key": "date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items that occurred before the specified date in ISO format.",
+                          "key": "before_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                          "key": "after_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                          "key": "status",
+                          "value": "done"
+                        },
+                        {
+                          "key": "velitc16",
+                          "value": "true"
+                        },
+                        {
+                          "key": "sunt_db",
+                          "value": "90899330.08322558"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"first\": \"<uri>\",\n  \"current\": \"<uri>\",\n  \"next\": \"<uri>\",\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"request_id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"queued\",\n      \"created_at\": \"<dateTime>\",\n      \"post_session_metadata\": {},\n      \"kind\": \"live\",\n      \"completed_at\": \"<dateTime>\",\n      \"custom_metadata\": {\n        \"pariatur18\": 84154519,\n        \"Duis_a7a\": \"quis incididunt\"\n      },\n      \"error_code\": \"<integer>\",\n      \"file\": {\n        \"id\": \"<string>\",\n        \"filename\": \"<string>\",\n        \"source\": \"<string>\",\n        \"audio_duration\": \"<number>\",\n        \"number_of_channels\": \"<integer>\"\n      },\n      \"request_params\": {\n        \"encoding\": \"wav/pcm\",\n        \"bit_depth\": 16,\n        \"sample_rate\": 16000,\n        \"channels\": 1,\n        \"model\": \"solaria-1\",\n        \"endpointing\": 0.05,\n        \"maximum_duration_without_endpointing\": 5,\n        \"language_config\": {\n          \"code_switching\": false\n        },\n        \"pre_processing\": {\n          \"audio_enhancer\": false,\n          \"speech_threshold\": 0.6\n        },\n        \"realtime_processing\": {\n          \"custom_vocabulary\": false,\n          \"custom_vocabulary_config\": {\n            \"vocabulary\": [\n              {\n                \"value\": \"<string>\",\n                \"intensity\": \"<number>\",\n                \"pronunciations\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"language\": \"tg\"\n              },\n              {\n                \"value\": \"<string>\",\n                \"intensity\": \"<number>\",\n                \"pronunciations\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"language\": \"ha\"\n              }\n            ],\n            \"default_intensity\": \"<number>\"\n          },\n          \"custom_spelling\": false,\n          \"custom_spelling_config\": {\n            \"spelling_dictionary\": {\n              \"Lorem_e5\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"ipsumb\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          \"translation\": false,\n          \"translation_config\": {\n            \"target_languages\": [\n              \"cy\"\n            ],\n            \"model\": \"base\",\n            \"match_original_utterances\": true,\n            \"lipsync\": true,\n            \"context_adaptation\": true,\n            \"context\": \"<string>\",\n            \"informal\": false\n          },\n          \"named_entity_recognition\": false,\n          \"sentiment_analysis\": false\n        },\n        \"post_processing\": {\n          \"summarization\": false,\n          \"summarization_config\": {\n            \"type\": \"general\"\n          },\n          \"chapterization\": false\n        },\n        \"messages_config\": {\n          \"receive_partial_transcripts\": false,\n          \"receive_final_transcripts\": true,\n          \"receive_speech_events\": true,\n          \"receive_pre_processing_events\": true,\n          \"receive_realtime_processing_events\": true,\n          \"receive_post_processing_events\": true,\n          \"receive_acknowledgments\": true,\n          \"receive_errors\": true,\n          \"receive_lifecycle_events\": false\n        },\n        \"callback\": false,\n        \"callback_config\": {\n          \"url\": \"<uri>\",\n          \"receive_partial_transcripts\": false,\n          \"receive_final_transcripts\": true,\n          \"receive_speech_events\": false,\n          \"receive_pre_processing_events\": true,\n          \"receive_realtime_processing_events\": true,\n          \"receive_post_processing_events\": true,\n          \"receive_acknowledgments\": false,\n          \"receive_errors\": false,\n          \"receive_lifecycle_events\": true\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"audio_duration\": \"<number>\",\n          \"number_of_distinct_channels\": \"<integer>\",\n          \"billing_time\": \"<number>\",\n          \"transcription_time\": \"<number>\"\n        },\n        \"transcription\": {\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"ms\",\n            \"my\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"id\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ms\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        \"translation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"pt\",\n                \"fo\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"fi\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"tt\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"mr\",\n                \"mt\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"gu\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"uk\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        \"summarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"named_entity_recognition\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            },\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            }\n          ]\n        },\n        \"sentiment_analysis\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"chapterization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"in_f\": 36938150.558847845,\n            \"laboreb51\": -89885278,\n            \"magnad8b\": -79691952.92366958\n          }\n        },\n        \"messages\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"request_id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"queued\",\n      \"created_at\": \"<dateTime>\",\n      \"post_session_metadata\": {},\n      \"kind\": \"live\",\n      \"completed_at\": \"<dateTime>\",\n      \"custom_metadata\": {\n        \"inc\": 55396694\n      },\n      \"error_code\": \"<integer>\",\n      \"file\": {\n        \"id\": \"<string>\",\n        \"filename\": \"<string>\",\n        \"source\": \"<string>\",\n        \"audio_duration\": \"<number>\",\n        \"number_of_channels\": \"<integer>\"\n      },\n      \"request_params\": {\n        \"encoding\": \"wav/pcm\",\n        \"bit_depth\": 16,\n        \"sample_rate\": 16000,\n        \"channels\": 1,\n        \"model\": \"solaria-1\",\n        \"endpointing\": 0.05,\n        \"maximum_duration_without_endpointing\": 5,\n        \"language_config\": {\n          \"code_switching\": false\n        },\n        \"pre_processing\": {\n          \"audio_enhancer\": false,\n          \"speech_threshold\": 0.6\n        },\n        \"realtime_processing\": {\n          \"custom_vocabulary\": false,\n          \"custom_vocabulary_config\": {\n            \"vocabulary\": [\n              {\n                \"value\": \"<string>\",\n                \"intensity\": \"<number>\",\n                \"pronunciations\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"language\": \"br\"\n              },\n              {\n                \"value\": \"<string>\",\n                \"intensity\": \"<number>\",\n                \"pronunciations\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"language\": \"az\"\n              }\n            ],\n            \"default_intensity\": \"<number>\"\n          },\n          \"custom_spelling\": false,\n          \"custom_spelling_config\": {\n            \"spelling_dictionary\": {\n              \"Duis8b\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          },\n          \"translation\": false,\n          \"translation_config\": {\n            \"target_languages\": [\n              \"as\"\n            ],\n            \"model\": \"base\",\n            \"match_original_utterances\": true,\n            \"lipsync\": true,\n            \"context_adaptation\": true,\n            \"context\": \"<string>\",\n            \"informal\": false\n          },\n          \"named_entity_recognition\": false,\n          \"sentiment_analysis\": false\n        },\n        \"post_processing\": {\n          \"summarization\": false,\n          \"summarization_config\": {\n            \"type\": \"general\"\n          },\n          \"chapterization\": false\n        },\n        \"messages_config\": {\n          \"receive_partial_transcripts\": false,\n          \"receive_final_transcripts\": true,\n          \"receive_speech_events\": true,\n          \"receive_pre_processing_events\": true,\n          \"receive_realtime_processing_events\": true,\n          \"receive_post_processing_events\": true,\n          \"receive_acknowledgments\": true,\n          \"receive_errors\": true,\n          \"receive_lifecycle_events\": false\n        },\n        \"callback\": false,\n        \"callback_config\": {\n          \"url\": \"<uri>\",\n          \"receive_partial_transcripts\": false,\n          \"receive_final_transcripts\": true,\n          \"receive_speech_events\": false,\n          \"receive_pre_processing_events\": true,\n          \"receive_realtime_processing_events\": true,\n          \"receive_post_processing_events\": true,\n          \"receive_acknowledgments\": false,\n          \"receive_errors\": false,\n          \"receive_lifecycle_events\": true\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"audio_duration\": \"<number>\",\n          \"number_of_distinct_channels\": \"<integer>\",\n          \"billing_time\": \"<number>\",\n          \"transcription_time\": \"<number>\"\n        },\n        \"transcription\": {\n          \"full_transcript\": \"<string>\",\n          \"languages\": [\n            \"pa\",\n            \"th\"\n          ],\n          \"utterances\": [\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"ka\",\n              \"speaker\": \"<integer>\"\n            },\n            {\n              \"start\": \"<number>\",\n              \"end\": \"<number>\",\n              \"confidence\": \"<number>\",\n              \"channel\": \"<integer>\",\n              \"words\": [\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                },\n                {\n                  \"word\": \"<string>\",\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\"\n                }\n              ],\n              \"text\": \"<string>\",\n              \"language\": \"hy\",\n              \"speaker\": \"<integer>\"\n            }\n          ],\n          \"sentences\": [\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            },\n            {\n              \"success\": \"<boolean>\",\n              \"is_empty\": \"<boolean>\",\n              \"exec_time\": \"<number>\",\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"results\": [\n                \"<string>\",\n                \"<string>\"\n              ]\n            }\n          ],\n          \"subtitles\": [\n            {\n              \"format\": \"vtt\",\n              \"subtitles\": \"<string>\"\n            },\n            {\n              \"format\": \"srt\",\n              \"subtitles\": \"<string>\"\n            }\n          ]\n        },\n        \"translation\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"tr\",\n                \"vi\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"ne\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"kn\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"error\": {\n                \"status_code\": \"<integer>\",\n                \"exception\": \"<string>\",\n                \"message\": \"<string>\"\n              },\n              \"full_transcript\": \"<string>\",\n              \"languages\": [\n                \"ca\",\n                \"zh\"\n              ],\n              \"utterances\": [\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"ln\",\n                  \"speaker\": \"<integer>\"\n                },\n                {\n                  \"start\": \"<number>\",\n                  \"end\": \"<number>\",\n                  \"confidence\": \"<number>\",\n                  \"channel\": \"<integer>\",\n                  \"words\": [\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    },\n                    {\n                      \"word\": \"<string>\",\n                      \"start\": \"<number>\",\n                      \"end\": \"<number>\",\n                      \"confidence\": \"<number>\"\n                    }\n                  ],\n                  \"text\": \"<string>\",\n                  \"language\": \"id\",\n                  \"speaker\": \"<integer>\"\n                }\n              ],\n              \"sentences\": [\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                },\n                {\n                  \"success\": \"<boolean>\",\n                  \"is_empty\": \"<boolean>\",\n                  \"exec_time\": \"<number>\",\n                  \"error\": {\n                    \"status_code\": \"<integer>\",\n                    \"exception\": \"<string>\",\n                    \"message\": \"<string>\"\n                  },\n                  \"results\": [\n                    \"<string>\",\n                    \"<string>\"\n                  ]\n                }\n              ],\n              \"subtitles\": [\n                {\n                  \"format\": \"srt\",\n                  \"subtitles\": \"<string>\"\n                },\n                {\n                  \"format\": \"vtt\",\n                  \"subtitles\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        \"summarization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"named_entity_recognition\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": [\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            },\n            {\n              \"entity_type\": \"<string>\",\n              \"text\": \"<string>\",\n              \"start\": \"<number>\",\n              \"end\": \"<number>\"\n            }\n          ]\n        },\n        \"sentiment_analysis\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": \"<string>\"\n        },\n        \"chapterization\": {\n          \"success\": \"<boolean>\",\n          \"is_empty\": \"<boolean>\",\n          \"exec_time\": \"<number>\",\n          \"error\": {\n            \"status_code\": \"<integer>\",\n            \"exception\": \"<string>\",\n            \"message\": \"<string>\"\n          },\n          \"results\": {\n            \"mollit_77\": 48331352,\n            \"mollit2\": \"nisi dolor\"\n          }\n        },\n        \"messages\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-c7f7ef4d-6da3-44d8-b9d8-4294f41a83ba"
+                },
+                {
+                  "id": "af7d6d2e-0b15-4151-b136-1765a2930df8",
+                  "name": "You don't have the permissions to access live jobs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-gladia-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/live?offset=0&limit=20&date=<dateTime>&before_date=<dateTime>&after_date=<dateTime>&status=done&velitc16=true&sunt_db=90899330.08322558",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "live"
+                      ],
+                      "query": [
+                        {
+                          "description": "The starting point for pagination. A value of 0 starts from the first item.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return. Useful for pagination and controlling data payload size.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD).",
+                          "key": "date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Include items that occurred before the specified date in ISO format.",
+                          "key": "before_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.",
+                          "key": "after_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter the list based on item status. Accepts multiple values from the predefined list.",
+                          "key": "status",
+                          "value": "done"
+                        },
+                        {
+                          "key": "velitc16",
+                          "value": "true"
+                        },
+                        {
+                          "key": "sunt_db",
+                          "value": "90899330.08322558"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"timestamp\": \"<string>\",\n  \"path\": \"<string>\",\n  \"request_id\": \"<string>\",\n  \"statusCode\": \"<number>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:44:33.000Z",
+                  "updatedAt": "2026-07-28T01:44:33.000Z",
+                  "uid": "35240-af7d6d2e-0b15-4151-b136-1765a2930df8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:44:33.000Z",
+              "updatedAt": "2026-07-28T01:44:33.000Z",
+              "uid": "35240-79a258ac-742f-40f4-bbff-8cac1bccd046"
+            }
+          ],
+          "id": "3fa54560-1f56-4e66-9776-765cb1fc60cd",
+          "createdAt": "2026-07-28T01:44:33.000Z",
+          "updatedAt": "2026-07-28T01:44:33.000Z",
+          "uid": "35240-3fa54560-1f56-4e66-9776-765cb1fc60cd"
+        }
+      ],
+      "id": "8adbaafd-981f-4a9d-a827-05ab1aa58540",
+      "createdAt": "2026-07-28T01:44:33.000Z",
+      "updatedAt": "2026-07-28T01:44:33.000Z",
+      "uid": "35240-8adbaafd-981f-4a9d-a827-05ab1aa58540"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.gladia.io/"
+    }
+  ]
+}

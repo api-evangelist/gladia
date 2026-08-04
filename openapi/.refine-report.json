@@ -1,0 +1,28 @@
+{
+  "provider": "gladia",
+  "sources": [
+    "gladia-audiototext-api-openapi.yml",
+    "gladia-file-management-api-openapi.yml",
+    "gladia-job-history-api-openapi.yml",
+    "gladia-live-v2-api-openapi.yml",
+    "gladia-openrouter-api-openapi.yml",
+    "gladia-pre-recorded-v2-api-openapi.yml",
+    "gladia-transcription-v1-api-openapi.yml",
+    "gladia-transcription-v2-api-openapi.yml"
+  ],
+  "outputs": [
+    "gladia-audiototext-api-openapi.yml",
+    "gladia-file-management-api-openapi.yml",
+    "gladia-job-history-api-openapi.yml",
+    "gladia-live-v2-api-openapi.yml",
+    "gladia-openrouter-api-openapi.yml",
+    "gladia-pre-recorded-v2-api-openapi.yml",
+    "gladia-transcription-v1-api-openapi.yml",
+    "gladia-transcription-v2-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

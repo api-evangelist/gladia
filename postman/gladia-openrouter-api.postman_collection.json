@@ -1,0 +1,92 @@
+{
+  "info": {
+    "_postman_id": "0d3d27c7-faf0-4e36-9347-e920c13e0e5a",
+    "name": "Gladia Control AudioToText OpenRouter API",
+    "description": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:44:42.000Z",
+    "updatedAt": "2026-07-28T01:44:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d3d27c7-faf0-4e36-9347-e920c13e0e5a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "models",
+          "item": [
+            {
+              "name": "List Gladia's available transcription models as per OpenRouter integration spec",
+              "id": "8405a8a4-b60e-407f-9508-5d5ee460bbcc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/models",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "models"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "eb56af36-27fc-49be-9fb8-eb69df32464d",
+                  "name": "List of available models",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:44:42.000Z",
+                  "updatedAt": "2026-07-28T01:44:42.000Z",
+                  "uid": "35240-eb56af36-27fc-49be-9fb8-eb69df32464d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:44:42.000Z",
+              "updatedAt": "2026-07-28T01:44:42.000Z",
+              "uid": "35240-8405a8a4-b60e-407f-9508-5d5ee460bbcc"
+            }
+          ],
+          "id": "598ce8db-fdd7-415e-b64a-63ab56fd58c8",
+          "createdAt": "2026-07-28T01:44:42.000Z",
+          "updatedAt": "2026-07-28T01:44:42.000Z",
+          "uid": "35240-598ce8db-fdd7-415e-b64a-63ab56fd58c8"
+        }
+      ],
+      "id": "3c7510d2-36bb-4989-a1cd-8385bad7bdca",
+      "createdAt": "2026-07-28T01:44:42.000Z",
+      "updatedAt": "2026-07-28T01:44:42.000Z",
+      "uid": "35240-3c7510d2-36bb-4989-a1cd-8385bad7bdca"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.gladia.io/"
+    }
+  ]
+}
