@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "bfb34589-a153-49fa-81fc-eeccc774c74a",
+      "name": "File Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0f9e9fd-aef7-4e61-bddc-a01c296a35e5",
+          "name": "Upload an audio file or provide an audio URL for processing",
+          "request": {
+            "name": "Upload an audio file or provide an audio URL for processing",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "description": "The file to be uploaded. This should be an audio or video file."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4de69a36-f3e8-4ab3-8609-aaccb0c60cbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to be uploaded. This should be an audio or video file.",
+                        "type": "text/plain"
+                      },
+                      "key": "audio",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audio_url\": \"https://api.gladia.io/file/6c09400e-23d2-4bd2-be55-96a5ececfa3b\",\n  \"audio_metadata\": {\n    \"id\": \"6c09400e-23d2-4bd2-be55-96a5ececfa3b\",\n    \"filename\": \"short-audio-en-16000.wav\",\n    \"extension\": \"5a3e3dca-d06a-1740-53d4-7c7bdb7134e5\",\n    \"size\": 365702,\n    \"audio_duration\": 4.145782,\n    \"number_of_channels\": 1,\n    \"source\": \"http://files.gladia.io/example/audio-transcription/split_infinity.wav\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gladia.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2ebeea5c-6e16-48d6-863b-cdf0dacdf0b7",
+    "name": "Gladia Control AudioToText File Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+      "type": "text/plain"
+    }
+  }
+}

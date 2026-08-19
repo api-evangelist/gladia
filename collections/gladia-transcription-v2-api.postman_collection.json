@@ -1,0 +1,1284 @@
+{
+  "item": [
+    {
+      "id": "e2bdcd87-0988-4dc8-bb0b-75596272ca3e",
+      "name": "Transcription V2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcabb82d-0f22-42a2-a5c7-a82c73db7787",
+          "name": "Initiate a new transcription job",
+          "request": {
+            "name": "Initiate a new transcription job",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transcription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audio_url\": \"<uri>\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": {\n          \"description\": \"Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.\",\n          \"example\": \"en\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"value\": \"<string>\",\n        \"intensity\": \"<number>\",\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": {\n          \"description\": \"Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.\",\n          \"example\": \"en\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"default_intensity\": \"<number>\"\n  },\n  \"callback_url\": \"<uri>\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"<uri>\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": \"<integer>\",\n    \"min_speakers\": \"<integer>\",\n    \"max_speakers\": \"<integer>\"\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"<string>\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"<string>\",\n    \"processed_text_type\": \"<string>\"\n  },\n  \"custom_metadata\": {\n    \"key_0\": true\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "718947d6-00e3-4551-8242-e1306e89be23",
+              "name": "The transcription job has been initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_url\": \"http://files.gladia.io/example/audio-transcription/split_infinity.wav\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      },\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      }\n    ],\n    \"default_intensity\": 0.5\n  },\n  \"callback_url\": \"http://callback.example\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"http://callback.example\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": 3,\n    \"min_speakers\": 1,\n    \"max_speakers\": 2\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"en\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"<string>\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"user\": \"John Doe\"\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"result_url\": \"https://api.gladia.io/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aae85044-aa08-4c5f-ab14-7a35fb4d6b8d",
+              "name": "Something is wrong with the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_url\": \"http://files.gladia.io/example/audio-transcription/split_infinity.wav\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      },\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      }\n    ],\n    \"default_intensity\": 0.5\n  },\n  \"callback_url\": \"http://callback.example\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"http://callback.example\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": 3,\n    \"min_speakers\": 1,\n    \"max_speakers\": 2\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"en\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"<string>\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"user\": \"John Doe\"\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 400,\n  \"message\": \"Content-Type is missing Multipart Boundary.\",\n  \"validation_errors\": [\n    \"Field \\\"language\\\" must be a string\",\n    \"Field \\\"min_speakers\\\" must be a number\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67c184f2-2b5d-4afa-93c7-2ac2133c28bd",
+              "name": "You don't have the permissions to initiate a new transcription job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_url\": \"http://files.gladia.io/example/audio-transcription/split_infinity.wav\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      },\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      }\n    ],\n    \"default_intensity\": 0.5\n  },\n  \"callback_url\": \"http://callback.example\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"http://callback.example\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": 3,\n    \"min_speakers\": 1,\n    \"max_speakers\": 2\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"en\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"<string>\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"user\": \"John Doe\"\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 401,\n  \"message\": \"gladia key not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81dedd90-1ceb-40c1-b1cf-57894cf7d6d6",
+              "name": "The parameters you gave are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_url\": \"http://files.gladia.io/example/audio-transcription/split_infinity.wav\",\n  \"custom_vocabulary\": false,\n  \"custom_vocabulary_config\": {\n    \"vocabulary\": [\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      },\n      {\n        \"value\": \"Gladia\",\n        \"intensity\": 0.5,\n        \"pronunciations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"language\": \"en\"\n      }\n    ],\n    \"default_intensity\": 0.5\n  },\n  \"callback_url\": \"http://callback.example\",\n  \"callback\": false,\n  \"callback_config\": {\n    \"url\": \"http://callback.example\",\n    \"method\": \"POST\"\n  },\n  \"subtitles\": false,\n  \"subtitles_config\": {\n    \"formats\": [\n      \"srt\"\n    ],\n    \"minimum_duration\": \"<number>\",\n    \"maximum_duration\": \"<number>\",\n    \"maximum_characters_per_row\": \"<integer>\",\n    \"maximum_rows_per_caption\": \"<integer>\",\n    \"style\": \"default\"\n  },\n  \"diarization\": false,\n  \"diarization_config\": {\n    \"number_of_speakers\": 3,\n    \"min_speakers\": 1,\n    \"max_speakers\": 2\n  },\n  \"translation\": false,\n  \"translation_config\": {\n    \"target_languages\": [\n      \"en\"\n    ],\n    \"model\": \"base\",\n    \"match_original_utterances\": true,\n    \"lipsync\": true,\n    \"context_adaptation\": true,\n    \"context\": \"<string>\",\n    \"informal\": false\n  },\n  \"summarization\": false,\n  \"summarization_config\": {\n    \"type\": \"general\"\n  },\n  \"named_entity_recognition\": false,\n  \"custom_spelling\": false,\n  \"custom_spelling_config\": {\n    \"spelling_dictionary\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"sentiment_analysis\": false,\n  \"audio_to_llm\": false,\n  \"audio_to_llm_config\": {\n    \"prompts\": [\n      \"<array>\"\n    ],\n    \"model\": \"openai/gpt-5.4-nano\"\n  },\n  \"pii_redaction\": false,\n  \"pii_redaction_config\": {\n    \"entity_types\": \"<string>\",\n    \"processed_text_type\": \"MARKER\"\n  },\n  \"custom_metadata\": {\n    \"user\": \"John Doe\"\n  },\n  \"sentences\": false,\n  \"punctuation_enhanced\": false,\n  \"language_config\": {\n    \"code_switching\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 422,\n  \"message\": \"Invalid parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e51df1ed-847d-41a1-a0d3-4c85c2da6fd0",
+          "name": "Get transcription jobs based on query parameters",
+          "request": {
+            "name": "Get transcription jobs based on query parameters",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transcription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The starting point for pagination. A value of 0 starts from the first item."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<dateTime>",
+                  "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_date",
+                  "value": "<dateTime>",
+                  "description": "Include items that occurred before the specified date in ISO format."
+                },
+                {
+                  "disabled": false,
+                  "key": "after_date",
+                  "value": "<dateTime>",
+                  "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "9937.095473011565"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "8471.142372385344"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "539"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_3",
+                  "value": "7340.04571253851"
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90bcadc2-cd09-4fc8-b329-193d4b8ee4b4",
+              "name": "A list of transcription jobs matching the parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "after_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "status",
+                      "value": "done"
+                    },
+                    {
+                      "key": "user",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "pre-recorded"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first\": \"https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20\",\n  \"current\": \"https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20\",\n  \"next\": \"https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20\",\n  \"items\": [\n    {\n      \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n      \"request_id\": \"G-45463597\",\n      \"version\": 2,\n      \"status\": \"queued\",\n      \"created_at\": \"2023-12-28T09:04:17.210Z\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"2023-12-28T09:04:37.210Z\",\n      \"custom_metadata\": {\n        \"user\": \"John Doe\"\n      },\n      \"error_code\": 500,\n      \"file\": {\n        \"id\": \"string\",\n        \"filename\": \"string\",\n        \"source\": \"string\",\n        \"audio_duration\": 3600,\n        \"number_of_channels\": 1\n      },\n      \"request_params\": {\n        \"audio_url\": \"http://kNjYCSBpwrYDGd.qcrurtIik5gCq9Tl2,HP-D,mBcSDaiewB2ILXcdpHEUxVSGXOfU9xNU+qfsOklfLOUBCttZb\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"description\": \"**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callback_url\": \"http://callback.example\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"description\": \"Customize the callback behaviour (url and http method)\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"description\": \"Configuration for subtitles generation if `subtitles` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"description\": \"Speaker recognition configuration, if `diarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"description\": \"**[Beta]** Translation configuration, if `translation` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"description\": \"Summarization configuration, if `summarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"description\": \"**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"description\": \"Audio to LLM configuration, if `audio_to_llm` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"description\": \"PII redaction configuration, if `pii_redaction` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"description\": \"Specify the language configuration\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"description\": \"Metadata for the given transcription & audio file\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transcription\": {\n          \"description\": \"Transcription of the audio speech\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": {\n          \"description\": \"If `translation` has been enabled, translation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": {\n          \"description\": \"If `summarization` has been enabled, summarization of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"moderation\": {\n          \"description\": \"If `moderation` has been enabled, moderation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": {\n          \"description\": \"If `named_entity_recognition` has been enabled, the detected entities\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name_consistency\": {\n          \"description\": \"If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structured_data_extraction\": {\n          \"description\": \"If `structured_data_extraction` has been enabled, structured data extraction results\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": {\n          \"description\": \"If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"audio_to_llm\": {\n          \"description\": \"If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": {\n          \"description\": \"If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.\",\n          \"deprecated\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"display_mode\": {\n          \"description\": \"If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chapterization\": {\n          \"description\": \"If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": {\n          \"description\": \"If `diarization` has been requested and an error has occurred, the result will appear here\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n      \"request_id\": \"G-45463597\",\n      \"version\": 2,\n      \"status\": \"processing\",\n      \"created_at\": \"2023-12-28T09:04:17.210Z\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"2023-12-28T09:04:37.210Z\",\n      \"custom_metadata\": {\n        \"user\": \"John Doe\"\n      },\n      \"error_code\": 500,\n      \"file\": {\n        \"id\": \"string\",\n        \"filename\": \"string\",\n        \"source\": \"string\",\n        \"audio_duration\": 3600,\n        \"number_of_channels\": 1\n      },\n      \"request_params\": {\n        \"audio_url\": \"https://VFenPRezFGVhEBpRzcyMEPJm.rsiXB9Ex5.JtmGCj4iwCgdVPu8jZMKQAF\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"description\": \"**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callback_url\": \"http://callback.example\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"description\": \"Customize the callback behaviour (url and http method)\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"description\": \"Configuration for subtitles generation if `subtitles` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"description\": \"Speaker recognition configuration, if `diarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"description\": \"**[Beta]** Translation configuration, if `translation` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"description\": \"Summarization configuration, if `summarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"description\": \"**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"description\": \"Audio to LLM configuration, if `audio_to_llm` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"description\": \"PII redaction configuration, if `pii_redaction` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"description\": \"Specify the language configuration\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"description\": \"Metadata for the given transcription & audio file\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transcription\": {\n          \"description\": \"Transcription of the audio speech\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": {\n          \"description\": \"If `translation` has been enabled, translation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": {\n          \"description\": \"If `summarization` has been enabled, summarization of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"moderation\": {\n          \"description\": \"If `moderation` has been enabled, moderation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": {\n          \"description\": \"If `named_entity_recognition` has been enabled, the detected entities\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name_consistency\": {\n          \"description\": \"If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structured_data_extraction\": {\n          \"description\": \"If `structured_data_extraction` has been enabled, structured data extraction results\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": {\n          \"description\": \"If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"audio_to_llm\": {\n          \"description\": \"If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": {\n          \"description\": \"If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.\",\n          \"deprecated\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"display_mode\": {\n          \"description\": \"If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chapterization\": {\n          \"description\": \"If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": {\n          \"description\": \"If `diarization` has been requested and an error has occurred, the result will appear here\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32f629e5-cb52-4684-86b6-969592638313",
+              "name": "You don't have the permissions to access transcription jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "after_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "status",
+                      "value": "done"
+                    },
+                    {
+                      "key": "user",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "pre-recorded"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 401,\n  \"message\": \"gladia key not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "219aae62-0278-4796-8bc8-b6786fb9ed31",
+          "name": "Get the transcription job's metadata",
+          "request": {
+            "name": "Get the transcription job's metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transcription",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the transcription job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b294f872-491b-4233-8758-1a3a51b6a09e",
+              "name": "The transcription job's metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-45463597\",\n  \"version\": 2,\n  \"status\": \"error\",\n  \"created_at\": \"2023-12-28T09:04:17.210Z\",\n  \"post_session_metadata\": {},\n  \"kind\": \"pre-recorded\",\n  \"completed_at\": \"2023-12-28T09:04:37.210Z\",\n  \"custom_metadata\": {\n    \"user\": \"John Doe\"\n  },\n  \"error_code\": 500,\n  \"file\": {\n    \"id\": \"string\",\n    \"filename\": \"string\",\n    \"source\": \"string\",\n    \"audio_duration\": 3600,\n    \"number_of_channels\": 1\n  },\n  \"request_params\": {\n    \"audio_url\": \"http://bcILOhXysVgdTuhuuFdDkfyz.bhmjuTb+F\",\n    \"custom_vocabulary\": false,\n    \"custom_vocabulary_config\": {\n      \"vocabulary\": [\n        \"Westeros\",\n        {\n          \"value\": \"Stark\"\n        },\n        {\n          \"value\": \"Night's Watch\",\n          \"pronunciations\": [\n            \"Nightz Watch\"\n          ],\n          \"intensity\": 0.4,\n          \"language\": \"en\"\n        }\n      ],\n      \"default_intensity\": 0.5\n    },\n    \"callback_url\": \"http://callback.example\",\n    \"callback\": false,\n    \"callback_config\": {\n      \"url\": \"http://callback.example\",\n      \"method\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"subtitles\": false,\n    \"subtitles_config\": {\n      \"formats\": [\n        \"srt\"\n      ],\n      \"minimum_duration\": \"<number>\",\n      \"maximum_duration\": \"<number>\",\n      \"maximum_characters_per_row\": \"<integer>\",\n      \"maximum_rows_per_caption\": \"<integer>\",\n      \"style\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"diarization\": false,\n    \"diarization_config\": {\n      \"number_of_speakers\": 3,\n      \"min_speakers\": 1,\n      \"max_speakers\": 2\n    },\n    \"translation\": false,\n    \"translation_config\": {\n      \"target_languages\": [\n        \"en\"\n      ],\n      \"model\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"match_original_utterances\": true,\n      \"lipsync\": true,\n      \"context_adaptation\": true,\n      \"context\": \"<string>\",\n      \"informal\": false\n    },\n    \"summarization\": false,\n    \"summarization_config\": {\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"named_entity_recognition\": false,\n    \"custom_spelling\": false,\n    \"custom_spelling_config\": {\n      \"spelling_dictionary\": {\n        \"Gettleman\": [\n          \"gettleman\"\n        ],\n        \"SQL\": [\n          \"Sequel\"\n        ]\n      }\n    },\n    \"sentiment_analysis\": false,\n    \"audio_to_llm\": false,\n    \"audio_to_llm_config\": {\n      \"prompts\": [\n        \"Extract the key points from the transcription\"\n      ],\n      \"model\": \"openai/gpt-5.4-nano\"\n    },\n    \"pii_redaction\": false,\n    \"pii_redaction_config\": {\n      \"entity_types\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"processed_text_type\": \"MARKER\"\n    },\n    \"sentences\": false,\n    \"punctuation_enhanced\": false,\n    \"language_config\": {\n      \"code_switching\": false\n    }\n  },\n  \"result\": {\n    \"metadata\": {\n      \"audio_duration\": 3600,\n      \"number_of_distinct_channels\": 1,\n      \"billing_time\": 3600,\n      \"transcription_time\": 20\n    },\n    \"transcription\": {\n      \"full_transcript\": \"string\",\n      \"languages\": [\n        \"en\"\n      ],\n      \"utterances\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"sentences\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"subtitles\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"translation\": {\n      \"success\": false,\n      \"is_empty\": true,\n      \"exec_time\": 650.675092606241,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"summarization\": {\n      \"success\": false,\n      \"is_empty\": true,\n      \"exec_time\": 463.1435196301037,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": \"string\"\n    },\n    \"moderation\": {\n      \"success\": true,\n      \"is_empty\": false,\n      \"exec_time\": 9880.196665946129,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": \"string\"\n    },\n    \"named_entity_recognition\": {\n      \"success\": true,\n      \"is_empty\": true,\n      \"exec_time\": 6133.307427748298,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"name_consistency\": {\n      \"success\": false,\n      \"is_empty\": false,\n      \"exec_time\": 5248.940350505835,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": \"string\"\n    },\n    \"structured_data_extraction\": {\n      \"success\": false,\n      \"is_empty\": false,\n      \"exec_time\": 4552.546084602175,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": \"string\"\n    },\n    \"sentiment_analysis\": {\n      \"success\": true,\n      \"is_empty\": false,\n      \"exec_time\": 9257.010298693547,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": \"string\"\n    },\n    \"audio_to_llm\": {\n      \"success\": false,\n      \"is_empty\": false,\n      \"exec_time\": 4289.284668346649,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"sentences\": {\n      \"success\": false,\n      \"is_empty\": true,\n      \"exec_time\": 6570.044806134349,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"display_mode\": {\n      \"success\": true,\n      \"is_empty\": false,\n      \"exec_time\": 4321.78958144679,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"chapterization\": {\n      \"success\": true,\n      \"is_empty\": true,\n      \"exec_time\": 898.2363634336854,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": {\n        \"key_0\": 4517.173100199221,\n        \"key_1\": 7712,\n        \"key_2\": 2455\n      }\n    },\n    \"diarization\": {\n      \"success\": true,\n      \"is_empty\": true,\n      \"exec_time\": 1585.901078594646,\n      \"error\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"results\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3eab302e-6d57-4cfd-98a3-7f53078dca3d",
+              "name": "You don't have the permissions to access the transcription job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 401,\n  \"message\": \"gladia key not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a374025-35be-4f2c-896f-1a69119bbe5b",
+              "name": "The transcription job doesn't exist or has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d31e326c-7d1b-48ef-9a1f-a2cdaf1fb693",
+          "name": "Delete the transcription job",
+          "request": {
+            "name": "Delete the transcription job",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transcription",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the transcription job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e08302c-6070-4a55-881b-f8e33218f04a",
+              "name": "The transcription job has been successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "306d5a05-38e2-4cdb-87d4-efe207e65da7",
+              "name": "You don't have the permissions to delete this transcription job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 401,\n  \"message\": \"gladia key not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59d11252-da9e-44f0-bb0b-54b1836ced77",
+              "name": "The transcription job is not in a deletable state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 403,\n  \"message\": \"Invalid parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44975682-377a-4ecc-a733-e53a753401ac",
+              "name": "The transcription job doesn't exist or has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f105db00-0a0b-4705-9f68-049905164d78",
+          "name": "Download the audio file used for this transcription job",
+          "request": {
+            "name": "Download the audio file used for this transcription job",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transcription",
+                ":id",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the transcription job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e8d3a7c-0e50-4bf9-818a-cc9ec7044776",
+              "name": "The audio file used for this transcription job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "<binary>",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "511adf58-4fb1-4de7-8e75-4ae69d0805ea",
+              "name": "You don't have the permissions to access this transcription job or its audio file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 401,\n  \"message\": \"gladia key not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1a2c6ad-c629-4667-bad7-daea34ac0e9c",
+              "name": "The transcription job or its audio file doesn't exist or has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transcription",
+                    ":id",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transcription job"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-12-28T09:04:17.210Z\",\n  \"path\": \"/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab\",\n  \"request_id\": \"G-821fe9df\",\n  \"statusCode\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gladia.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dadaf79e-d5b1-40aa-ac30-31204c87ed2b",
+    "name": "Gladia Control AudioToText Transcription V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+      "type": "text/plain"
+    }
+  }
+}

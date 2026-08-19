@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gladia Control AudioToText Live V2 API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get live jobs based on query parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gladia.io/v2/live",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The starting point for pagination. A value of 0 starts from the first item."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+              },
+              {
+                "name": "before_date",
+                "value": "",
+                "type": "query",
+                "description": "Include items that occurred before the specified date in ISO format."
+              },
+              {
+                "name": "after_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+              },
+              {
+                "name": "custom_metadata",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get live jobs based on query parameters"
+        },
+        {
+          "info": {
+            "name": "Initiate a new live job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gladia.io/v2/live",
+            "params": [
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "The region used to process the audio."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiate a new live job"
+        },
+        {
+          "info": {
+            "name": "Get the live job's metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gladia.io/v2/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the live job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the live job's metadata"
+        },
+        {
+          "info": {
+            "name": "For debugging purposes, send post session metadata in the request params of the job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.gladia.io/v2/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the live job"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For debugging purposes, send post session metadata in the request params of the job"
+        },
+        {
+          "info": {
+            "name": "Delete the live job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.gladia.io/v2/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the live job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete the live job"
+        },
+        {
+          "info": {
+            "name": "Download the audio file used for this live job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gladia.io/v2/live/:id/file",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the live job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Download the audio file used for this live job"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

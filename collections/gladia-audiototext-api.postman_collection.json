@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "ac63ea42-c32d-4ec6-b9ba-11719bcd76a1",
+      "name": "AudioToText",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eeff7bf6-d71b-43f9-8203-f35fd4c50ec6",
+          "name": "Audio To Text Controller audio Transcription",
+          "request": {
+            "name": "Audio To Text Controller audio Transcription",
+            "description": {},
+            "url": {
+              "path": [
+                "audio",
+                "text",
+                "audio-transcription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "audio",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "audio_url",
+                  "value": "http://files.gladia.io/example/audio-transcription/split_infinity.wav",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "language_behaviour",
+                  "value": "automatic single language",
+                  "type": "text",
+                  "description": " (This can only be one of automatic single language,automatic multiple languages,manual)"
+                },
+                {
+                  "key": "language",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of afrikaans,albanian,amharic,arabic,armenian,assamese,azerbaijani,bashkir,basque,belarusian,bengali,bosnian,breton,bulgarian,catalan,chinese,croatian,czech,danish,dutch,english,estonian,faroese,finnish,french,galician,georgian,german,greek,gujarati,haitian creole,hausa,hawaiian,hebrew,hindi,hungarian,icelandic,indonesian,italian,japanese,javanese,kannada,kazakh,khmer,korean,lao,latin,latvian,lingala,lithuanian,luxembourgish,macedonian,malagasy,malay,malayalam,maltese,maori,marathi,mongolian,myanmar,nepali,norwegian,nynorsk,occitan,pashto,persian,polish,portuguese,punjabi,romanian,russian,sanskrit,serbian,shona,sindhi,sinhala,slovak,slovenian,somali,spanish,sundanese,swahili,swedish,tagalog,tajik,tamil,tatar,telugu,thai,tibetan,turkish,turkmen,ukrainian,urdu,uzbek,vietnamese,welsh,yiddish,yoruba)"
+                },
+                {
+                  "key": "transcription_hint",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "toggle_diarization",
+                  "value": "false",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "diarization_num_speakers",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "diarization_min_speakers",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "diarization_max_speakers",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "toggle_direct_translate",
+                  "value": "false",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "target_translation_language",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of afrikaans,albanian,amharic,arabic,armenian,assamese,azerbaijani,bashkir,basque,belarusian,bengali,bosnian,breton,bulgarian,catalan,chinese,croatian,czech,danish,dutch,english,estonian,faroese,finnish,french,galician,georgian,german,greek,gujarati,haitian creole,hausa,hawaiian,hebrew,hindi,hungarian,icelandic,indonesian,italian,japanese,javanese,kannada,kazakh,khmer,korean,lao,latin,latvian,lingala,lithuanian,luxembourgish,macedonian,malagasy,malay,malayalam,maltese,maori,marathi,mongolian,myanmar,nepali,norwegian,nynorsk,occitan,pashto,persian,polish,portuguese,punjabi,romanian,russian,sanskrit,serbian,shona,sindhi,sinhala,slovak,slovenian,somali,spanish,sundanese,swahili,swedish,tagalog,tajik,tamil,tatar,telugu,thai,tibetan,turkish,turkmen,ukrainian,urdu,uzbek,vietnamese,welsh,wolof,yiddish,yoruba)"
+                },
+                {
+                  "key": "output_format",
+                  "value": "json",
+                  "type": "text",
+                  "description": " (This can only be one of json,srt,vtt,plain,txt)"
+                },
+                {
+                  "key": "toggle_noise_reduction",
+                  "value": "false",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "toggle_accurate_words_timestamps",
+                  "value": "false",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "webhook_url",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62a18d8c-93f0-44e8-ad47-3160588abbf0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audio",
+                    "text",
+                    "audio-transcription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "audio",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "audio_url",
+                      "value": "http://files.gladia.io/example/audio-transcription/split_infinity.wav",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of automatic single language,automatic multiple languages,manual)",
+                        "type": "text/plain"
+                      },
+                      "key": "language_behaviour",
+                      "value": "automatic single language",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of afrikaans,albanian,amharic,arabic,armenian,assamese,azerbaijani,bashkir,basque,belarusian,bengali,bosnian,breton,bulgarian,catalan,chinese,croatian,czech,danish,dutch,english,estonian,faroese,finnish,french,galician,georgian,german,greek,gujarati,haitian creole,hausa,hawaiian,hebrew,hindi,hungarian,icelandic,indonesian,italian,japanese,javanese,kannada,kazakh,khmer,korean,lao,latin,latvian,lingala,lithuanian,luxembourgish,macedonian,malagasy,malay,malayalam,maltese,maori,marathi,mongolian,myanmar,nepali,norwegian,nynorsk,occitan,pashto,persian,polish,portuguese,punjabi,romanian,russian,sanskrit,serbian,shona,sindhi,sinhala,slovak,slovenian,somali,spanish,sundanese,swahili,swedish,tagalog,tajik,tamil,tatar,telugu,thai,tibetan,turkish,turkmen,ukrainian,urdu,uzbek,vietnamese,welsh,yiddish,yoruba)",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "transcription_hint",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "toggle_diarization",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "diarization_num_speakers",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "diarization_min_speakers",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "diarization_max_speakers",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "toggle_direct_translate",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of afrikaans,albanian,amharic,arabic,armenian,assamese,azerbaijani,bashkir,basque,belarusian,bengali,bosnian,breton,bulgarian,catalan,chinese,croatian,czech,danish,dutch,english,estonian,faroese,finnish,french,galician,georgian,german,greek,gujarati,haitian creole,hausa,hawaiian,hebrew,hindi,hungarian,icelandic,indonesian,italian,japanese,javanese,kannada,kazakh,khmer,korean,lao,latin,latvian,lingala,lithuanian,luxembourgish,macedonian,malagasy,malay,malayalam,maltese,maori,marathi,mongolian,myanmar,nepali,norwegian,nynorsk,occitan,pashto,persian,polish,portuguese,punjabi,romanian,russian,sanskrit,serbian,shona,sindhi,sinhala,slovak,slovenian,somali,spanish,sundanese,swahili,swedish,tagalog,tajik,tamil,tatar,telugu,thai,tibetan,turkish,turkmen,ukrainian,urdu,uzbek,vietnamese,welsh,wolof,yiddish,yoruba)",
+                        "type": "text/plain"
+                      },
+                      "key": "target_translation_language",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of json,srt,vtt,plain,txt)",
+                        "type": "text/plain"
+                      },
+                      "key": "output_format",
+                      "value": "json",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "toggle_noise_reduction",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "toggle_accurate_words_timestamps",
+                      "value": "false",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "webhook_url",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gladia.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7a1745c0-8d2f-4021-9682-4df1c07ba087",
+    "name": "Gladia Control AudioToText API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+      "type": "text/plain"
+    }
+  }
+}

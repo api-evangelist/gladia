@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gladia Control AudioToText Job History API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the history of all your jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gladia.io/v1/history",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The starting point for pagination. A value of 0 starts from the first item."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+              },
+              {
+                "name": "before_date",
+                "value": "",
+                "type": "query",
+                "description": "Include items that occurred before the specified date in ISO format."
+              },
+              {
+                "name": "after_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+              },
+              {
+                "name": "custom_metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the history of all your jobs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

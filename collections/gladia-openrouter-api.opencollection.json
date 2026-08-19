@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gladia Control AudioToText OpenRouter API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OpenRouter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Gladia's available transcription models as per OpenRouter integration spec",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.gladia.io/v1/models"
+          },
+          "docs": "List Gladia's available transcription models as per OpenRouter integration spec"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

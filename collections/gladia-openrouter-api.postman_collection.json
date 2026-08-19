@@ -1,0 +1,89 @@
+{
+  "item": [
+    {
+      "id": "463b538b-7613-4735-840a-316b755deded",
+      "name": "OpenRouter",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abd683c3-ae77-4077-b8bb-3b5b40708b10",
+          "name": "List Gladia's available transcription models as per OpenRouter integration spec",
+          "request": {
+            "name": "List Gladia's available transcription models as per OpenRouter integration spec",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35d70212-2057-484a-b6af-fef0318642b1",
+              "name": "List of available models",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gladia.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "234e5a2d-8126-4e7f-85e3-b24e9b8d69ed",
+    "name": "Gladia Control AudioToText OpenRouter API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gladia Control AudioToText API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AudioToText",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AudioToTextController_audioTranscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gladia.io/audio/text/audio-transcription",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "audio",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "audio_url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language_behaviour",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "transcription_hint",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "toggle_diarization",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "diarization_num_speakers",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "diarization_min_speakers",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "diarization_max_speakers",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "toggle_direct_translate",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "target_translation_language",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "output_format",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "toggle_noise_reduction",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "toggle_accurate_words_timestamps",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "webhook_url",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

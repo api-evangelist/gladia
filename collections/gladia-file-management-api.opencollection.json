@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Gladia Control AudioToText File Management API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload an audio file or provide an audio URL for processing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.gladia.io/v2/upload",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-gladia-key",
+              "value": "{{x-gladia-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload an audio file or provide an audio URL for processing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

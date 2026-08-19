@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "bbcf308c-a46f-4a7e-a045-9ba20f371c70",
+      "name": "Job History",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6e850e7-d873-4102-bc97-8268de7201ec",
+          "name": "Get the history of all your jobs",
+          "request": {
+            "name": "Get the history of all your jobs",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The starting point for pagination. A value of 0 starts from the first item."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<dateTime>",
+                  "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_date",
+                  "value": "<dateTime>",
+                  "description": "Include items that occurred before the specified date in ISO format."
+                },
+                {
+                  "disabled": false,
+                  "key": "after_date",
+                  "value": "<dateTime>",
+                  "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "1315"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "9442"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+                },
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-gladia-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "274a2cb3-1556-4db3-a615-958c17736447",
+              "name": "A list of jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "after_date",
+                      "value": "2026-06-12T21:00:09.947Z"
+                    },
+                    {
+                      "key": "status",
+                      "value": "done"
+                    },
+                    {
+                      "key": "user",
+                      "value": "John Doe"
+                    },
+                    {
+                      "key": "kind",
+                      "value": "pre-recorded"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-gladia-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"first\": \"https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20\",\n  \"current\": \"https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20\",\n  \"next\": \"https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20\",\n  \"items\": [\n    {\n      \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n      \"request_id\": \"G-45463597\",\n      \"version\": 2,\n      \"status\": \"done\",\n      \"created_at\": \"2023-12-28T09:04:17.210Z\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"2023-12-28T09:04:37.210Z\",\n      \"custom_metadata\": {\n        \"user\": \"John Doe\"\n      },\n      \"error_code\": 500,\n      \"file\": {\n        \"id\": \"string\",\n        \"filename\": \"string\",\n        \"source\": \"string\",\n        \"audio_duration\": 3600,\n        \"number_of_channels\": 1\n      },\n      \"request_params\": {\n        \"audio_url\": \"https://dEqLzQVOhi.abxEsVlLK\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"description\": \"**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callback_url\": \"http://callback.example\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"description\": \"Customize the callback behaviour (url and http method)\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"description\": \"Configuration for subtitles generation if `subtitles` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"description\": \"Speaker recognition configuration, if `diarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"description\": \"**[Beta]** Translation configuration, if `translation` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"description\": \"Summarization configuration, if `summarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"description\": \"**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"description\": \"Audio to LLM configuration, if `audio_to_llm` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"description\": \"PII redaction configuration, if `pii_redaction` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"description\": \"Specify the language configuration\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"description\": \"Metadata for the given transcription & audio file\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transcription\": {\n          \"description\": \"Transcription of the audio speech\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": {\n          \"description\": \"If `translation` has been enabled, translation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": {\n          \"description\": \"If `summarization` has been enabled, summarization of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"moderation\": {\n          \"description\": \"If `moderation` has been enabled, moderation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": {\n          \"description\": \"If `named_entity_recognition` has been enabled, the detected entities\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name_consistency\": {\n          \"description\": \"If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structured_data_extraction\": {\n          \"description\": \"If `structured_data_extraction` has been enabled, structured data extraction results\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": {\n          \"description\": \"If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"audio_to_llm\": {\n          \"description\": \"If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": {\n          \"description\": \"If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.\",\n          \"deprecated\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"display_mode\": {\n          \"description\": \"If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chapterization\": {\n          \"description\": \"If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": {\n          \"description\": \"If `diarization` has been requested and an error has occurred, the result will appear here\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"45463597-20b7-4af7-b3b3-f5fb778203ab\",\n      \"request_id\": \"G-45463597\",\n      \"version\": 2,\n      \"status\": \"queued\",\n      \"created_at\": \"2023-12-28T09:04:17.210Z\",\n      \"post_session_metadata\": {},\n      \"kind\": \"pre-recorded\",\n      \"completed_at\": \"2023-12-28T09:04:37.210Z\",\n      \"custom_metadata\": {\n        \"user\": \"John Doe\"\n      },\n      \"error_code\": 500,\n      \"file\": {\n        \"id\": \"string\",\n        \"filename\": \"string\",\n        \"source\": \"string\",\n        \"audio_duration\": 3600,\n        \"number_of_channels\": 1\n      },\n      \"request_params\": {\n        \"audio_url\": \"http://PBvtIrnsYLttMTIzbJ.oourcDnlwlWh,0aOqFCbGnVe\",\n        \"custom_vocabulary\": false,\n        \"custom_vocabulary_config\": {\n          \"description\": \"**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"callback_url\": \"http://callback.example\",\n        \"callback\": false,\n        \"callback_config\": {\n          \"description\": \"Customize the callback behaviour (url and http method)\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"subtitles\": false,\n        \"subtitles_config\": {\n          \"description\": \"Configuration for subtitles generation if `subtitles` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": false,\n        \"diarization_config\": {\n          \"description\": \"Speaker recognition configuration, if `diarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": false,\n        \"translation_config\": {\n          \"description\": \"**[Beta]** Translation configuration, if `translation` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": false,\n        \"summarization_config\": {\n          \"description\": \"Summarization configuration, if `summarization` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": false,\n        \"custom_spelling\": false,\n        \"custom_spelling_config\": {\n          \"description\": \"**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": false,\n        \"audio_to_llm\": false,\n        \"audio_to_llm_config\": {\n          \"description\": \"Audio to LLM configuration, if `audio_to_llm` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pii_redaction\": false,\n        \"pii_redaction_config\": {\n          \"description\": \"PII redaction configuration, if `pii_redaction` is enabled\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": false,\n        \"punctuation_enhanced\": false,\n        \"language_config\": {\n          \"description\": \"Specify the language configuration\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"result\": {\n        \"metadata\": {\n          \"description\": \"Metadata for the given transcription & audio file\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transcription\": {\n          \"description\": \"Transcription of the audio speech\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"translation\": {\n          \"description\": \"If `translation` has been enabled, translation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summarization\": {\n          \"description\": \"If `summarization` has been enabled, summarization of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"moderation\": {\n          \"description\": \"If `moderation` has been enabled, moderation of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"named_entity_recognition\": {\n          \"description\": \"If `named_entity_recognition` has been enabled, the detected entities\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name_consistency\": {\n          \"description\": \"If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"structured_data_extraction\": {\n          \"description\": \"If `structured_data_extraction` has been enabled, structured data extraction results\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentiment_analysis\": {\n          \"description\": \"If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"audio_to_llm\": {\n          \"description\": \"If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sentences\": {\n          \"description\": \"If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.\",\n          \"deprecated\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"display_mode\": {\n          \"description\": \"If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"chapterization\": {\n          \"description\": \"If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"diarization\": {\n          \"description\": \"If `diarization` has been requested and an error has occurred, the result will appear here\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.gladia.io/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4d019de6-c27d-4e21-ad52-5e7af1e4871f",
+    "name": "Gladia Control AudioToText Job History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.",
+      "type": "text/plain"
+    }
+  }
+}
