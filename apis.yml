@@ -19,7 +19,7 @@ url: https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/api
 created: 2026-06-12
 modified: 2026-06-12
 
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 description: >
   Gladia is an AI audio infrastructure platform that offers speech-to-text
   transcription via both REST and WebSocket APIs, supporting asynchronous
