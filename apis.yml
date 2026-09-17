@@ -120,18 +120,6 @@ apis:
     url: openapi/gladia-live-v2-api-openapi.yml
   - type: Documentation
     url: https://docs.gladia.io/chapters/introduction
-- aid: gladia:gladia-openrouter-api
-  name: Gladia OpenRouter API
-  description: The OpenRouter API from Gladia — 1 operation(s) for openrouter.
-  humanURL: https://docs.gladia.io/chapters/introduction
-  baseURL: https://api.gladia.io/v2/
-  tags:
-  - OpenRouter
-  properties:
-  - type: OpenAPI
-    url: openapi/gladia-openrouter-api-openapi.yml
-  - type: Documentation
-    url: https://docs.gladia.io/chapters/introduction
 - aid: gladia:gladia-pre-recorded-v2-api
   name: Gladia Pre-recorded V2 API
   description: The Pre-recorded V2 API from Gladia — 3 operation(s) for pre-recorded v2.
@@ -166,6 +154,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/gladia-transcription-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-open-router-api
+  name: Gladia Open Router API
+  description: The Open Router API from Gladia — 1 operation(s) for open router.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: wss://api.gladia.io/
+  tags:
+  - Open Router
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-open-router-api-openapi.yml
   - type: Documentation
     url: https://docs.gladia.io/chapters/introduction
 common:
