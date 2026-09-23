@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Gladia Control AudioToText File Management API
+  title: Gladia Control File Management API
   description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
   version: '1.0'
   contact: {}

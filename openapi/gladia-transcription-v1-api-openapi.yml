@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Gladia Control AudioToText Transcription V1 API
+  title: Gladia Control Transcription V1 API
   description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
   version: '1.0'
   contact: {}
@@ -277,6 +277,8 @@ paths:
       - x_gladia_key: []
       tags:
       - Transcription V1
+      summary: Audio to text controller audio transcription
+      x-summary-source: derived
   /video/text/video-transcription:
     post:
       operationId: VideoToTextController_videoTranscription
@@ -544,6 +546,8 @@ paths:
       - x_gladia_key: []
       tags:
       - Transcription V1
+      summary: Video to text controller video transcription
+      x-summary-source: derived
 components:
   securitySchemes:
     x_gladia_key:

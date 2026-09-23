@@ -1,14 +1,7 @@
 {
   "provider": "gladia",
   "sources": [
-    "gladia-audiototext-api-openapi.yml",
-    "gladia-file-management-api-openapi.yml",
-    "gladia-job-history-api-openapi.yml",
-    "gladia-live-v2-api-openapi.yml",
-    "gladia-openrouter-api-openapi.yml",
-    "gladia-pre-recorded-v2-api-openapi.yml",
-    "gladia-transcription-v1-api-openapi.yml",
-    "gladia-transcription-v2-api-openapi.yml"
+    "_original/gladia-control-api-openapi.yml"
   ],
   "outputs": [
     "gladia-audiototext-api-openapi.yml",
@@ -20,9 +13,33 @@
     "gladia-transcription-v1-api-openapi.yml",
     "gladia-transcription-v2-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "gladia-control-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "gladia-control-api-openapi.yml: declared missing tag: AudioToText",
+    "gladia-control-api-openapi.yml: declared missing tag: File Management",
+    "gladia-control-api-openapi.yml: declared missing tag: Job History",
+    "gladia-control-api-openapi.yml: declared missing tag: Live V2",
+    "gladia-control-api-openapi.yml: declared missing tag: OpenRouter",
+    "gladia-control-api-openapi.yml: declared missing tag: Pre-recorded V2",
+    "gladia-control-api-openapi.yml: declared missing tag: Transcription V1",
+    "gladia-control-api-openapi.yml: declared missing tag: Transcription V2",
+    "superseded outputs removed: gladia-open-router-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 9 total)"
+  ],
+  "skipped": [
+    "gladia-audiototext-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-file-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-job-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-live-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-open-router-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-pre-recorded-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-transcription-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gladia-transcription-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
