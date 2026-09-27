@@ -46,6 +46,21 @@ paths:
       - File Management
 components:
   schemas:
+    AudioUploadResponse:
+      type: object
+      properties:
+        audio_url:
+          type: string
+          description: Uploaded audio file Gladia URL
+          format: uri
+          example: https://api.gladia.io/file/6c09400e-23d2-4bd2-be55-96a5ececfa3b
+        audio_metadata:
+          description: Uploaded audio file detected metadata
+          allOf:
+          - $ref: '#/components/schemas/AudioUploadMetadataDTO'
+      required:
+      - audio_url
+      - audio_metadata
     AudioUploadMetadataDTO:
       type: object
       properties:
@@ -87,21 +102,6 @@ components:
       - size
       - audio_duration
       - number_of_channels
-    AudioUploadResponse:
-      type: object
-      properties:
-        audio_url:
-          type: string
-          description: Uploaded audio file Gladia URL
-          format: uri
-          example: https://api.gladia.io/file/6c09400e-23d2-4bd2-be55-96a5ececfa3b
-        audio_metadata:
-          description: Uploaded audio file detected metadata
-          allOf:
-          - $ref: '#/components/schemas/AudioUploadMetadataDTO'
-      required:
-      - audio_url
-      - audio_metadata
   securitySchemes:
     x_gladia_key:
       type: apiKey
