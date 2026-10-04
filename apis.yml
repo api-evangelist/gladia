@@ -44,6 +44,9 @@ description: >
   Gladia offers a free tier with 10 hours per month, metered paid plans starting
   at $0.61/hour for async and $0.75/hour for real-time, and custom enterprise
   pricing with zero data retention and SLA guarantees.
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
   - Speech-to-Text
   - Transcription
