@@ -163,7 +163,7 @@ apis:
   name: Gladia Open Router API
   description: The Open Router API from Gladia — 1 operation(s) for open router.
   humanURL: https://docs.gladia.io/chapters/introduction
-  baseURL: wss://api.gladia.io/
+  baseURL: https://api.gladia.io/
   tags:
   - Open Router
   properties:
