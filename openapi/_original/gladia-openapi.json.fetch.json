@@ -1,0 +1,12 @@
+{
+ "url": "https://api.gladia.io/openapi.json",
+ "final": "https://api.gladia.io/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 121008,
+ "sha256": "b1647e2e511ee0d478a74f95512f1b179cc648bab2388c12b8a150976fa3f6ea",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

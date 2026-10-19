@@ -159,6 +159,18 @@ apis:
     url: openapi/gladia-transcription-v2-api-openapi.yml
   - type: Documentation
     url: https://docs.gladia.io/chapters/introduction
+- aid: gladia:gladia-gladia-control-api-api
+  name: Gladia Gladia Control API
+  description: The Gladia Control API API from Gladia — 0 operation(s) for gladia control api.
+  humanURL: https://docs.gladia.io/chapters/introduction
+  baseURL: wss://api.gladia.io/
+  tags:
+  - Gladia Control API
+  properties:
+  - type: OpenAPI
+    url: openapi/gladia-gladia-control-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.gladia.io/chapters/introduction
 - aid: gladia:gladia-open-router-api
   name: Gladia Open Router API
   description: The Open Router API from Gladia — 1 operation(s) for open router.

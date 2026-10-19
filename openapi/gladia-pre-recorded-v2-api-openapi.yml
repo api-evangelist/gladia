@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Gladia Control Pre-recorded V2 API
-  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  description: ''
   version: '1.0'
   contact: {}
 servers:
@@ -75,7 +75,7 @@ paths:
         description: Filter items relevant to a specific date in ISO format (YYYY-MM-DD).
         schema:
           format: date-time
-          example: '2026-06-12'
+          example: '2026-10-19'
           type: string
       - name: before_date
         required: false
@@ -83,7 +83,7 @@ paths:
         description: Include items that occurred before the specified date in ISO format.
         schema:
           format: date-time
-          example: '2026-06-12T21:00:09.947Z'
+          example: '2026-10-19T16:49:27.362Z'
           type: string
       - name: after_date
         required: false
@@ -91,7 +91,7 @@ paths:
         description: Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.
         schema:
           format: date-time
-          example: '2026-06-12T21:00:09.947Z'
+          example: '2026-10-19T16:49:27.362Z'
           type: string
       - name: status
         required: false
@@ -244,118 +244,66 @@ paths:
       - Pre-recorded V2
 components:
   schemas:
-    PiiRedactionEntityTypeEnum:
-      type: string
-      enum:
-      - APPI
-      - APPI_SENSITIVE
-      - CCI
-      - CORE_ENTITIES
-      - CPRA
-      - GDPR
-      - GDPR_SENSITIVE
-      - HEALTH_INFORMATION
-      - HIPAA_SAFE_HARBOR
-      - LIDI
-      - NUMERICAL_EXCL_PCI
-      - PCI
-      - QUEBEC_PRIVACY_ACT
-      - ACCOUNT_NUMBER
-      - AGE
-      - DATE
-      - DATE_INTERVAL
-      - DOB
-      - DRIVER_LICENSE
-      - DURATION
-      - EMAIL_ADDRESS
-      - EVENT
-      - FILENAME
-      - GENDER
-      - HEALTHCARE_NUMBER
-      - IP_ADDRESS
-      - LANGUAGE
-      - LOCATION
-      - LOCATION_ADDRESS
-      - LOCATION_ADDRESS_STREET
-      - LOCATION_CITY
-      - LOCATION_COORDINATE
-      - LOCATION_COUNTRY
-      - LOCATION_STATE
-      - LOCATION_ZIP
-      - MARITAL_STATUS
-      - MONEY
-      - NAME
-      - NAME_FAMILY
-      - NAME_GIVEN
-      - NAME_MEDICAL_PROFESSIONAL
-      - NUMERICAL_PII
-      - OCCUPATION
-      - ORGANIZATION
-      - ORGANIZATION_MEDICAL_FACILITY
-      - ORIGIN
-      - PASSPORT_NUMBER
-      - PASSWORD
-      - PHONE_NUMBER
-      - PHYSICAL_ATTRIBUTE
-      - POLITICAL_AFFILIATION
-      - RELIGION
-      - SEXUALITY
-      - SSN
-      - TIME
-      - URL
-      - USERNAME
-      - VEHICLE_ID
-      - ZODIAC_SIGN
-      - BLOOD_TYPE
-      - CONDITION
-      - DOSE
-      - DRUG
-      - INJURY
-      - MEDICAL_PROCESS
-      - STATISTICS
-      - BANK_ACCOUNT
-      - CREDIT_CARD
-      - CREDIT_CARD_EXPIRATION
-      - CVV
-      - ROUTING_NUMBER
-      - CORPORATE_ACTION
-      - DAY
-      - EFFECT
-      - FINANCIAL_METRIC
-      - MEDICAL_CODE
-      - MONTH
-      - ORGANIZATION_ID
-      - PRODUCT
-      - PROJECT
-      - TREND
-      - YEAR
-      description: The entity types to redact
-    CustomVocabularyConfigDTO:
+    AudioToLlmDTO:
       type: object
       properties:
-        vocabulary:
-          type: array
-          description: 'Specific vocabulary list to feed the transcription model with. Each item can be a string or an object with the following properties: value, intensity, pronunciations, language.'
-          example:
-          - Westeros
-          - value: Stark
-          - value: Night's Watch
-            pronunciations:
-            - Nightz Watch
-            intensity: 0.4
-            language: en
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/CustomVocabularyEntryDTO'
-            - type: string
-        default_intensity:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
           type: number
-          description: Default intensity for the custom vocabulary
-          example: 0.5
-          minimum: 0
-          maximum: 1
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: The result from a specific prompt
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AudioToLlmResultDTO'
       required:
-      - vocabulary
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
+    DisplayModeDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: If `display_mode` has been enabled, proposes an alternative display output.
+          nullable: true
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
     NotFoundErrorResponse:
       type: object
       properties:
@@ -385,359 +333,23 @@ components:
       - request_id
       - statusCode
       - message
-    PreRecordedRequestParamsResponse:
+    NamedEntityRecognitionResult:
       type: object
       properties:
-        custom_vocabulary:
-          type: boolean
-          description: '**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with'
-          default: false
-        custom_vocabulary_config:
-          description: '**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
-        callback_url:
+        entity_type:
           type: string
-          description: '**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription'
-          example: http://callback.example
-          format: uri
-          deprecated: true
-        callback:
-          type: boolean
-          description: Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour
-          default: false
-        callback_config:
-          description: Customize the callback behaviour (url and http method)
-          allOf:
-          - $ref: '#/components/schemas/CallbackConfigDto'
-        subtitles:
-          type: boolean
-          description: Enable subtitles generation for this transcription
-          default: false
-        subtitles_config:
-          description: Configuration for subtitles generation if `subtitles` is enabled
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesConfigDTO'
-        diarization:
-          type: boolean
-          description: Enable speaker recognition (diarization) for this audio
-          default: false
-        diarization_config:
-          description: Speaker recognition configuration, if `diarization` is enabled
-          allOf:
-          - $ref: '#/components/schemas/DiarizationConfigDTO'
-        translation:
-          type: boolean
-          description: '**[Beta]** Enable translation for this audio'
-          default: false
-        translation_config:
-          description: '**[Beta]** Translation configuration, if `translation` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/TranslationConfigDTO'
-        summarization:
-          type: boolean
-          description: Enable summarization for this audio
-          default: false
-        summarization_config:
-          description: Summarization configuration, if `summarization` is enabled
-          allOf:
-          - $ref: '#/components/schemas/SummarizationConfigDTO'
-        named_entity_recognition:
-          type: boolean
-          description: '**[Alpha]** Enable named entity recognition for this audio'
-          default: false
-        custom_spelling:
-          type: boolean
-          description: '**[Alpha]** Enable custom spelling for this audio'
-          default: false
-        custom_spelling_config:
-          description: '**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
-        sentiment_analysis:
-          type: boolean
-          description: Enable sentiment analysis for this audio
-          default: false
-        audio_to_llm:
-          type: boolean
-          description: Enable audio to LLM processing for this audio
-          default: false
-        audio_to_llm_config:
-          description: Audio to LLM configuration, if `audio_to_llm` is enabled
-          allOf:
-          - $ref: '#/components/schemas/AudioToLlmListConfigDTO'
-        pii_redaction:
-          type: boolean
-          description: Enable PII redaction for this audio
-          default: false
-        pii_redaction_config:
-          description: PII redaction configuration, if `pii_redaction` is enabled
-          allOf:
-          - $ref: '#/components/schemas/PiiRedactionConfigDTO'
-        sentences:
-          type: boolean
-          description: Enable sentences for this audio
-          default: false
-        punctuation_enhanced:
-          type: boolean
-          description: '**[Alpha]** Use enhanced punctuation for this audio'
-          default: false
-        language_config:
-          description: Specify the language configuration
-          allOf:
-          - $ref: '#/components/schemas/LanguageConfig'
-        audio_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-      required:
-      - audio_url
-    UtteranceDTO:
-      type: object
-      properties:
-        start:
-          type: number
-          description: Start timestamp in seconds of this utterance
-        end:
-          type: number
-          description: End timestamp in seconds of this utterance
-        confidence:
-          type: number
-          description: Confidence on the transcribed utterance (1 = 100% confident)
-        channel:
-          type: integer
-          description: Audio channel of where this utterance has been transcribed from
-          minimum: 0
-        speaker:
-          type: integer
-          description: If `diarization` enabled, speaker identification number
-          minimum: 0
-        words:
-          description: List of words of the utterance, split by timestamp
-          type: array
-          items:
-            $ref: '#/components/schemas/WordDTO'
         text:
           type: string
-          description: Transcription for this utterance
-        language:
-          description: Spoken language in this utterance
-          example: en
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
-      required:
-      - start
-      - end
-      - confidence
-      - channel
-      - words
-      - text
-      - language
-    SubtitleDTO:
-      type: object
-      properties:
-        format:
-          description: Format of the current subtitle
-          example: srt
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesFormatEnum'
-        subtitles:
-          type: string
-          description: Transcription on the asked subtitle format
-      required:
-      - format
-      - subtitles
-    DiarizationConfigDTO:
-      type: object
-      properties:
-        number_of_speakers:
-          type: integer
-          description: Exact number of speakers in the audio
-          example: 3
-          minimum: 1
-        min_speakers:
-          type: integer
-          description: Minimum number of speakers in the audio
-          example: 1
-          minimum: 0
-        max_speakers:
-          type: integer
-          description: Maximum number of speakers in the audio
-          example: 2
-          minimum: 0
-    InitTranscriptionRequest:
-      type: object
-      properties:
-        custom_vocabulary:
-          type: boolean
-          description: '**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with'
-          default: false
-        custom_vocabulary_config:
-          description: '**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
-        callback_url:
-          type: string
-          description: '**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription'
-          example: http://callback.example
-          format: uri
-          deprecated: true
-        callback:
-          type: boolean
-          description: Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour
-          default: false
-        callback_config:
-          description: Customize the callback behaviour (url and http method)
-          allOf:
-          - $ref: '#/components/schemas/CallbackConfigDto'
-        subtitles:
-          type: boolean
-          description: Enable subtitles generation for this transcription
-          default: false
-        subtitles_config:
-          description: Configuration for subtitles generation if `subtitles` is enabled
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesConfigDTO'
-        diarization:
-          type: boolean
-          description: Enable speaker recognition (diarization) for this audio
-          default: false
-        diarization_config:
-          description: Speaker recognition configuration, if `diarization` is enabled
-          allOf:
-          - $ref: '#/components/schemas/DiarizationConfigDTO'
-        translation:
-          type: boolean
-          description: '**[Beta]** Enable translation for this audio'
-          default: false
-        translation_config:
-          description: '**[Beta]** Translation configuration, if `translation` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/TranslationConfigDTO'
-        summarization:
-          type: boolean
-          description: Enable summarization for this audio
-          default: false
-        summarization_config:
-          description: Summarization configuration, if `summarization` is enabled
-          allOf:
-          - $ref: '#/components/schemas/SummarizationConfigDTO'
-        named_entity_recognition:
-          type: boolean
-          description: '**[Alpha]** Enable named entity recognition for this audio'
-          default: false
-        custom_spelling:
-          type: boolean
-          description: '**[Alpha]** Enable custom spelling for this audio'
-          default: false
-        custom_spelling_config:
-          description: '**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled'
-          allOf:
-          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
-        sentiment_analysis:
-          type: boolean
-          description: Enable sentiment analysis for this audio
-          default: false
-        audio_to_llm:
-          type: boolean
-          description: Enable audio to LLM processing for this audio
-          default: false
-        audio_to_llm_config:
-          description: Audio to LLM configuration, if `audio_to_llm` is enabled
-          allOf:
-          - $ref: '#/components/schemas/AudioToLlmListConfigDTO'
-        pii_redaction:
-          type: boolean
-          description: Enable PII redaction for this audio
-          default: false
-        pii_redaction_config:
-          description: PII redaction configuration, if `pii_redaction` is enabled
-          allOf:
-          - $ref: '#/components/schemas/PiiRedactionConfigDTO'
-        custom_metadata:
-          type: object
-          description: Custom metadata you can attach to this transcription
-          example:
-            user: John Doe
-          additionalProperties: true
-        sentences:
-          type: boolean
-          description: Enable sentences for this audio
-          default: false
-        punctuation_enhanced:
-          type: boolean
-          description: '**[Alpha]** Use enhanced punctuation for this audio'
-          default: false
-        language_config:
-          description: Specify the language configuration
-          allOf:
-          - $ref: '#/components/schemas/LanguageConfig'
-        audio_url:
-          type: string
-          description: URL to a Gladia file or to an external audio or video file
-          example: http://files.gladia.io/example/audio-transcription/split_infinity.wav
-          format: uri
-      required:
-      - audio_url
-    WordDTO:
-      type: object
-      properties:
-        word:
-          type: string
-          description: Spoken word
         start:
           type: number
-          description: Start timestamps in seconds of the spoken word
         end:
           type: number
-          description: End timestamps in seconds of the spoken word
-        confidence:
-          type: number
-          description: Confidence on the transcribed word (1 = 100% confident)
       required:
-      - word
+      - entity_type
+      - text
       - start
       - end
-      - confidence
-    TranslationResultDTO:
-      type: object
-      properties:
-        error:
-          description: Contains the error details of the failed addon
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        full_transcript:
-          type: string
-          description: All transcription on text format without any other information
-        languages:
-          type: array
-          description: All the detected languages in the audio sorted from the most detected to the less detected
-          example:
-          - en
-          items:
-            $ref: '#/components/schemas/TranslationLanguageCodeEnum'
-        sentences:
-          description: If `sentences` has been enabled, sentences results for this translation
-          type: array
-          items:
-            $ref: '#/components/schemas/SentencesDTO'
-        subtitles:
-          description: If `subtitles` has been enabled, subtitles results for this translation
-          type: array
-          items:
-            $ref: '#/components/schemas/SubtitleDTO'
-        utterances:
-          description: Transcribed speech utterances present in the audio
-          type: array
-          items:
-            $ref: '#/components/schemas/UtteranceDTO'
-      required:
-      - error
-      - full_transcript
-      - languages
-      - utterances
-    PreRecordedResponse:
+    InitPreRecordedTranscriptionResponse:
       type: object
       properties:
         id:
@@ -745,78 +357,82 @@ components:
           description: Id of the job
           format: uuid
           example: 45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
+        result_url:
           type: string
-          description: Debug id
-          example: G-45463597
-        version:
-          type: integer
-          description: API version
-          example: 2
-        status:
-          type: string
-          description: '"queued": the job has been queued. "processing": the job is being processed. "done": the job has been processed and the result is available. "error": an error occurred during the job''s processing.'
-          enum:
-          - queued
-          - processing
-          - done
-          - error
-        created_at:
-          type: string
-          description: Creation date
-          format: date-time
-          example: '2023-12-28T09:04:17.210Z'
-        completed_at:
-          type:
-          - string
-          - 'null'
-          description: Completion date when status is "done" or "error"
-          format: date-time
-          example: '2023-12-28T09:04:37.210Z'
-        custom_metadata:
-          type: object
-          description: Custom metadata given in the initial request
-          example:
-            user: John Doe
-          additionalProperties: true
-        error_code:
-          type:
-          - integer
-          - 'null'
-          description: HTTP status code of the error if status is "error"
-          minimum: 400
-          maximum: 599
-          example: 500
-        post_session_metadata:
-          type: object
-          description: For debugging purposes, send data that could help to identify issues
-        kind:
-          type: string
-          enum:
-          - pre-recorded
-          example: pre-recorded
-          default: pre-recorded
-        file:
-          description: The file data you uploaded. Can be null if status is "error"
-          allOf:
-          - $ref: '#/components/schemas/FileResponse'
-        request_params:
-          description: Parameters used for this pre-recorded transcription. Can be null if status is "error"
-          allOf:
-          - $ref: '#/components/schemas/PreRecordedRequestParamsResponse'
-        result:
-          description: Pre-recorded transcription's result when status is "done"
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionResultDTO'
+          description: Prebuilt URL with your transcription `id` to fetch the result
+          example: https://api.gladia.io/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+          format: uri
       required:
       - id
-      - request_id
-      - version
-      - status
-      - created_at
-      - post_session_metadata
-      - kind
-    UnauthorizedErrorResponse:
+      - result_url
+    SummarizationConfigDTO:
+      type: object
+      properties:
+        type:
+          description: The type of summarization to apply
+          default: general
+          allOf:
+          - $ref: '#/components/schemas/SummaryTypesEnum'
+    ListPreRecordedResponse:
+      type: object
+      properties:
+        first:
+          type: string
+          description: URL to fetch the first page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
+        current:
+          type: string
+          description: URL to fetch the current page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
+        next:
+          type: string
+          description: URL to fetch the next page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20
+          nullable: true
+        items:
+          description: List of pre-recorded transcriptions
+          type: array
+          items:
+            $ref: '#/components/schemas/PreRecordedResponse'
+      required:
+      - first
+      - current
+      - next
+      - items
+    SentencesDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: If `sentences` has been enabled, transcription as sentences.
+          nullable: true
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
+    ForbiddenErrorResponse:
       type: object
       properties:
         timestamp:
@@ -834,184 +450,17 @@ components:
         statusCode:
           type: number
           description: HTTP status code of the error
-          example: 401
+          example: 403
         message:
           type: string
-          description: Error message
-          example: gladia key not found
+          description: Forbidden request
+          example: Invalid parameter
       required:
       - timestamp
       - path
       - request_id
       - statusCode
       - message
-    TranslationDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: List of translated transcriptions, one for each `target_languages`
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TranslationResultDTO'
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    FileResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The file id
-        filename:
-          type:
-          - string
-          - 'null'
-          description: The name of the uploaded file
-        source:
-          type:
-          - string
-          - 'null'
-          description: The link used to download the file if audio_url was used
-        audio_duration:
-          type:
-          - number
-          - 'null'
-          description: Duration of the audio file
-          example: 3600
-        number_of_channels:
-          type:
-          - integer
-          - 'null'
-          description: Number of channels in the audio file
-          minimum: 1
-          example: 1
-      required:
-      - id
-      - filename
-      - source
-      - audio_duration
-      - number_of_channels
-    NamedEntityRecognitionResult:
-      type: object
-      properties:
-        entity_type:
-          type: string
-        text:
-          type: string
-        start:
-          type: number
-        end:
-          type: number
-      required:
-      - entity_type
-      - text
-      - start
-      - end
-    NamesConsistencyDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          type: string
-          description: Deprecated, If `name_consistency` has been enabled, Gladia will improve the consistency of the names across the transcription
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    TranscriptionResultDTO:
-      type: object
-      properties:
-        metadata:
-          description: Metadata for the given transcription & audio file
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionMetadataDTO'
-        transcription:
-          description: Transcription of the audio speech
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionDTO'
-        translation:
-          description: If `translation` has been enabled, translation of the audio speech transcription
-          allOf:
-          - $ref: '#/components/schemas/TranslationDTO'
-        summarization:
-          description: If `summarization` has been enabled, summarization of the audio speech transcription
-          allOf:
-          - $ref: '#/components/schemas/SummarizationDTO'
-        moderation:
-          description: If `moderation` has been enabled, moderation of the audio speech transcription
-          allOf:
-          - $ref: '#/components/schemas/ModerationDTO'
-        named_entity_recognition:
-          description: If `named_entity_recognition` has been enabled, the detected entities
-          allOf:
-          - $ref: '#/components/schemas/NamedEntityRecognitionDTO'
-        name_consistency:
-          description: If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription
-          allOf:
-          - $ref: '#/components/schemas/NamesConsistencyDTO'
-        structured_data_extraction:
-          description: If `structured_data_extraction` has been enabled, structured data extraction results
-          allOf:
-          - $ref: '#/components/schemas/StructuredDataExtractionDTO'
-        sentiment_analysis:
-          description: If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription
-          allOf:
-          - $ref: '#/components/schemas/SentimentAnalysisDTO'
-        audio_to_llm:
-          description: If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription
-          allOf:
-          - $ref: '#/components/schemas/AudioToLlmListDTO'
-        sentences:
-          description: 'If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.'
-          deprecated: true
-          allOf:
-          - $ref: '#/components/schemas/SentencesDTO'
-        display_mode:
-          description: If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped
-          allOf:
-          - $ref: '#/components/schemas/DisplayModeDTO'
-        chapterization:
-          description: If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.
-          allOf:
-          - $ref: '#/components/schemas/ChapterizationDTO'
-        diarization:
-          description: If `diarization` has been requested and an error has occurred, the result will appear here
-          allOf:
-          - $ref: '#/components/schemas/DiarizationDTO'
-      required:
-      - metadata
     TranslationLanguageCodeEnum:
       type: string
       enum:
@@ -1116,7 +565,55 @@ components:
       - yo
       - zh
       description: Target language in `iso639-1` format you want the transcription translated to
-    DisplayModeDTO:
+    AddonErrorDTO:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          description: Status code of the addon error
+          example: 500
+        exception:
+          type: string
+          description: Reason of the addon error
+        message:
+          type: string
+          description: Detailed message of the addon error
+      required:
+      - status_code
+      - exception
+      - message
+    FileResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The file id
+        filename:
+          type: string
+          nullable: true
+          description: The name of the uploaded file
+        source:
+          type: string
+          nullable: true
+          description: The link used to download the file if audio_url was used
+        audio_duration:
+          type: number
+          nullable: true
+          description: Duration of the audio file
+          example: 3600
+        number_of_channels:
+          type: integer
+          nullable: true
+          description: Number of channels in the audio file
+          minimum: 1
+          example: 1
+      required:
+      - id
+      - filename
+      - source
+      - audio_duration
+      - number_of_channels
+    AudioToLlmListDTO:
       type: object
       properties:
         success:
@@ -1130,61 +627,160 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          description: If `display_mode` has been enabled, proposes an alternative display output.
-          type:
-          - array
-          - 'null'
+          description: If `audio_to_llm` has been enabled, results of the AI custom analysis
+          nullable: true
+          type: array
           items:
-            type: string
+            $ref: '#/components/schemas/AudioToLlmDTO'
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    AudioToLlmListConfigDTO:
+    StructuredDataExtractionDTO:
       type: object
       properties:
-        prompts:
-          description: The list of prompts applied on the audio transcription
-          example:
-          - Extract the key points from the transcription
-          minItems: 1
-          type: array
-          items:
-            type: array
-        model:
-          type: string
-          description: The model to use for the prompt execution. You can find the list of supported models [here](https://openrouter.ai/models).
-          default: openai/gpt-5.4-nano
-      required:
-      - prompts
-    PiiRedactionConfigDTO:
-      type: object
-      properties:
-        entity_types:
-          description: The entity types to redact
-          example:
-          - GDPR
-          - HEALTH_INFORMATION
-          - HIPAA_SAFE_HARBOR
-          - QUEBEC_PRIVACY_ACT
-          - EMAIL_ADDRESS
-          - NAME
-          - PHONE_NUMBER
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
-          - $ref: '#/components/schemas/PiiRedactionEntityTypeEnum'
-        processed_text_type:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
           type: string
-          description: The type of processed text to return (marker or mask)
+          description: If `structured_data_extraction` has been enabled, results of the AI structured data extraction for the defined classes.
+          nullable: true
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
+    PreRecordedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the job
+          format: uuid
+          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-45463597
+        version:
+          type: integer
+          description: API version
+          example: 2
+        status:
+          type: string
+          description: '"queued": the job has been queued. "processing": the job is being processed. "done": the job has been processed and the result is available. "error": an error occurred during the job''s processing.'
           enum:
-          - MARKER
-          - MASK
-          example: MARKER
-    DiarizationDTO:
+          - queued
+          - processing
+          - done
+          - error
+        created_at:
+          type: string
+          description: Creation date
+          format: date-time
+          example: '2023-12-28T09:04:17.210Z'
+        completed_at:
+          type: string
+          description: Completion date when status is "done" or "error"
+          format: date-time
+          example: '2023-12-28T09:04:37.210Z'
+          nullable: true
+        custom_metadata:
+          type: object
+          description: Custom metadata given in the initial request
+          example:
+            user: John Doe
+          additionalProperties: true
+        error_code:
+          type: integer
+          description: HTTP status code of the error if status is "error"
+          minimum: 400
+          maximum: 599
+          example: 500
+          nullable: true
+        post_session_metadata:
+          type: object
+          description: For debugging purposes, send data that could help to identify issues
+        kind:
+          type: string
+          enum:
+          - pre-recorded
+          example: pre-recorded
+          default: pre-recorded
+        file:
+          description: The file data you uploaded. Can be null if status is "error"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/FileResponse'
+        request_params:
+          description: Parameters used for this pre-recorded transcription. Can be null if status is "error"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/PreRecordedRequestParamsResponse'
+        result:
+          description: Pre-recorded transcription's result when status is "done"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionResultDTO'
+      required:
+      - id
+      - request_id
+      - version
+      - status
+      - created_at
+      - post_session_metadata
+      - kind
+    CustomVocabularyConfigDTO:
+      type: object
+      properties:
+        vocabulary:
+          type: array
+          description: 'Specific vocabulary list to feed the transcription model with. Each item can be a string or an object with the following properties: value, intensity, pronunciations, language.'
+          example:
+          - Westeros
+          - value: Stark
+          - value: Night's Watch
+            pronunciations:
+            - Nightz Watch
+            intensity: 0.4
+            language: en
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/CustomVocabularyEntryDTO'
+            - type: string
+        default_intensity:
+          type: number
+          description: Default intensity for the custom vocabulary
+          example: 0.5
+          minimum: 0
+          maximum: 1
+      required:
+      - vocabulary
+    SummarizationDTO:
       type: object
       properties:
         success:
@@ -1198,20 +794,161 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          description: '[Deprecated] If `diarization` has been enabled, the diarization result will appear here'
-          type: array
-          items:
-            $ref: '#/components/schemas/UtteranceDTO'
+          type: string
+          description: If `summarization` has been enabled, summary of the transcription
+          nullable: true
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    NamedEntityRecognitionDTO:
+    PiiRedactionEntityTypeEnum:
+      type: string
+      enum:
+      - APPI
+      - APPI_SENSITIVE
+      - CCI
+      - CORE_ENTITIES
+      - CPRA
+      - GDPR
+      - GDPR_SENSITIVE
+      - HEALTH_INFORMATION
+      - HIPAA_SAFE_HARBOR
+      - LIDI
+      - NUMERICAL_EXCL_PCI
+      - PCI
+      - QUEBEC_PRIVACY_ACT
+      - ACCOUNT_NUMBER
+      - AGE
+      - DATE
+      - DATE_INTERVAL
+      - DOB
+      - DRIVER_LICENSE
+      - DURATION
+      - EMAIL_ADDRESS
+      - EVENT
+      - FILENAME
+      - GENDER
+      - HEALTHCARE_NUMBER
+      - IP_ADDRESS
+      - LANGUAGE
+      - LOCATION
+      - LOCATION_ADDRESS
+      - LOCATION_ADDRESS_STREET
+      - LOCATION_CITY
+      - LOCATION_COORDINATE
+      - LOCATION_COUNTRY
+      - LOCATION_STATE
+      - LOCATION_ZIP
+      - MARITAL_STATUS
+      - MONEY
+      - NAME
+      - NAME_FAMILY
+      - NAME_GIVEN
+      - NAME_MEDICAL_PROFESSIONAL
+      - NUMERICAL_PII
+      - OCCUPATION
+      - ORGANIZATION
+      - ORGANIZATION_MEDICAL_FACILITY
+      - ORIGIN
+      - PASSPORT_NUMBER
+      - PASSWORD
+      - PHONE_NUMBER
+      - PHYSICAL_ATTRIBUTE
+      - POLITICAL_AFFILIATION
+      - RELIGION
+      - SEXUALITY
+      - SSN
+      - TIME
+      - URL
+      - USERNAME
+      - VEHICLE_ID
+      - ZODIAC_SIGN
+      - BLOOD_TYPE
+      - CONDITION
+      - DOSE
+      - DRUG
+      - INJURY
+      - MEDICAL_PROCESS
+      - STATISTICS
+      - BANK_ACCOUNT
+      - CREDIT_CARD
+      - CREDIT_CARD_EXPIRATION
+      - CVV
+      - ROUTING_NUMBER
+      - CORPORATE_ACTION
+      - DAY
+      - EFFECT
+      - FINANCIAL_METRIC
+      - MEDICAL_CODE
+      - MONTH
+      - ORGANIZATION_ID
+      - PRODUCT
+      - PROJECT
+      - TREND
+      - YEAR
+      description: The entity types to redact
+    SummaryTypesEnum:
+      type: string
+      enum:
+      - general
+      - bullet_points
+      - concise
+      description: The type of summarization to apply
+    SubtitlesFormatEnum:
+      type: string
+      enum:
+      - srt
+      - vtt
+      description: Subtitles formats you want your transcription to be formatted to
+    UtteranceDTO:
+      type: object
+      properties:
+        start:
+          type: number
+          description: Start timestamp in seconds of this utterance
+        end:
+          type: number
+          description: End timestamp in seconds of this utterance
+        confidence:
+          type: number
+          description: Confidence on the transcribed utterance (1 = 100% confident)
+        channel:
+          type: integer
+          description: Audio channel of where this utterance has been transcribed from
+          minimum: 0
+        speaker:
+          type: integer
+          description: If `diarization` enabled, speaker identification number
+          minimum: 0
+        words:
+          description: List of words of the utterance, split by timestamp
+          type: array
+          items:
+            $ref: '#/components/schemas/WordDTO'
+        text:
+          type: string
+          description: Transcription for this utterance
+        language:
+          description: Spoken language in this utterance
+          example: en
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
+      required:
+      - start
+      - end
+      - confidence
+      - channel
+      - words
+      - text
+      - language
+    SentimentAnalysisDTO:
       type: object
       properties:
         success:
@@ -1225,51 +962,25 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          description: If `named_entity_recognition` has been enabled, the detected entities.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NamedEntityRecognitionResult'
+          type: string
+          description: If `sentiment_analysis` has been enabled, Gladia will analyze the sentiments and emotions of the audio
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    ListPreRecordedResponse:
-      type: object
-      properties:
-        first:
-          type: string
-          description: URL to fetch the first page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
-        current:
-          type: string
-          description: URL to fetch the current page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL to fetch the next page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20
-        items:
-          description: List of pre-recorded transcriptions
-          type: array
-          items:
-            $ref: '#/components/schemas/PreRecordedResponse'
-      required:
-      - first
-      - current
-      - next
-      - items
+    SubtitlesStyleEnum:
+      type: string
+      enum:
+      - default
+      - compliance
+      description: 'Style of the subtitles. Compliance mode refers to : https://loc.gov/preservation/digital/formats//fdd/fdd000569.shtml#:~:text=SRT%20files%20are%20basic%20text,alongside%2C%20example%3A%20%22MyVideo123'
     UnprocessableEntityErrorResponse:
       type: object
       properties:
@@ -1299,54 +1010,125 @@ components:
       - request_id
       - statusCode
       - message
-    SubtitlesFormatEnum:
-      type: string
-      enum:
-      - srt
-      - vtt
-      description: Subtitles formats you want your transcription to be formatted to
-    AddonErrorDTO:
+    InitTranscriptionRequest:
       type: object
       properties:
-        status_code:
-          type: integer
-          description: Status code of the addon error
-          example: 500
-        exception:
+        custom_vocabulary:
+          type: boolean
+          description: '**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with'
+          default: false
+        custom_vocabulary_config:
+          description: '**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
+        callback_url:
           type: string
-          description: Reason of the addon error
-        message:
+          description: '**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription'
+          example: https://callback.example
+          format: uri
+          deprecated: true
+        callback:
+          type: boolean
+          description: Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour
+          default: false
+        callback_config:
+          description: Customize the callback behaviour (url and http method)
+          allOf:
+          - $ref: '#/components/schemas/CallbackConfigDto'
+        subtitles:
+          type: boolean
+          description: Enable subtitles generation for this transcription
+          default: false
+        subtitles_config:
+          description: Configuration for subtitles generation if `subtitles` is enabled
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesConfigDTO'
+        diarization:
+          type: boolean
+          description: Enable speaker recognition (diarization) for this audio
+          default: false
+        diarization_config:
+          description: Speaker recognition configuration, if `diarization` is enabled
+          allOf:
+          - $ref: '#/components/schemas/DiarizationConfigDTO'
+        translation:
+          type: boolean
+          description: '**[Beta]** Enable translation for this audio'
+          default: false
+        translation_config:
+          description: '**[Beta]** Translation configuration, if `translation` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/TranslationConfigDTO'
+        summarization:
+          type: boolean
+          description: Enable summarization for this audio
+          default: false
+        summarization_config:
+          description: Summarization configuration, if `summarization` is enabled
+          allOf:
+          - $ref: '#/components/schemas/SummarizationConfigDTO'
+        named_entity_recognition:
+          type: boolean
+          description: '**[Alpha]** Enable named entity recognition for this audio'
+          default: false
+        custom_spelling:
+          type: boolean
+          description: '**[Alpha]** Enable custom spelling for this audio'
+          default: false
+        custom_spelling_config:
+          description: '**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
+        sentiment_analysis:
+          type: boolean
+          description: Enable sentiment analysis for this audio
+          default: false
+        audio_to_llm:
+          type: boolean
+          description: Enable audio to LLM processing for this audio
+          default: false
+        audio_to_llm_config:
+          description: Audio to LLM configuration, if `audio_to_llm` is enabled
+          allOf:
+          - $ref: '#/components/schemas/AudioToLlmListConfigDTO'
+        pii_redaction:
+          type: boolean
+          description: Enable PII redaction for this audio
+          default: false
+        pii_redaction_config:
+          description: PII redaction configuration, if `pii_redaction` is enabled
+          allOf:
+          - $ref: '#/components/schemas/PiiRedactionConfigDTO'
+        custom_metadata:
+          type: object
+          description: Custom metadata you can attach to this transcription
+          example:
+            user: John Doe
+          additionalProperties: true
+        sentences:
+          type: boolean
+          description: Enable sentences for this audio
+          default: false
+        punctuation_enhanced:
+          type: boolean
+          description: '**[Alpha]** Use enhanced punctuation for this audio'
+          default: false
+        language_config:
+          description: Specify the language configuration
+          allOf:
+          - $ref: '#/components/schemas/LanguageConfig'
+        model:
+          description: The model used to process the audio. "solaria-1" is used by default.
+          default: solaria-1
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionSupportedModels'
+        audio_url:
           type: string
-          description: Detailed message of the addon error
+          description: URL to a Gladia file or to an external audio or video file
+          example: https://files.gladia.io/example/audio-transcription/split_infinity.wav
+          format: uri
       required:
-      - status_code
-      - exception
-      - message
-    TranscriptionMetadataDTO:
-      type: object
-      properties:
-        audio_duration:
-          type: number
-          description: Duration of the transcribed audio file
-          example: 3600
-        number_of_distinct_channels:
-          type: integer
-          description: Number of distinct channels in the transcribed audio file
-          minimum: 1
-          example: 1
-        billing_time:
-          type: number
-          description: Billed duration in seconds (audio_duration * number_of_distinct_channels)
-          example: 3600
-        transcription_time:
-          type: number
-          description: Duration of the transcription in seconds
-          example: 20
-      required:
-      - audio_duration
-      - number_of_distinct_channels
-      - billing_time
-      - transcription_time
+      - audio_url
     BadRequestErrorResponse:
       type: object
       properties:
@@ -1384,40 +1166,193 @@ components:
       - request_id
       - statusCode
       - message
-    ModerationDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          type:
-          - string
-          - 'null'
-          description: If `moderation` has been enabled, moderated transcription
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    CallbackMethodEnum:
+    TranscriptionSupportedModels:
       type: string
       enum:
-      - POST
-      - PUT
-      description: 'The HTTP method to be used. Allowed values are `POST` or `PUT` (default: `POST`)'
-    SummarizationDTO:
+      - solaria-1
+      - solaria-3
+      - solaria-fusion
+      description: The model used to process the audio. "solaria-1" is used by default.
+    SubtitleDTO:
+      type: object
+      properties:
+        format:
+          description: Format of the current subtitle
+          example: srt
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesFormatEnum'
+        subtitles:
+          type: string
+          description: Transcription on the asked subtitle format
+      required:
+      - format
+      - subtitles
+    PreRecordedRequestParamsResponse:
+      type: object
+      properties:
+        custom_vocabulary:
+          type: boolean
+          description: '**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with'
+          default: false
+        custom_vocabulary_config:
+          description: '**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
+        callback_url:
+          type: string
+          description: '**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription'
+          example: https://callback.example
+          format: uri
+          deprecated: true
+        callback:
+          type: boolean
+          description: Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour
+          default: false
+        callback_config:
+          description: Customize the callback behaviour (url and http method)
+          allOf:
+          - $ref: '#/components/schemas/CallbackConfigDto'
+        subtitles:
+          type: boolean
+          description: Enable subtitles generation for this transcription
+          default: false
+        subtitles_config:
+          description: Configuration for subtitles generation if `subtitles` is enabled
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesConfigDTO'
+        diarization:
+          type: boolean
+          description: Enable speaker recognition (diarization) for this audio
+          default: false
+        diarization_config:
+          description: Speaker recognition configuration, if `diarization` is enabled
+          allOf:
+          - $ref: '#/components/schemas/DiarizationConfigDTO'
+        translation:
+          type: boolean
+          description: '**[Beta]** Enable translation for this audio'
+          default: false
+        translation_config:
+          description: '**[Beta]** Translation configuration, if `translation` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/TranslationConfigDTO'
+        summarization:
+          type: boolean
+          description: Enable summarization for this audio
+          default: false
+        summarization_config:
+          description: Summarization configuration, if `summarization` is enabled
+          allOf:
+          - $ref: '#/components/schemas/SummarizationConfigDTO'
+        named_entity_recognition:
+          type: boolean
+          description: '**[Alpha]** Enable named entity recognition for this audio'
+          default: false
+        custom_spelling:
+          type: boolean
+          description: '**[Alpha]** Enable custom spelling for this audio'
+          default: false
+        custom_spelling_config:
+          description: '**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled'
+          allOf:
+          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
+        sentiment_analysis:
+          type: boolean
+          description: Enable sentiment analysis for this audio
+          default: false
+        audio_to_llm:
+          type: boolean
+          description: Enable audio to LLM processing for this audio
+          default: false
+        audio_to_llm_config:
+          description: Audio to LLM configuration, if `audio_to_llm` is enabled
+          allOf:
+          - $ref: '#/components/schemas/AudioToLlmListConfigDTO'
+        pii_redaction:
+          type: boolean
+          description: Enable PII redaction for this audio
+          default: false
+        pii_redaction_config:
+          description: PII redaction configuration, if `pii_redaction` is enabled
+          allOf:
+          - $ref: '#/components/schemas/PiiRedactionConfigDTO'
+        sentences:
+          type: boolean
+          description: Enable sentences for this audio
+          default: false
+        punctuation_enhanced:
+          type: boolean
+          description: '**[Alpha]** Use enhanced punctuation for this audio'
+          default: false
+        language_config:
+          description: Specify the language configuration
+          allOf:
+          - $ref: '#/components/schemas/LanguageConfig'
+        model:
+          description: The model used to process the audio. "solaria-1" is used by default.
+          default: solaria-1
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionSupportedModels'
+        audio_url:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - audio_url
+    CustomSpellingConfigDTO:
+      type: object
+      properties:
+        spelling_dictionary:
+          type: object
+          description: The list of spelling applied on the audio transcription
+          example:
+            Gettleman:
+            - gettleman
+            SQL:
+            - Sequel
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      required:
+      - spelling_dictionary
+    SubtitlesConfigDTO:
+      type: object
+      properties:
+        formats:
+          type: array
+          description: Subtitles formats you want your transcription to be formatted to
+          default:
+          - srt
+          minItems: 1
+          example:
+          - srt
+          items:
+            $ref: '#/components/schemas/SubtitlesFormatEnum'
+        minimum_duration:
+          type: number
+          description: Minimum duration of a subtitle in seconds
+          minimum: 0
+        maximum_duration:
+          type: number
+          description: Maximum duration of a subtitle in seconds
+          minimum: 1
+          maximum: 30
+        maximum_characters_per_row:
+          type: integer
+          description: Maximum number of characters per row in a subtitle
+          minimum: 1
+        maximum_rows_per_caption:
+          type: integer
+          description: Maximum number of rows per caption
+          minimum: 1
+          maximum: 5
+        style:
+          description: 'Style of the subtitles. Compliance mode refers to : https://loc.gov/preservation/digital/formats//fdd/fdd000569.shtml#:~:text=SRT%20files%20are%20basic%20text,alongside%2C%20example%3A%20%22MyVideo123'
+          default: default
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesStyleEnum'
+    DiarizationDTO:
       type: object
       properties:
         success:
@@ -1431,36 +1366,22 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          type:
-          - string
-          - 'null'
-          description: If `summarization` has been enabled, summary of the transcription
+          description: '[Deprecated] If `diarization` has been enabled, the diarization result will appear here'
+          type: array
+          items:
+            $ref: '#/components/schemas/UtteranceDTO'
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    AudioToLlmResultDTO:
-      type: object
-      properties:
-        prompt:
-          type:
-          - string
-          - 'null'
-          description: The prompt used
-        response:
-          type:
-          - string
-          - 'null'
-          description: The result of the AI analysis
-      required:
-      - prompt
-      - response
-    ForbiddenErrorResponse:
+    UnauthorizedErrorResponse:
       type: object
       properties:
         timestamp:
@@ -1478,115 +1399,35 @@ components:
         statusCode:
           type: number
           description: HTTP status code of the error
-          example: 403
+          example: 401
         message:
           type: string
-          description: Forbidden request
-          example: Invalid parameter
+          description: Error message
+          example: gladia key not found
       required:
       - timestamp
       - path
       - request_id
       - statusCode
       - message
-    StructuredDataExtractionDTO:
+    AudioToLlmListConfigDTO:
       type: object
       properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          type: string
-          description: If `structured_data_extraction` has been enabled, results of the AI structured data extraction for the defined classes.
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    InitPreRecordedTranscriptionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the job
-          format: uuid
-          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
-        result_url:
-          type: string
-          description: Prebuilt URL with your transcription `id` to fetch the result
-          example: https://api.gladia.io/v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-          format: uri
-      required:
-      - id
-      - result_url
-    SummaryTypesEnum:
-      type: string
-      enum:
-      - general
-      - bullet_points
-      - concise
-      description: The type of summarization to apply
-    CustomVocabularyEntryDTO:
-      type: object
-      properties:
-        value:
-          type: string
-          description: The text used to replace in the transcription.
-          example: Gladia
-        intensity:
-          type: number
-          description: The global intensity of the feature.
-          example: 0.5
-          minimum: 0
-          maximum: 1
-        pronunciations:
-          description: The pronunciations used in the transcription.
+        prompts:
+          description: The list of prompts applied on the audio transcription
+          example:
+          - Extract the key points from the transcription
+          minItems: 1
           type: array
           items:
-            type: string
-        language:
-          description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
-          example: en
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
-      required:
-      - value
-    SummarizationConfigDTO:
-      type: object
-      properties:
-        type:
-          description: The type of summarization to apply
-          default: general
-          allOf:
-          - $ref: '#/components/schemas/SummaryTypesEnum'
-    CallbackConfigDto:
-      type: object
-      properties:
-        url:
+            type: array
+        model:
           type: string
-          description: The URL to be called with the result of the transcription
-          example: http://callback.example
-          format: uri
-        method:
-          description: 'The HTTP method to be used. Allowed values are `POST` or `PUT` (default: `POST`)'
-          example: POST
-          default: POST
-          allOf:
-          - $ref: '#/components/schemas/CallbackMethodEnum'
+          description: The model to use for the prompt execution. You can find the list of supported models [here](https://openrouter.ai/models).
+          default: openai/gpt-5.4-nano
       required:
-      - url
-    AudioToLlmDTO:
+      - prompts
+    TranslationDTO:
       type: object
       properties:
         success:
@@ -1600,69 +1441,67 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: The result from a specific prompt
-          allOf:
-          - $ref: '#/components/schemas/AudioToLlmResultDTO'
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    SentimentAnalysisDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          type: string
-          description: If `sentiment_analysis` has been enabled, Gladia will analyze the sentiments and emotions of the audio
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    ChapterizationDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
+          nullable: true
           type: object
-          description: If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.
-          additionalProperties: true
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: List of translated transcriptions, one for each `target_languages`
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationResultDTO'
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
+    TranscriptionMetadataDTO:
+      type: object
+      properties:
+        audio_duration:
+          type: number
+          description: Duration of the transcribed audio file
+          example: 3600
+        number_of_distinct_channels:
+          type: integer
+          description: Number of distinct channels in the transcribed audio file
+          minimum: 1
+          example: 1
+        billing_time:
+          type: number
+          description: Billed duration in seconds (audio_duration * number_of_distinct_channels)
+          example: 3600
+        transcription_time:
+          type: number
+          description: Duration of the transcription in seconds
+          example: 20
+      required:
+      - audio_duration
+      - number_of_distinct_channels
+      - billing_time
+      - transcription_time
+    WordDTO:
+      type: object
+      properties:
+        word:
+          type: string
+          description: Spoken word
+        start:
+          type: number
+          description: Start timestamps in seconds of the spoken word
+        end:
+          type: number
+          description: End timestamps in seconds of the spoken word
+        confidence:
+          type: number
+          description: Confidence on the transcribed word (1 = 100% confident)
+      required:
+      - word
+      - start
+      - end
+      - confidence
     TranscriptionLanguageCodeEnum:
       type: string
       enum:
@@ -1766,6 +1605,164 @@ components:
       - yo
       - zh
       description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
+    CallbackMethodEnum:
+      type: string
+      enum:
+      - POST
+      - PUT
+      description: 'The HTTP method to be used. Allowed values are `POST` or `PUT` (default: `POST`)'
+    TranslationResultDTO:
+      type: object
+      properties:
+        error:
+          description: Contains the error details of the failed addon
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        full_transcript:
+          type: string
+          description: All transcription on text format without any other information
+        languages:
+          type: array
+          description: All the detected languages in the audio sorted from the most detected to the less detected
+          example:
+          - en
+          items:
+            $ref: '#/components/schemas/TranslationLanguageCodeEnum'
+        sentences:
+          description: If `sentences` has been enabled, sentences results for this translation
+          type: array
+          items:
+            $ref: '#/components/schemas/SentencesDTO'
+        subtitles:
+          description: If `subtitles` has been enabled, subtitles results for this translation
+          type: array
+          items:
+            $ref: '#/components/schemas/SubtitleDTO'
+        utterances:
+          description: Transcribed speech utterances present in the audio
+          type: array
+          items:
+            $ref: '#/components/schemas/UtteranceDTO'
+      required:
+      - error
+      - full_transcript
+      - languages
+      - utterances
+    PiiRedactionConfigDTO:
+      type: object
+      properties:
+        entity_types:
+          description: The entity types to redact
+          example:
+          - GDPR
+          - HEALTH_INFORMATION
+          - HIPAA_SAFE_HARBOR
+          - QUEBEC_PRIVACY_ACT
+          - EMAIL_ADDRESS
+          - NAME
+          - PHONE_NUMBER
+          allOf:
+          - $ref: '#/components/schemas/PiiRedactionEntityTypeEnum'
+        processed_text_type:
+          type: string
+          description: The type of processed text to return (marker or mask)
+          enum:
+          - MARKER
+          - MASK
+          example: MARKER
+    TranslationModelEnum:
+      type: string
+      enum:
+      - base
+      - batch
+      - enhanced
+      description: Model you want the translation model to use to translate
+    NamedEntityRecognitionDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: If `named_entity_recognition` has been enabled, the detected entities.
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedEntityRecognitionResult'
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
+    TranscriptionResultDTO:
+      type: object
+      properties:
+        metadata:
+          description: Metadata for the given transcription & audio file
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionMetadataDTO'
+        transcription:
+          description: Transcription of the audio speech
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionDTO'
+        translation:
+          description: If `translation` has been enabled, translation of the audio speech transcription
+          allOf:
+          - $ref: '#/components/schemas/TranslationDTO'
+        summarization:
+          description: If `summarization` has been enabled, summarization of the audio speech transcription
+          allOf:
+          - $ref: '#/components/schemas/SummarizationDTO'
+        named_entity_recognition:
+          description: If `named_entity_recognition` has been enabled, the detected entities
+          allOf:
+          - $ref: '#/components/schemas/NamedEntityRecognitionDTO'
+        name_consistency:
+          description: If `name_consistency` has been enabled, Gladia will improve consistency of the names accross the transcription
+          allOf:
+          - $ref: '#/components/schemas/NamesConsistencyDTO'
+        structured_data_extraction:
+          description: If `structured_data_extraction` has been enabled, structured data extraction results
+          allOf:
+          - $ref: '#/components/schemas/StructuredDataExtractionDTO'
+        sentiment_analysis:
+          description: If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription
+          allOf:
+          - $ref: '#/components/schemas/SentimentAnalysisDTO'
+        audio_to_llm:
+          description: If `audio_to_llm` has been enabled, audio to llm results of the audio speech transcription
+          allOf:
+          - $ref: '#/components/schemas/AudioToLlmListDTO'
+        sentences:
+          description: 'If `sentences` has been enabled, sentences of the audio speech transcription. Deprecated: content will move to the `transcription` object.'
+          deprecated: true
+          allOf:
+          - $ref: '#/components/schemas/SentencesDTO'
+        display_mode:
+          description: If `display_mode` has been enabled, the output will be reordered, creating new utterances when speakers overlapped
+          allOf:
+          - $ref: '#/components/schemas/DisplayModeDTO'
+        diarization:
+          description: If `diarization` has been requested and an error has occurred, the result will appear here
+          allOf:
+          - $ref: '#/components/schemas/DiarizationDTO'
+      required:
+      - metadata
     TranscriptionDTO:
       type: object
       properties:
@@ -1798,7 +1795,7 @@ components:
       - full_transcript
       - languages
       - utterances
-    AudioToLlmListDTO:
+    NamesConsistencyDTO:
       type: object
       properties:
         success:
@@ -1812,63 +1809,20 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          description: If `audio_to_llm` has been enabled, results of the AI custom analysis
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AudioToLlmDTO'
+          type: string
+          description: Deprecated, If `name_consistency` has been enabled, Gladia will improve the consistency of the names across the transcription
+          nullable: true
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    SubtitlesStyleEnum:
-      type: string
-      enum:
-      - default
-      - compliance
-      description: 'Style of the subtitles. Compliance mode refers to : https://loc.gov/preservation/digital/formats//fdd/fdd000569.shtml#:~:text=SRT%20files%20are%20basic%20text,alongside%2C%20example%3A%20%22MyVideo123'
-    SubtitlesConfigDTO:
-      type: object
-      properties:
-        formats:
-          type: array
-          description: Subtitles formats you want your transcription to be formatted to
-          default:
-          - srt
-          minItems: 1
-          example:
-          - srt
-          items:
-            $ref: '#/components/schemas/SubtitlesFormatEnum'
-        minimum_duration:
-          type: number
-          description: Minimum duration of a subtitle in seconds
-          minimum: 0
-        maximum_duration:
-          type: number
-          description: Maximum duration of a subtitle in seconds
-          minimum: 1
-          maximum: 30
-        maximum_characters_per_row:
-          type: integer
-          description: Maximum number of characters per row in a subtitle
-          minimum: 1
-        maximum_rows_per_caption:
-          type: integer
-          description: Maximum number of rows per caption
-          minimum: 1
-          maximum: 5
-        style:
-          description: 'Style of the subtitles. Compliance mode refers to : https://loc.gov/preservation/digital/formats//fdd/fdd000569.shtml#:~:text=SRT%20files%20are%20basic%20text,alongside%2C%20example%3A%20%22MyVideo123'
-          default: default
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesStyleEnum'
     LanguageConfig:
       type: object
       properties:
@@ -1882,41 +1836,6 @@ components:
           type: boolean
           description: If true, language will be auto-detected on each utterance. Otherwise, language will be auto-detected on first utterance and then used for the rest of the transcription. If one language is set, this option will be ignored.
           default: false
-    TranslationModelEnum:
-      type: string
-      enum:
-      - base
-      - enhanced
-      description: Model you want the translation model to use to translate
-    SentencesDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: If `sentences` has been enabled, transcription as sentences.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
     TranslationConfigDTO:
       type: object
       properties:
@@ -1930,7 +1849,7 @@ components:
             $ref: '#/components/schemas/TranslationLanguageCodeEnum'
         model:
           description: Model you want the translation model to use to translate
-          default: base
+          default: batch
           allOf:
           - $ref: '#/components/schemas/TranslationModelEnum'
         match_original_utterances:
@@ -1954,23 +1873,79 @@ components:
           default: false
       required:
       - target_languages
-    CustomSpellingConfigDTO:
+    DiarizationConfigDTO:
       type: object
       properties:
-        spelling_dictionary:
-          type: object
-          description: The list of spelling applied on the audio transcription
-          example:
-            Gettleman:
-            - gettleman
-            SQL:
-            - Sequel
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        number_of_speakers:
+          type: integer
+          description: Exact number of speakers in the audio
+          example: 3
+          minimum: 1
+        min_speakers:
+          type: integer
+          description: Minimum number of speakers in the audio
+          example: 1
+          minimum: 0
+        max_speakers:
+          type: integer
+          description: Maximum number of speakers in the audio
+          example: 2
+          minimum: 0
+    CallbackConfigDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The URL to be called with the result of the transcription
+          example: https://callback.example
+          format: uri
+        method:
+          description: 'The HTTP method to be used. Allowed values are `POST` or `PUT` (default: `POST`)'
+          example: POST
+          default: POST
+          allOf:
+          - $ref: '#/components/schemas/CallbackMethodEnum'
       required:
-      - spelling_dictionary
+      - url
+    AudioToLlmResultDTO:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt used
+          nullable: true
+        response:
+          type: string
+          description: The result of the AI analysis
+          nullable: true
+      required:
+      - prompt
+      - response
+    CustomVocabularyEntryDTO:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The text used to replace in the transcription.
+          example: Gladia
+        intensity:
+          type: number
+          description: The global intensity of the feature.
+          example: 0.5
+          minimum: 0
+          maximum: 1
+        pronunciations:
+          description: The pronunciations used in the transcription.
+          type: array
+          items:
+            type: string
+        language:
+          description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
+          example: en
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
+      required:
+      - value
   securitySchemes:
     x_gladia_key:
       type: apiKey

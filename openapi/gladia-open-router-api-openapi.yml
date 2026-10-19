@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Gladia Control Open Router API
-  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  description: ''
   version: '1.0'
   contact: {}
 servers:

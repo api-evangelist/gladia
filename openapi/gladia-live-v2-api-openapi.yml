@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Gladia Control Live V2 API
-  description: Gladia AI audio infrastructure API for speech-to-text transcription via REST and WebSocket. Supports asynchronous pre-recorded audio processing and real-time live transcription with speaker diarization, automatic language detection across 100+ languages, and audio intelligence features.
+  description: ''
   version: '1.0'
   contact: {}
 servers:
@@ -81,7 +81,7 @@ paths:
         description: Filter items relevant to a specific date in ISO format (YYYY-MM-DD).
         schema:
           format: date-time
-          example: '2026-06-12'
+          example: '2026-10-19'
           type: string
       - name: before_date
         required: false
@@ -89,7 +89,7 @@ paths:
         description: Include items that occurred before the specified date in ISO format.
         schema:
           format: date-time
-          example: '2026-06-12T21:00:09.947Z'
+          example: '2026-10-19T16:49:27.362Z'
           type: string
       - name: after_date
         required: false
@@ -97,7 +97,7 @@ paths:
         description: Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format.
         schema:
           format: date-time
-          example: '2026-06-12T21:00:09.947Z'
+          example: '2026-10-19T16:49:27.362Z'
           type: string
       - name: status
         required: false
@@ -298,98 +298,13 @@ paths:
       - Live V2
 components:
   schemas:
-    CallbackConfig:
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL on which we will do a `POST` request with configured messages
-          example: https://callback.example
-          format: uri
-        receive_partial_transcripts:
-          type: boolean
-          description: If true, partial transcript will be sent to the defined callback.
-          default: false
-        receive_final_transcripts:
-          type: boolean
-          description: If true, final transcript will be sent to the defined callback.
-          default: true
-        receive_speech_events:
-          type: boolean
-          description: If true, begin and end speech events will be sent to the defined callback.
-          default: false
-        receive_pre_processing_events:
-          type: boolean
-          description: If true, pre-processing events will be sent to the defined callback.
-          default: true
-        receive_realtime_processing_events:
-          type: boolean
-          description: If true, realtime processing events will be sent to the defined callback.
-          default: true
-        receive_post_processing_events:
-          type: boolean
-          description: If true, post-processing events will be sent to the defined callback.
-          default: true
-        receive_acknowledgments:
-          type: boolean
-          description: If true, acknowledgments will be sent to the defined callback.
-          default: false
-        receive_errors:
-          type: boolean
-          description: If true, errors will be sent to the defined callback.
-          default: false
-        receive_lifecycle_events:
-          type: boolean
-          description: If true, lifecycle events will be sent to the defined callback.
-          default: true
-    CustomVocabularyConfigDTO:
-      type: object
-      properties:
-        vocabulary:
-          type: array
-          description: 'Specific vocabulary list to feed the transcription model with. Each item can be a string or an object with the following properties: value, intensity, pronunciations, language.'
-          example:
-          - Westeros
-          - value: Stark
-          - value: Night's Watch
-            pronunciations:
-            - Nightz Watch
-            intensity: 0.4
-            language: en
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/CustomVocabularyEntryDTO'
-            - type: string
-        default_intensity:
-          type: number
-          description: Default intensity for the custom vocabulary
-          example: 0.5
-          minimum: 0
-          maximum: 1
-      required:
-      - vocabulary
-    InitStreamingResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the job
-          format: uuid
-          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
-        created_at:
-          type: string
-          description: Creation date
-          format: date-time
-          example: '2023-12-28T09:04:17.210Z'
-        url:
-          type: string
-          description: The websocket url to connect to for sending audio data. The url will contain the temporary token to authenticate the session.
-          example: wss://api.gladia.io/v2/live?token=4a39145c-2844-4557-8f34-34883f7be7d9
-          format: uri
-      required:
-      - id
-      - created_at
-      - url
+    StreamingSupportedEncodingEnum:
+      type: string
+      enum:
+      - wav/pcm
+      - wav/alaw
+      - wav/ulaw
+      description: "The encoding format of the audio stream. Supported formats: \n- PCM: 8, 16, 24, and 32 bits \n- A-law: 8 bits \n- μ-law: 8 bits \n\nNote: No need to add WAV headers to raw audio as the API supports both formats."
     NotFoundErrorResponse:
       type: object
       properties:
@@ -419,232 +334,6 @@ components:
       - request_id
       - statusCode
       - message
-    UtteranceDTO:
-      type: object
-      properties:
-        start:
-          type: number
-          description: Start timestamp in seconds of this utterance
-        end:
-          type: number
-          description: End timestamp in seconds of this utterance
-        confidence:
-          type: number
-          description: Confidence on the transcribed utterance (1 = 100% confident)
-        channel:
-          type: integer
-          description: Audio channel of where this utterance has been transcribed from
-          minimum: 0
-        speaker:
-          type: integer
-          description: If `diarization` enabled, speaker identification number
-          minimum: 0
-        words:
-          description: List of words of the utterance, split by timestamp
-          type: array
-          items:
-            $ref: '#/components/schemas/WordDTO'
-        text:
-          type: string
-          description: Transcription for this utterance
-        language:
-          description: Spoken language in this utterance
-          example: en
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
-      required:
-      - start
-      - end
-      - confidence
-      - channel
-      - words
-      - text
-      - language
-    PreProcessingConfig:
-      type: object
-      properties:
-        audio_enhancer:
-          type: boolean
-          description: If true, apply pre-processing to the audio stream to enhance the quality.
-          default: false
-        speech_threshold:
-          type: number
-          description: Sensitivity configuration for Speech Threshold. A value close to 1 will apply stricter thresholds, making it less likely to detect background sounds as speech.
-          default: 0.6
-          minimum: 0
-          maximum: 1
-    SubtitleDTO:
-      type: object
-      properties:
-        format:
-          description: Format of the current subtitle
-          example: srt
-          allOf:
-          - $ref: '#/components/schemas/SubtitlesFormatEnum'
-        subtitles:
-          type: string
-          description: Transcription on the asked subtitle format
-      required:
-      - format
-      - subtitles
-    WordDTO:
-      type: object
-      properties:
-        word:
-          type: string
-          description: Spoken word
-        start:
-          type: number
-          description: Start timestamps in seconds of the spoken word
-        end:
-          type: number
-          description: End timestamps in seconds of the spoken word
-        confidence:
-          type: number
-          description: Confidence on the transcribed word (1 = 100% confident)
-      required:
-      - word
-      - start
-      - end
-      - confidence
-    TranslationResultDTO:
-      type: object
-      properties:
-        error:
-          description: Contains the error details of the failed addon
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        full_transcript:
-          type: string
-          description: All transcription on text format without any other information
-        languages:
-          type: array
-          description: All the detected languages in the audio sorted from the most detected to the less detected
-          example:
-          - en
-          items:
-            $ref: '#/components/schemas/TranslationLanguageCodeEnum'
-        sentences:
-          description: If `sentences` has been enabled, sentences results for this translation
-          type: array
-          items:
-            $ref: '#/components/schemas/SentencesDTO'
-        subtitles:
-          description: If `subtitles` has been enabled, subtitles results for this translation
-          type: array
-          items:
-            $ref: '#/components/schemas/SubtitleDTO'
-        utterances:
-          description: Transcribed speech utterances present in the audio
-          type: array
-          items:
-            $ref: '#/components/schemas/UtteranceDTO'
-      required:
-      - error
-      - full_transcript
-      - languages
-      - utterances
-    UnauthorizedErrorResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: Date of when the error occurred
-          example: '2023-12-28T09:04:17.210Z'
-        path:
-          type: string
-          description: Path to the API endpoint
-          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-821fe9df
-        statusCode:
-          type: number
-          description: HTTP status code of the error
-          example: 401
-        message:
-          type: string
-          description: Error message
-          example: gladia key not found
-      required:
-      - timestamp
-      - path
-      - request_id
-      - statusCode
-      - message
-    TranslationDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: List of translated transcriptions, one for each `target_languages`
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TranslationResultDTO'
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    FileResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The file id
-        filename:
-          type:
-          - string
-          - 'null'
-          description: The name of the uploaded file
-        source:
-          type:
-          - string
-          - 'null'
-          description: The link used to download the file if audio_url was used
-        audio_duration:
-          type:
-          - number
-          - 'null'
-          description: Duration of the audio file
-          example: 3600
-        number_of_channels:
-          type:
-          - integer
-          - 'null'
-          description: Number of channels in the audio file
-          minimum: 1
-          example: 1
-      required:
-      - id
-      - filename
-      - source
-      - audio_duration
-      - number_of_channels
-    StreamingSupportedBitDepthEnum:
-      type: number
-      enum:
-      - 8
-      - 16
-      - 24
-      - 32
-      description: The bit depth of the audio stream
     NamedEntityRecognitionResult:
       type: object
       properties:
@@ -661,6 +350,118 @@ components:
       - text
       - start
       - end
+    StreamingRequestParamsResponse:
+      type: object
+      properties:
+        encoding:
+          description: "The encoding format of the audio stream. Supported formats: \n- PCM: 8, 16, 24, and 32 bits \n- A-law: 8 bits \n- μ-law: 8 bits \n\nNote: No need to add WAV headers to raw audio as the API supports both formats."
+          default: wav/pcm
+          allOf:
+          - $ref: '#/components/schemas/StreamingSupportedEncodingEnum'
+        bit_depth:
+          description: The bit depth of the audio stream
+          default: 16
+          allOf:
+          - $ref: '#/components/schemas/StreamingSupportedBitDepthEnum'
+        sample_rate:
+          description: The sample rate of the audio stream
+          default: 16000
+          allOf:
+          - $ref: '#/components/schemas/StreamingSupportedSampleRateEnum'
+        channels:
+          type: integer
+          description: The number of channels of the audio stream
+          default: 1
+          minimum: 1
+          maximum: 8
+        model:
+          description: The model used to process the audio. "solaria-1" is used by default.
+          default: solaria-1
+          allOf:
+          - $ref: '#/components/schemas/StreamingSupportedModels'
+        endpointing:
+          type: number
+          description: The endpointing duration in seconds. Endpointing is the duration of silence which will cause an utterance to be considered as finished
+          default: 0.05
+          minimum: 0.01
+          maximum: 10
+        maximum_duration_without_endpointing:
+          type: number
+          description: The maximum duration in seconds without endpointing. If endpointing is not detected after this duration, current utterance will be considered as finished
+          default: 5
+          minimum: 5
+          maximum: 60
+        language_config:
+          description: Specify the language configuration
+          allOf:
+          - $ref: '#/components/schemas/LanguageConfig'
+        pre_processing:
+          description: Specify the pre-processing configuration
+          allOf:
+          - $ref: '#/components/schemas/PreProcessingConfig'
+        realtime_processing:
+          description: Specify the realtime processing configuration
+          allOf:
+          - $ref: '#/components/schemas/RealtimeProcessingConfig'
+        post_processing:
+          description: Specify the post-processing configuration
+          allOf:
+          - $ref: '#/components/schemas/PostProcessingConfig'
+        messages_config:
+          description: Specify the websocket messages configuration
+          allOf:
+          - $ref: '#/components/schemas/MessagesConfig'
+        callback:
+          type: boolean
+          description: If true, messages will be sent to configured url.
+          default: false
+        callback_config:
+          description: Specify the callback configuration
+          allOf:
+          - $ref: '#/components/schemas/CallbackConfig'
+    RealtimeProcessingConfig:
+      type: object
+      properties:
+        custom_vocabulary:
+          type: boolean
+          description: If true, enable custom vocabulary for the transcription.
+          default: false
+        custom_vocabulary_config:
+          description: Custom vocabulary configuration, if `custom_vocabulary` is enabled
+          allOf:
+          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
+        custom_spelling:
+          type: boolean
+          description: If true, enable custom spelling for the transcription.
+          default: false
+        custom_spelling_config:
+          description: Custom spelling configuration, if `custom_spelling` is enabled
+          allOf:
+          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
+        translation:
+          type: boolean
+          description: If true, enable translation for the transcription
+          default: false
+        translation_config:
+          description: Translation configuration, if `translation` is enabled
+          allOf:
+          - $ref: '#/components/schemas/TranslationConfigDTO'
+        named_entity_recognition:
+          type: boolean
+          description: If true, enable named entity recognition for the transcription.
+          default: false
+        sentiment_analysis:
+          type: boolean
+          description: If true, enable sentiment analysis for the transcription.
+          default: false
+    SummarizationConfigDTO:
+      type: object
+      properties:
+        type:
+          description: The type of summarization to apply
+          default: general
+          allOf:
+          - $ref: '#/components/schemas/SummaryTypesEnum'
     StreamingTranscriptionResultWithMessagesDTO:
       type: object
       properties:
@@ -688,10 +489,6 @@ components:
           description: If `sentiment_analysis` has been enabled, sentiment analysis of the audio speech transcription
           allOf:
           - $ref: '#/components/schemas/SentimentAnalysisDTO'
-        chapterization:
-          description: If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.
-          allOf:
-          - $ref: '#/components/schemas/ChapterizationDTO'
         messages:
           description: Real-Time messages sent by the server during the live transcription
           type: array
@@ -699,6 +496,120 @@ components:
             type: string
       required:
       - metadata
+    ListStreamingResponse:
+      type: object
+      properties:
+        first:
+          type: string
+          description: URL to fetch the first page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
+        current:
+          type: string
+          description: URL to fetch the current page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
+        next:
+          type: string
+          description: URL to fetch the next page
+          format: uri
+          example: https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20
+          nullable: true
+        items:
+          description: List of live transcriptions
+          type: array
+          items:
+            $ref: '#/components/schemas/StreamingResponse'
+      required:
+      - first
+      - current
+      - next
+      - items
+    StreamingSupportedSampleRateEnum:
+      type: number
+      enum:
+      - 8000
+      - 16000
+      - 32000
+      - 44100
+      - 48000
+      description: The sample rate of the audio stream
+    SentencesDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: If `sentences` has been enabled, transcription as sentences.
+          nullable: true
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
+    AddonErrorDTO:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          description: Status code of the addon error
+          example: 500
+        exception:
+          type: string
+          description: Reason of the addon error
+        message:
+          type: string
+          description: Detailed message of the addon error
+      required:
+      - status_code
+      - exception
+      - message
+    ForbiddenErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Date of when the error occurred
+          example: '2023-12-28T09:04:17.210Z'
+        path:
+          type: string
+          description: Path to the API endpoint
+          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-821fe9df
+        statusCode:
+          type: number
+          description: HTTP status code of the error
+          example: 403
+        message:
+          type: string
+          description: Forbidden request
+          example: Invalid parameter
+      required:
+      - timestamp
+      - path
+      - request_id
+      - statusCode
+      - message
     TranslationLanguageCodeEnum:
       type: string
       enum:
@@ -803,287 +714,63 @@ components:
       - yo
       - zh
       description: Target language in `iso639-1` format you want the transcription translated to
-    ListStreamingResponse:
+    FileResponse:
       type: object
       properties:
-        first:
+        id:
           type: string
-          description: URL to fetch the first page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
-        current:
+          description: The file id
+        filename:
           type: string
-          description: URL to fetch the current page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=0&limit=20
-        next:
-          type:
-          - string
-          - 'null'
-          description: URL to fetch the next page
-          format: uri
-          example: https://api.gladia.io/v2/transcription?status=done&offset=20&limit=20
-        items:
-          description: List of live transcriptions
-          type: array
-          items:
-            $ref: '#/components/schemas/StreamingResponse'
-      required:
-      - first
-      - current
-      - next
-      - items
-    NamedEntityRecognitionDTO:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: If `named_entity_recognition` has been enabled, the detected entities.
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NamedEntityRecognitionResult'
-      required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
-    UnprocessableEntityErrorResponse:
-      type: object
-      properties:
-        timestamp:
+          nullable: true
+          description: The name of the uploaded file
+        source:
           type: string
-          description: Date of when the error occurred
-          example: '2023-12-28T09:04:17.210Z'
-        path:
-          type: string
-          description: Path to the API endpoint
-          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-821fe9df
-        statusCode:
-          type: number
-          description: HTTP status code of the error
-          example: 422
-        message:
-          type: string
-          description: Error message
-          example: Invalid parameter
-      required:
-      - timestamp
-      - path
-      - request_id
-      - statusCode
-      - message
-    StreamingRequestParamsResponse:
-      type: object
-      properties:
-        encoding:
-          description: "The encoding format of the audio stream. Supported formats: \n- PCM: 8, 16, 24, and 32 bits \n- A-law: 8 bits \n- μ-law: 8 bits \n\nNote: No need to add WAV headers to raw audio as the API supports both formats."
-          default: wav/pcm
-          allOf:
-          - $ref: '#/components/schemas/StreamingSupportedEncodingEnum'
-        bit_depth:
-          description: The bit depth of the audio stream
-          default: 16
-          allOf:
-          - $ref: '#/components/schemas/StreamingSupportedBitDepthEnum'
-        sample_rate:
-          description: The sample rate of the audio stream
-          default: 16000
-          allOf:
-          - $ref: '#/components/schemas/StreamingSupportedSampleRateEnum'
-        channels:
-          type: integer
-          description: The number of channels of the audio stream
-          default: 1
-          minimum: 1
-          maximum: 8
-        model:
-          description: The model used to process the audio. "solaria-1" is used by default.
-          default: solaria-1
-          allOf:
-          - $ref: '#/components/schemas/StreamingSupportedModels'
-        endpointing:
-          type: number
-          description: The endpointing duration in seconds. Endpointing is the duration of silence which will cause an utterance to be considered as finished
-          default: 0.05
-          minimum: 0.01
-          maximum: 10
-        maximum_duration_without_endpointing:
-          type: number
-          description: The maximum duration in seconds without endpointing. If endpointing is not detected after this duration, current utterance will be considered as finished
-          default: 5
-          minimum: 5
-          maximum: 60
-        language_config:
-          description: Specify the language configuration
-          allOf:
-          - $ref: '#/components/schemas/LanguageConfig'
-        pre_processing:
-          description: Specify the pre-processing configuration
-          allOf:
-          - $ref: '#/components/schemas/PreProcessingConfig'
-        realtime_processing:
-          description: Specify the realtime processing configuration
-          allOf:
-          - $ref: '#/components/schemas/RealtimeProcessingConfig'
-        post_processing:
-          description: Specify the post-processing configuration
-          allOf:
-          - $ref: '#/components/schemas/PostProcessingConfig'
-        messages_config:
-          description: Specify the websocket messages configuration
-          allOf:
-          - $ref: '#/components/schemas/MessagesConfig'
-        callback:
-          type: boolean
-          description: If true, messages will be sent to configured url.
-          default: false
-        callback_config:
-          description: Specify the callback configuration
-          allOf:
-          - $ref: '#/components/schemas/CallbackConfig'
-    MessagesConfig:
-      type: object
-      properties:
-        receive_partial_transcripts:
-          type: boolean
-          description: If true, partial transcript will be sent to websocket.
-          default: false
-        receive_final_transcripts:
-          type: boolean
-          description: If true, final transcript will be sent to websocket.
-          default: true
-        receive_speech_events:
-          type: boolean
-          description: If true, begin and end speech events will be sent to websocket.
-          default: true
-        receive_pre_processing_events:
-          type: boolean
-          description: If true, pre-processing events will be sent to websocket.
-          default: true
-        receive_realtime_processing_events:
-          type: boolean
-          description: If true, realtime processing events will be sent to websocket.
-          default: true
-        receive_post_processing_events:
-          type: boolean
-          description: If true, post-processing events will be sent to websocket.
-          default: true
-        receive_acknowledgments:
-          type: boolean
-          description: If true, acknowledgments will be sent to websocket.
-          default: true
-        receive_errors:
-          type: boolean
-          description: If true, errors will be sent to websocket.
-          default: true
-        receive_lifecycle_events:
-          type: boolean
-          description: If true, lifecycle events will be sent to websocket.
-          default: false
-    SubtitlesFormatEnum:
-      type: string
-      enum:
-      - srt
-      - vtt
-      description: Subtitles formats you want your transcription to be formatted to
-    AddonErrorDTO:
-      type: object
-      properties:
-        status_code:
-          type: integer
-          description: Status code of the addon error
-          example: 500
-        exception:
-          type: string
-          description: Reason of the addon error
-        message:
-          type: string
-          description: Detailed message of the addon error
-      required:
-      - status_code
-      - exception
-      - message
-    TranscriptionMetadataDTO:
-      type: object
-      properties:
+          nullable: true
+          description: The link used to download the file if audio_url was used
         audio_duration:
           type: number
-          description: Duration of the transcribed audio file
+          nullable: true
+          description: Duration of the audio file
           example: 3600
-        number_of_distinct_channels:
+        number_of_channels:
           type: integer
-          description: Number of distinct channels in the transcribed audio file
+          nullable: true
+          description: Number of channels in the audio file
           minimum: 1
           example: 1
-        billing_time:
-          type: number
-          description: Billed duration in seconds (audio_duration * number_of_distinct_channels)
-          example: 3600
-        transcription_time:
-          type: number
-          description: Duration of the transcription in seconds
-          example: 20
       required:
+      - id
+      - filename
+      - source
       - audio_duration
-      - number_of_distinct_channels
-      - billing_time
-      - transcription_time
-    BadRequestErrorResponse:
+      - number_of_channels
+    CustomVocabularyConfigDTO:
       type: object
       properties:
-        timestamp:
-          type: string
-          description: Date of when the error occurred
-          example: '2023-12-28T09:04:17.210Z'
-        path:
-          type: string
-          description: Path to the API endpoint
-          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-821fe9df
-        statusCode:
-          type: number
-          description: HTTP status code of the error
-          example: 400
-        message:
-          type: string
-          description: Error message
-          example: Content-Type is missing Multipart Boundary.
-        validation_errors:
-          description: List of validation errors, if any
-          example:
-          - Field "language" must be a string
-          - Field "min_speakers" must be a number
+        vocabulary:
           type: array
+          description: 'Specific vocabulary list to feed the transcription model with. Each item can be a string or an object with the following properties: value, intensity, pronunciations, language.'
+          example:
+          - Westeros
+          - value: Stark
+          - value: Night's Watch
+            pronunciations:
+            - Nightz Watch
+            intensity: 0.4
+            language: en
           items:
-            type: string
+            oneOf:
+            - $ref: '#/components/schemas/CustomVocabularyEntryDTO'
+            - type: string
+        default_intensity:
+          type: number
+          description: Default intensity for the custom vocabulary
+          example: 0.5
+          minimum: 0
+          maximum: 1
       required:
-      - timestamp
-      - path
-      - request_id
-      - statusCode
-      - message
+      - vocabulary
     SummarizationDTO:
       type: object
       properties:
@@ -1098,236 +785,20 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          type:
-          - string
-          - 'null'
+          type: string
           description: If `summarization` has been enabled, summary of the transcription
+          nullable: true
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
-    StreamingSupportedRegions:
-      type: string
-      enum:
-      - us-west
-      - eu-west
-    PayloadTooLargeErrorResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: Date of when the error occurred
-          example: '2023-12-28T09:04:17.210Z'
-        path:
-          type: string
-          description: Path to the API endpoint
-          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-821fe9df
-        statusCode:
-          type: number
-          description: HTTP status code of the error
-          example: 413
-        message:
-          type: string
-          description: Payload too large
-          example: payload too large
-      required:
-      - timestamp
-      - path
-      - request_id
-      - statusCode
-      - message
-    RealtimeProcessingConfig:
-      type: object
-      properties:
-        custom_vocabulary:
-          type: boolean
-          description: If true, enable custom vocabulary for the transcription.
-          default: false
-        custom_vocabulary_config:
-          description: Custom vocabulary configuration, if `custom_vocabulary` is enabled
-          allOf:
-          - $ref: '#/components/schemas/CustomVocabularyConfigDTO'
-        custom_spelling:
-          type: boolean
-          description: If true, enable custom spelling for the transcription.
-          default: false
-        custom_spelling_config:
-          description: Custom spelling configuration, if `custom_spelling` is enabled
-          allOf:
-          - $ref: '#/components/schemas/CustomSpellingConfigDTO'
-        translation:
-          type: boolean
-          description: If true, enable translation for the transcription
-          default: false
-        translation_config:
-          description: Translation configuration, if `translation` is enabled
-          allOf:
-          - $ref: '#/components/schemas/TranslationConfigDTO'
-        named_entity_recognition:
-          type: boolean
-          description: If true, enable named entity recognition for the transcription.
-          default: false
-        sentiment_analysis:
-          type: boolean
-          description: If true, enable sentiment analysis for the transcription.
-          default: false
-    ForbiddenErrorResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: Date of when the error occurred
-          example: '2023-12-28T09:04:17.210Z'
-        path:
-          type: string
-          description: Path to the API endpoint
-          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-821fe9df
-        statusCode:
-          type: number
-          description: HTTP status code of the error
-          example: 403
-        message:
-          type: string
-          description: Forbidden request
-          example: Invalid parameter
-      required:
-      - timestamp
-      - path
-      - request_id
-      - statusCode
-      - message
-    StreamingResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the job
-          format: uuid
-          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
-        request_id:
-          type: string
-          description: Debug id
-          example: G-45463597
-        version:
-          type: integer
-          description: API version
-          example: 2
-        status:
-          type: string
-          description: '"queued": the job has been queued. "processing": the job is being processed. "done": the job has been processed and the result is available. "error": an error occurred during the job''s processing.'
-          enum:
-          - queued
-          - processing
-          - done
-          - error
-        created_at:
-          type: string
-          description: Creation date
-          format: date-time
-          example: '2023-12-28T09:04:17.210Z'
-        completed_at:
-          type:
-          - string
-          - 'null'
-          description: Completion date when status is "done" or "error"
-          format: date-time
-          example: '2023-12-28T09:04:37.210Z'
-        custom_metadata:
-          type: object
-          description: Custom metadata given in the initial request
-          example:
-            user: John Doe
-          additionalProperties: true
-        error_code:
-          type:
-          - integer
-          - 'null'
-          description: HTTP status code of the error if status is "error"
-          minimum: 400
-          maximum: 599
-          example: 500
-        post_session_metadata:
-          type: object
-          description: For debugging purposes, send data that could help to identify issues
-        kind:
-          type: string
-          enum:
-          - live
-          example: live
-          default: live
-        file:
-          description: The file data you uploaded. Can be null if status is "error"
-          allOf:
-          - $ref: '#/components/schemas/FileResponse'
-        request_params:
-          description: Parameters used for this live transcription. Can be null if status is "error"
-          allOf:
-          - $ref: '#/components/schemas/StreamingRequestParamsResponse'
-        result:
-          description: Live transcription's result when status is "done"
-          allOf:
-          - $ref: '#/components/schemas/StreamingTranscriptionResultWithMessagesDTO'
-      required:
-      - id
-      - request_id
-      - version
-      - status
-      - created_at
-      - post_session_metadata
-      - kind
-    SummaryTypesEnum:
-      type: string
-      enum:
-      - general
-      - bullet_points
-      - concise
-      description: The type of summarization to apply
-    CustomVocabularyEntryDTO:
-      type: object
-      properties:
-        value:
-          type: string
-          description: The text used to replace in the transcription.
-          example: Gladia
-        intensity:
-          type: number
-          description: The global intensity of the feature.
-          example: 0.5
-          minimum: 0
-          maximum: 1
-        pronunciations:
-          description: The pronunciations used in the transcription.
-          type: array
-          items:
-            type: string
-        language:
-          description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
-          example: en
-          allOf:
-          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
-      required:
-      - value
-    SummarizationConfigDTO:
-      type: object
-      properties:
-        type:
-          description: The type of summarization to apply
-          default: general
-          allOf:
-          - $ref: '#/components/schemas/SummaryTypesEnum'
     StreamingRequest:
       type: object
       properties:
@@ -1403,6 +874,60 @@ components:
           description: Specify the callback configuration
           allOf:
           - $ref: '#/components/schemas/CallbackConfig'
+    SummaryTypesEnum:
+      type: string
+      enum:
+      - general
+      - bullet_points
+      - concise
+      description: The type of summarization to apply
+    SubtitlesFormatEnum:
+      type: string
+      enum:
+      - srt
+      - vtt
+      description: Subtitles formats you want your transcription to be formatted to
+    UtteranceDTO:
+      type: object
+      properties:
+        start:
+          type: number
+          description: Start timestamp in seconds of this utterance
+        end:
+          type: number
+          description: End timestamp in seconds of this utterance
+        confidence:
+          type: number
+          description: Confidence on the transcribed utterance (1 = 100% confident)
+        channel:
+          type: integer
+          description: Audio channel of where this utterance has been transcribed from
+          minimum: 0
+        speaker:
+          type: integer
+          description: If `diarization` enabled, speaker identification number
+          minimum: 0
+        words:
+          description: List of words of the utterance, split by timestamp
+          type: array
+          items:
+            $ref: '#/components/schemas/WordDTO'
+        text:
+          type: string
+          description: Transcription for this utterance
+        language:
+          description: Spoken language in this utterance
+          example: en
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
+      required:
+      - start
+      - end
+      - confidence
+      - channel
+      - words
+      - text
+      - language
     SentimentAnalysisDTO:
       type: object
       properties:
@@ -1417,6 +942,8 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
@@ -1428,7 +955,338 @@ components:
       - exec_time
       - error
       - results
-    ChapterizationDTO:
+    MessagesConfig:
+      type: object
+      properties:
+        receive_partial_transcripts:
+          type: boolean
+          description: If true, partial transcript will be sent to websocket.
+          default: false
+        receive_final_transcripts:
+          type: boolean
+          description: If true, final transcript will be sent to websocket.
+          default: true
+        receive_speech_events:
+          type: boolean
+          description: If true, begin and end speech events will be sent to websocket.
+          default: true
+        receive_pre_processing_events:
+          type: boolean
+          description: If true, pre-processing events will be sent to websocket.
+          default: true
+        receive_realtime_processing_events:
+          type: boolean
+          description: If true, realtime processing events will be sent to websocket.
+          default: true
+        receive_post_processing_events:
+          type: boolean
+          description: If true, post-processing events will be sent to websocket.
+          default: true
+        receive_acknowledgments:
+          type: boolean
+          description: If true, acknowledgments will be sent to websocket.
+          default: true
+        receive_errors:
+          type: boolean
+          description: If true, errors will be sent to websocket.
+          default: true
+        receive_lifecycle_events:
+          type: boolean
+          description: If true, lifecycle events will be sent to websocket.
+          default: false
+    PreProcessingConfig:
+      type: object
+      properties:
+        audio_enhancer:
+          type: boolean
+          description: If true, apply pre-processing to the audio stream to enhance the quality.
+          default: false
+        speech_threshold:
+          type: number
+          description: Sensitivity configuration for Speech Threshold. A value close to 1 will apply stricter thresholds, making it less likely to detect background sounds as speech.
+          default: 0.6
+          minimum: 0
+          maximum: 1
+    CallbackConfig:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL on which we will do a `POST` request with configured messages
+          example: https://callback.example
+          format: uri
+        receive_partial_transcripts:
+          type: boolean
+          description: If true, partial transcript will be sent to the defined callback.
+          default: false
+        receive_final_transcripts:
+          type: boolean
+          description: If true, final transcript will be sent to the defined callback.
+          default: true
+        receive_speech_events:
+          type: boolean
+          description: If true, begin and end speech events will be sent to the defined callback.
+          default: false
+        receive_pre_processing_events:
+          type: boolean
+          description: If true, pre-processing events will be sent to the defined callback.
+          default: true
+        receive_realtime_processing_events:
+          type: boolean
+          description: If true, realtime processing events will be sent to the defined callback.
+          default: true
+        receive_post_processing_events:
+          type: boolean
+          description: If true, post-processing events will be sent to the defined callback.
+          default: true
+        receive_acknowledgments:
+          type: boolean
+          description: If true, acknowledgments will be sent to the defined callback.
+          default: false
+        receive_errors:
+          type: boolean
+          description: If true, errors will be sent to the defined callback.
+          default: false
+        receive_lifecycle_events:
+          type: boolean
+          description: If true, lifecycle events will be sent to the defined callback.
+          default: true
+    UnprocessableEntityErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Date of when the error occurred
+          example: '2023-12-28T09:04:17.210Z'
+        path:
+          type: string
+          description: Path to the API endpoint
+          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-821fe9df
+        statusCode:
+          type: number
+          description: HTTP status code of the error
+          example: 422
+        message:
+          type: string
+          description: Error message
+          example: Invalid parameter
+      required:
+      - timestamp
+      - path
+      - request_id
+      - statusCode
+      - message
+    PayloadTooLargeErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Date of when the error occurred
+          example: '2023-12-28T09:04:17.210Z'
+        path:
+          type: string
+          description: Path to the API endpoint
+          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-821fe9df
+        statusCode:
+          type: number
+          description: HTTP status code of the error
+          example: 413
+        message:
+          type: string
+          description: Payload too large
+          example: payload too large
+      required:
+      - timestamp
+      - path
+      - request_id
+      - statusCode
+      - message
+    BadRequestErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Date of when the error occurred
+          example: '2023-12-28T09:04:17.210Z'
+        path:
+          type: string
+          description: Path to the API endpoint
+          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-821fe9df
+        statusCode:
+          type: number
+          description: HTTP status code of the error
+          example: 400
+        message:
+          type: string
+          description: Error message
+          example: Content-Type is missing Multipart Boundary.
+        validation_errors:
+          description: List of validation errors, if any
+          example:
+          - Field "language" must be a string
+          - Field "min_speakers" must be a number
+          type: array
+          items:
+            type: string
+      required:
+      - timestamp
+      - path
+      - request_id
+      - statusCode
+      - message
+    StreamingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the job
+          format: uuid
+          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-45463597
+        version:
+          type: integer
+          description: API version
+          example: 2
+        status:
+          type: string
+          description: '"queued": the job has been queued. "processing": the job is being processed. "done": the job has been processed and the result is available. "error": an error occurred during the job''s processing.'
+          enum:
+          - queued
+          - processing
+          - done
+          - error
+        created_at:
+          type: string
+          description: Creation date
+          format: date-time
+          example: '2023-12-28T09:04:17.210Z'
+        completed_at:
+          type: string
+          description: Completion date when status is "done" or "error"
+          format: date-time
+          example: '2023-12-28T09:04:37.210Z'
+          nullable: true
+        custom_metadata:
+          type: object
+          description: Custom metadata given in the initial request
+          example:
+            user: John Doe
+          additionalProperties: true
+        error_code:
+          type: integer
+          description: HTTP status code of the error if status is "error"
+          minimum: 400
+          maximum: 599
+          example: 500
+          nullable: true
+        post_session_metadata:
+          type: object
+          description: For debugging purposes, send data that could help to identify issues
+        kind:
+          type: string
+          enum:
+          - live
+          example: live
+          default: live
+        file:
+          description: The file data you uploaded. Can be null if status is "error"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/FileResponse'
+        request_params:
+          description: Parameters used for this live transcription. Can be null if status is "error"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StreamingRequestParamsResponse'
+        result:
+          description: Live transcription's result when status is "done"
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/StreamingTranscriptionResultWithMessagesDTO'
+      required:
+      - id
+      - request_id
+      - version
+      - status
+      - created_at
+      - post_session_metadata
+      - kind
+    CustomSpellingConfigDTO:
+      type: object
+      properties:
+        spelling_dictionary:
+          type: object
+          description: The list of spelling applied on the audio transcription
+          example:
+            Gettleman:
+            - gettleman
+            SQL:
+            - Sequel
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      required:
+      - spelling_dictionary
+    PatchRequestParamsDTO:
+      type: object
+      properties: {}
+    UnauthorizedErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: Date of when the error occurred
+          example: '2023-12-28T09:04:17.210Z'
+        path:
+          type: string
+          description: Path to the API endpoint
+          example: /v2/transcription/45463597-20b7-4af7-b3b3-f5fb778203ab
+        request_id:
+          type: string
+          description: Debug id
+          example: G-821fe9df
+        statusCode:
+          type: number
+          description: HTTP status code of the error
+          example: 401
+        message:
+          type: string
+          description: Error message
+          example: gladia key not found
+      required:
+      - timestamp
+      - path
+      - request_id
+      - statusCode
+      - message
+    StreamingSupportedBitDepthEnum:
+      type: number
+      enum:
+      - 8
+      - 16
+      - 24
+      - 32
+      description: The bit depth of the audio stream
+    TranslationDTO:
       type: object
       properties:
         success:
@@ -1442,18 +1300,72 @@ components:
           description: Time audio intelligence model took to complete the task
         error:
           description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
           allOf:
           - $ref: '#/components/schemas/AddonErrorDTO'
         results:
-          type: object
-          description: If `chapterization` has been enabled, will generate chapters name for different parts of the given audio.
-          additionalProperties: true
+          description: List of translated transcriptions, one for each `target_languages`
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationResultDTO'
       required:
       - success
       - is_empty
       - exec_time
       - error
       - results
+    TranscriptionMetadataDTO:
+      type: object
+      properties:
+        audio_duration:
+          type: number
+          description: Duration of the transcribed audio file
+          example: 3600
+        number_of_distinct_channels:
+          type: integer
+          description: Number of distinct channels in the transcribed audio file
+          minimum: 1
+          example: 1
+        billing_time:
+          type: number
+          description: Billed duration in seconds (audio_duration * number_of_distinct_channels)
+          example: 3600
+        transcription_time:
+          type: number
+          description: Duration of the transcription in seconds
+          example: 20
+      required:
+      - audio_duration
+      - number_of_distinct_channels
+      - billing_time
+      - transcription_time
+    WordDTO:
+      type: object
+      properties:
+        word:
+          type: string
+          description: Spoken word
+        start:
+          type: number
+          description: Start timestamps in seconds of the spoken word
+        end:
+          type: number
+          description: End timestamps in seconds of the spoken word
+        confidence:
+          type: number
+          description: Confidence on the transcribed word (1 = 100% confident)
+      required:
+      - word
+      - start
+      - end
+      - confidence
+    StreamingSupportedRegions:
+      type: string
+      enum:
+      - us-west
+      - eu-west
     TranscriptionLanguageCodeEnum:
       type: string
       enum:
@@ -1557,11 +1469,97 @@ components:
       - yo
       - zh
       description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
-    StreamingSupportedModels:
+    TranslationResultDTO:
+      type: object
+      properties:
+        error:
+          description: Contains the error details of the failed addon
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        full_transcript:
+          type: string
+          description: All transcription on text format without any other information
+        languages:
+          type: array
+          description: All the detected languages in the audio sorted from the most detected to the less detected
+          example:
+          - en
+          items:
+            $ref: '#/components/schemas/TranslationLanguageCodeEnum'
+        sentences:
+          description: If `sentences` has been enabled, sentences results for this translation
+          type: array
+          items:
+            $ref: '#/components/schemas/SentencesDTO'
+        subtitles:
+          description: If `subtitles` has been enabled, subtitles results for this translation
+          type: array
+          items:
+            $ref: '#/components/schemas/SubtitleDTO'
+        utterances:
+          description: Transcribed speech utterances present in the audio
+          type: array
+          items:
+            $ref: '#/components/schemas/UtteranceDTO'
+      required:
+      - error
+      - full_transcript
+      - languages
+      - utterances
+    PostProcessingConfig:
+      type: object
+      properties:
+        summarization:
+          type: boolean
+          description: If true, generates summarization for the whole transcription.
+          default: false
+        summarization_config:
+          description: Summarization configuration, if `summarization` is enabled
+          allOf:
+          - $ref: '#/components/schemas/SummarizationConfigDTO'
+        chapterization:
+          type: boolean
+          description: 'Deprecated: this parameter is ignored.'
+          default: false
+    TranslationModelEnum:
       type: string
       enum:
-      - solaria-1
-      description: The model used to process the audio. "solaria-1" is used by default.
+      - base
+      - batch
+      - enhanced
+      description: Model you want the translation model to use to translate
+    NamedEntityRecognitionDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: The audio intelligence model succeeded to get a valid output
+        is_empty:
+          type: boolean
+          description: The audio intelligence model returned an empty value
+        exec_time:
+          type: number
+          description: Time audio intelligence model took to complete the task
+        error:
+          description: '`null` if `success` is `true`. Contains the error details of the failed model'
+          nullable: true
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/AddonErrorDTO'
+        results:
+          description: If `named_entity_recognition` has been enabled, the detected entities.
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedEntityRecognitionResult'
+      required:
+      - success
+      - is_empty
+      - exec_time
+      - error
+      - results
     TranscriptionDTO:
       type: object
       properties:
@@ -1594,24 +1592,6 @@ components:
       - full_transcript
       - languages
       - utterances
-    PatchRequestParamsDTO:
-      type: object
-      properties: {}
-    PostProcessingConfig:
-      type: object
-      properties:
-        summarization:
-          type: boolean
-          description: If true, generates summarization for the whole transcription.
-          default: false
-        summarization_config:
-          description: Summarization configuration, if `summarization` is enabled
-          allOf:
-          - $ref: '#/components/schemas/SummarizationConfigDTO'
-        chapterization:
-          type: boolean
-          description: If true, generates chapters for the whole transcription.
-          default: false
     LanguageConfig:
       type: object
       properties:
@@ -1625,57 +1605,28 @@ components:
           type: boolean
           description: If true, language will be auto-detected on each utterance. Otherwise, language will be auto-detected on first utterance and then used for the rest of the transcription. If one language is set, this option will be ignored.
           default: false
-    StreamingSupportedEncodingEnum:
-      type: string
-      enum:
-      - wav/pcm
-      - wav/alaw
-      - wav/ulaw
-      description: "The encoding format of the audio stream. Supported formats: \n- PCM: 8, 16, 24, and 32 bits \n- A-law: 8 bits \n- μ-law: 8 bits \n\nNote: No need to add WAV headers to raw audio as the API supports both formats."
-    TranslationModelEnum:
-      type: string
-      enum:
-      - base
-      - enhanced
-      description: Model you want the translation model to use to translate
-    StreamingSupportedSampleRateEnum:
-      type: number
-      enum:
-      - 8000
-      - 16000
-      - 32000
-      - 44100
-      - 48000
-      description: The sample rate of the audio stream
-    SentencesDTO:
+    InitStreamingResponse:
       type: object
       properties:
-        success:
-          type: boolean
-          description: The audio intelligence model succeeded to get a valid output
-        is_empty:
-          type: boolean
-          description: The audio intelligence model returned an empty value
-        exec_time:
-          type: number
-          description: Time audio intelligence model took to complete the task
-        error:
-          description: '`null` if `success` is `true`. Contains the error details of the failed model'
-          allOf:
-          - $ref: '#/components/schemas/AddonErrorDTO'
-        results:
-          description: If `sentences` has been enabled, transcription as sentences.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
+        id:
+          type: string
+          description: Id of the job
+          format: uuid
+          example: 45463597-20b7-4af7-b3b3-f5fb778203ab
+        created_at:
+          type: string
+          description: Creation date
+          format: date-time
+          example: '2023-12-28T09:04:17.210Z'
+        url:
+          type: string
+          description: The websocket url to connect to for sending audio data. The url will contain the temporary token to authenticate the session.
+          example: wss://api.gladia.io/v2/live?token=4a39145c-2844-4557-8f34-34883f7be7d9
+          format: uri
       required:
-      - success
-      - is_empty
-      - exec_time
-      - error
-      - results
+      - id
+      - created_at
+      - url
     TranslationConfigDTO:
       type: object
       properties:
@@ -1689,7 +1640,7 @@ components:
             $ref: '#/components/schemas/TranslationLanguageCodeEnum'
         model:
           description: Model you want the translation model to use to translate
-          default: base
+          default: batch
           allOf:
           - $ref: '#/components/schemas/TranslationModelEnum'
         match_original_utterances:
@@ -1713,23 +1664,50 @@ components:
           default: false
       required:
       - target_languages
-    CustomSpellingConfigDTO:
+    StreamingSupportedModels:
+      type: string
+      enum:
+      - solaria-1
+      description: The model used to process the audio. "solaria-1" is used by default.
+    SubtitleDTO:
       type: object
       properties:
-        spelling_dictionary:
-          type: object
-          description: The list of spelling applied on the audio transcription
-          example:
-            Gettleman:
-            - gettleman
-            SQL:
-            - Sequel
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        format:
+          description: Format of the current subtitle
+          example: srt
+          allOf:
+          - $ref: '#/components/schemas/SubtitlesFormatEnum'
+        subtitles:
+          type: string
+          description: Transcription on the asked subtitle format
       required:
-      - spelling_dictionary
+      - format
+      - subtitles
+    CustomVocabularyEntryDTO:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The text used to replace in the transcription.
+          example: Gladia
+        intensity:
+          type: number
+          description: The global intensity of the feature.
+          example: 0.5
+          minimum: 0
+          maximum: 1
+        pronunciations:
+          description: The pronunciations used in the transcription.
+          type: array
+          items:
+            type: string
+        language:
+          description: Specify the language in which it will be pronounced when sound comparison occurs. Default to transcription language.
+          example: en
+          allOf:
+          - $ref: '#/components/schemas/TranscriptionLanguageCodeEnum'
+      required:
+      - value
   securitySchemes:
     x_gladia_key:
       type: apiKey
