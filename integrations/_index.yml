@@ -103,3 +103,36 @@
     detected: '2026-10-21'
   status: not-a-workflow
   arazzo: null
+- slug: gladia-obsidian
+  label: Obsidian
+  partner: obsidian
+  partner_name: Obsidian
+  category: Obsidian community plugin
+  type: marketplace
+  marketplace: obsidian-community-plugins
+  channel: community-plugin
+  evidence: https://github.com/jaliriogbarrios19/Audio_Transcript
+  source: edge
+  relationship: connector-listing
+  contract_reference:
+    register: Obsidian community-plugins.json (obsidianmd/obsidian-releases@793b5211) + plugin repo README / manifest
+      / source
+    spec_file: null
+    role: obsidian-community-plugin:community
+    registered_name: Jesús García
+    register_id: https://github.com/jaliriogbarrios19/Audio_Transcript
+    matched_domain: gladia.io
+    matched_by: domain+name-in-listing
+    matched_where: README
+    matched_host: app.gladia.io
+    builder: community
+    plugins:
+    - audio-transcript
+    downloads_context: 494
+    signal_note: 'ONE edge per provider: a community plugin names the provider in its name/description AND carries
+      the provider''s domain or API host in its README or source. Builder is a named community author (not the provider).
+      Plugin and download counts are context, never counted.'
+    detected_by: sweep-obsidian-community-plugins.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
