@@ -1,4 +1,4 @@
-# Gladia (gladia)
+# Gladia
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,81 +64,184 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Gladia is an AI audio infrastructure platform that delivers speech-to-text transcription and audio intelligence through a unified REST and WebSocket API. The platform supports asynchronous processing of pre-recorded audio files and real-time live transcription via WebSocket, with speaker diarization, automatic language detection across 100+ languages, word-level timestamps, and LLM-powered audio intelligence enrichments. Authentication is API-key based using the `x-gladia-key` header against the base URL `https://api.gladia.io/v2/`. Gladia offers a freemium model with 10 free hours per month, metered pay-as-you-go pricing, volume-commitment Growth plans, and custom Enterprise contracts.
+Gladia is an AI audio infrastructure platform that offers speech-to-text transcription via both REST and WebSocket APIs, supporting asynchronous pre-recorded audio processing and real-time live transcription. The platform provides speaker diarization, automatic language detection across 100+ languages, word-level timestamps, and audio intelligence features powered by large language models. Authentication uses an API key passed via the x-gladia-key HTTP header against the base URL https://api.gladia.io/v2/. Gladia offers a free tier with 10 hours per month, metered paid plans starting at $0.61/hour for async and $0.75/hour for real-time, and custom enterprise pricing with zero data retention and SLA guarantees.
 
-**APIs.json:** https://raw.githubusercontent.com/api-evangelist/gladia/refs/heads/main/apis.yml
+**Areas:** Speech-to-Text · Transcription · Audio Intelligence · Real-Time · Speaker Diarization · Translation · WebSocket · REST
 
-**Naftiko:** https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=gladia-api-evangelist&utm_content=repo
+## Gladia on APIs.io
 
----
+Everything profiled for Gladia is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gladia/](https://apis.io/providers/gladia/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Speech-to-Text
-- Transcription
-- Audio Intelligence
-- Real-Time
-- Speaker Diarization
-- Translation
-- WebSocket
-- REST
+- [Gladia Live (Real-time) API](https://apis.io/apis/gladia/gladia-live-real-time-api/) — WebSocket API for real-time live audio transcription with sub-second latency, supporting multi-language detection, live speaker diarization, and streaming…
+- [Gladia AudioToText API](https://apis.io/apis/gladia/gladia-audiototext-api/) — The AudioToText API from Gladia — 1 operation(s) for audiototext.
+- [Gladia File Management API](https://apis.io/apis/gladia/gladia-file-management-api/) — The File Management API from Gladia — 1 operation(s) for file management.
+- [Gladia Job History API](https://apis.io/apis/gladia/gladia-job-history-api/) — The Job History API from Gladia — 1 operation(s) for job history.
+- [Gladia Live V2 API](https://apis.io/apis/gladia/gladia-live-v2-api/) — The Live V2 API from Gladia — 3 operation(s) for live v2.
+- [Gladia Pre-recorded V2 API](https://apis.io/apis/gladia/gladia-pre-recorded-v2-api/) — The Pre-recorded V2 API from Gladia — 3 operation(s) for pre-recorded v2.
+- [Gladia Transcription V1 API](https://apis.io/apis/gladia/gladia-transcription-v1-api/) — The Transcription V1 API from Gladia — 2 operation(s) for transcription v1.
+- [Gladia Transcription V2 API](https://apis.io/apis/gladia/gladia-transcription-v2-api/) — The Transcription V2 API from Gladia — 3 operation(s) for transcription v2.
+- [Gladia Open Router API](https://apis.io/apis/gladia/gladia-open-router-api/) — The Open Router API from Gladia — 1 operation(s) for open router.
 
----
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| API | Description |
-|-----|-------------|
-| Gladia Pre-recorded (Async) API | REST API for submitting pre-recorded audio files for asynchronous transcription with diarization, language detection, and audio intelligence. |
-| Gladia Live (Real-time) API | WebSocket API for real-time live audio transcription with sub-second latency; sessions capped at 3 hours. |
+#### Agentic access (1)
 
----
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Plans / Rate Limits / FinOps
+- [Gladia Agentic Access](https://apis.io/agentic-access/gladia/gladia-agentic-access/)
 
-| Resource | Location |
-|----------|----------|
-| Plans & Pricing | [plans/gladia-plans-pricing.yml](plans/gladia-plans-pricing.yml) |
-| Rate Limits | [rate-limits/gladia-rate-limits.yml](rate-limits/gladia-rate-limits.yml) |
-| FinOps | [finops/gladia-finops.yml](finops/gladia-finops.yml) |
+#### JSON Schema (5)
 
-**Pricing summary:**
+The data models the API reads and writes.
 
-- **Starter (free quota):** 10 hours/month free; $0.61/hr async, $0.75/hr real-time pay-as-you-go
-- **Growth:** Volume commitment; from $0.20/hr async, $0.25/hr real-time
-- **Enterprise:** Custom annual pricing with unlimited concurrency and zero data retention
+- [AudioUploadResponse](https://apis.io/schemas/gladia/gladia-audio-upload-response/)
+- [DiarizationConfigDTO](https://apis.io/schemas/gladia/gladia-diarization-config/)
+- [InitPreRecordedTranscriptionResponse](https://apis.io/schemas/gladia/gladia-init-pre-recorded-transcription-response/)
+- [InitTranscriptionRequest](https://apis.io/schemas/gladia/gladia-init-transcription-request/)
+- [LiveEventPayload](https://apis.io/schemas/gladia/gladia-live-event-payload/)
 
-**Rate limits summary:**
+#### JSON-LD (1)
 
-- Free tier: 3 concurrent async / 1 concurrent real-time / 10 hrs/month cap
-- Paid tier: 25 concurrent async / 30 concurrent real-time / 300-request queue
-- All plans: max 3-hour real-time session duration; HTTP 429 on throttle
+Linked-data contexts for the provider's vocabulary.
 
----
+- [Gladia Context](https://apis.io/jsonld/gladia/gladia-context/)
 
-## Timestamps
+#### Vocabulary (1)
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+The provider's domain terms, defined.
 
----
+- [Gladia Vocabulary](https://apis.io/vocabularies/gladia/gladia-vocabulary/)
 
-## Common Properties
+#### Examples (4)
 
-| Property | URL |
-|----------|-----|
-| Website | https://www.gladia.io/ |
-| Documentation | https://docs.gladia.io/ |
-| GitHub Organization | https://github.com/gladiaio |
-| LinkedIn | https://www.linkedin.com/company/gladia-io |
-| X / Twitter | https://x.com/gladia_io |
-| Blog | https://www.gladia.io/blog |
-| Changelog | https://www.gladia.io/changelog |
-| Pricing | https://www.gladia.io/pricing |
-| Status Page | https://status.gladia.io/ |
+Example requests and responses.
 
----
+- [Gladia Initiate Transcription](https://apis.io/examples/gladia/gladia-initiate-transcription/)
+- [Gladia Live Session Config](https://apis.io/examples/gladia/gladia-live-session-config/)
+- [Gladia Transcription Job Response](https://apis.io/examples/gladia/gladia-transcription-job-response/)
+- [Gladia Upload Audio Url](https://apis.io/examples/gladia/gladia-upload-audio-url/)
 
-## Maintainers
+#### Collections (16)
 
-- **Kin Lane** — kin@apievangelist.com
+Postman and Open Collection request collections.
+
+- [Gladia Control AudioToText API](https://apis.io/collections/gladia/open-gladia-audiototext-api/)
+- [Gladia Control AudioToText File Management API](https://apis.io/collections/gladia/open-gladia-file-management-api/)
+- [Gladia Control AudioToText Job History API](https://apis.io/collections/gladia/open-gladia-job-history-api/)
+- [Gladia Control AudioToText Live V2 API](https://apis.io/collections/gladia/open-gladia-live-v2-api/)
+- [Gladia Control AudioToText OpenRouter API](https://apis.io/collections/gladia/open-gladia-openrouter-api/)
+- [Gladia Control AudioToText Pre-recorded V2 API](https://apis.io/collections/gladia/open-gladia-pre-recorded-v2-api/)
+- [Gladia Control AudioToText Transcription V1 API](https://apis.io/collections/gladia/open-gladia-transcription-v1-api/)
+- [Gladia Control AudioToText Transcription V2 API](https://apis.io/collections/gladia/open-gladia-transcription-v2-api/)
+- [Gladia Control AudioToText API](https://apis.io/collections/gladia/postman-gladia-audiototext-api/)
+- [Gladia Control AudioToText File Management API](https://apis.io/collections/gladia/postman-gladia-file-management-api/)
+- [Gladia Control AudioToText Job History API](https://apis.io/collections/gladia/postman-gladia-job-history-api/)
+- [Gladia Control AudioToText Live V2 API](https://apis.io/collections/gladia/postman-gladia-live-v2-api/)
+- [Gladia Control AudioToText OpenRouter API](https://apis.io/collections/gladia/postman-gladia-openrouter-api/)
+- [Gladia Control AudioToText Pre-recorded V2 API](https://apis.io/collections/gladia/postman-gladia-pre-recorded-v2-api/)
+- [Gladia Control AudioToText Transcription V1 API](https://apis.io/collections/gladia/postman-gladia-transcription-v1-api/)
+- [Gladia Control AudioToText Transcription V2 API](https://apis.io/collections/gladia/postman-gladia-transcription-v2-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Gladia — jsonschema rules](https://apis.io/rules/gladia/gladia-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gladia Authentication](https://apis.io/security/gladia/gladia-authentication/)
+- [Gladia Domain Security](https://apis.io/security/gladia/gladia-domain-security/)
+- [Gladia Trust Center](https://apis.io/security/gladia/gladia-trust-center/)
+- [Gladia Vulnerability Disclosure](https://apis.io/security/gladia/gladia-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Gladia Plans Pricing](https://apis.io/plans/gladia/gladia-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Gladia Rate Limits](https://apis.io/rate-limits/gladia/gladia-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Gladia Finops](https://apis.io/finops/gladia/gladia-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gladia.io/)
+- [Documentation](https://docs.gladia.io/)
+- [Pricing](https://www.gladia.io/pricing)
+- [Changelog](https://www.gladia.io/changelog)
+- [Blog](https://www.gladia.io/blog)
+- [GitHub](https://github.com/gladiaio)
+- [Status](https://status.gladia.io/)
+
+## API Evangelist rating
+
+**Kin Score 42.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 59.4 |
+| Contract governance | 23.5 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 26.3 |
+
+**Agent readiness 33.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gladia/](https://apis.io/providers/gladia/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Gladia: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gladia/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
